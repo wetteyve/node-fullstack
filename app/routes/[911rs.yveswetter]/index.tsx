@@ -1,6 +1,10 @@
 import axios from "axios";
+import { Outlet } from "react-router";
+import Footer from "#app/components/911rs/footer/footer";
+import Navbar from "#app/components/911rs/navbar/navbar";
 import { splitArrayByKey } from "#app/utils/911rs/array.utils";
 import { type Page } from "#app/utils/911rs/page.type";
+import { type Route } from "./+types";
 
 const fetchStrapiPages = async () => {
   const config = {
@@ -16,7 +20,6 @@ const fetchStrapiPages = async () => {
 
     //transform the data to the format we need
     return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-      console.log(page.attributes.linkage);
       const pageObject: Page = page.attributes;
       acc[page.attributes.slug] = pageObject;
       return acc;
@@ -30,3 +33,16 @@ export const loader= async() => {
     const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
     return { navbarEntries, footerEntries }
 };
+
+const Page = ({loaderData: {navbarEntries,footerEntries}}:Route.ComponentProps)=> (
+  <div className='flex h-svh w-screen flex-col justify-between overflow-x-hidden'>
+      <div className='flex flex-col justify-start'>
+        <Navbar navbarEntries={navbarEntries} footerEntries={footerEntries} />
+        <div className='app-container h-full'>
+          <Outlet />
+        </div>
+      </div>
+      <Footer footerEntries={footerEntries} />
+    </div>
+);
+export default Page;
