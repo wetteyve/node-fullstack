@@ -41,7 +41,6 @@
     "@epic-web/config": "1.20.1",
     "@react-router/dev": "7.6.0",
     "@react-router/remix-routes-option-adapter": "7.6.0",
-    "@strapi/strapi": "4.24.5",
     "@tailwindcss/vite": "4.1.4",
     "@types/compression": "1.7.5",
     "@types/eslint": "9.6.1",
