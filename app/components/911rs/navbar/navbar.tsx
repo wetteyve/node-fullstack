@@ -11,6 +11,7 @@ const Navbar = ({navbarEntries, footerEntries}: NavbarProps) => {
   const pathname = useLocation().pathname.substring(1);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const navbarEntriesWithoutFirst = navbarEntries.slice(1);
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -41,7 +42,7 @@ const Navbar = ({navbarEntries, footerEntries}: NavbarProps) => {
           </Link>
         </div>
         <div className='hidden md:flex'>
-          {navbarEntries.map((e:any, i:any) => (
+          {navbarEntriesWithoutFirst.map((e:any, i:any) => (
             <Link key={i} className='mb-6 ml-12 mt-auto hover:cursor-pointer' to={e.slug}>
               <p
                 className={`r-text-s font-light transition-all duration-150 ease-in hover:scale-105 ${pathname === e.slug && 'text-primary'}`}

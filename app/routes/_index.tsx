@@ -12,7 +12,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
         kontakt: `${request.url}911rs.yveswetter/kontakt`,
       },
       'uht-herisau': {
-        home: `${request.url}uht-herisau/home`,
+        home: `${request.url}new.uht-herisau/home`,
       },
     };
 

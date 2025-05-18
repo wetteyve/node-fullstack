@@ -1,4 +1,4 @@
-import { type Page } from "#app/utils/911rs/page.type";
+import { type Page } from "#app/utils/911rs/page.utils";
 import { type Route } from "./+types";
 
 

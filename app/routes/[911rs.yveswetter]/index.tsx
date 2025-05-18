@@ -3,8 +3,10 @@ import { Outlet } from "react-router";
 import Footer from "#app/components/911rs/footer/footer";
 import Navbar from "#app/components/911rs/navbar/navbar";
 import { splitArrayByKey } from "#app/utils/911rs/array.utils";
-import { type Page } from "#app/utils/911rs/page.type";
+import { type Page } from "#app/utils/911rs/page.utils";
 import { type Route } from "./+types";
+import '#app/utils/911rs/app.css';
+
 
 const fetchStrapiPages = async () => {
   const config = {
@@ -36,13 +38,13 @@ export const loader= async() => {
 
 const Page = ({loaderData: {navbarEntries,footerEntries}}:Route.ComponentProps)=> (
   <div className='flex h-svh w-screen flex-col justify-between overflow-x-hidden'>
-      <div className='flex flex-col justify-start'>
-        <Navbar navbarEntries={navbarEntries} footerEntries={footerEntries} />
-        <div className='app-container h-full'>
-          <Outlet />
-        </div>
+    <div className='flex flex-col justify-start'>
+      <Navbar navbarEntries={navbarEntries} footerEntries={footerEntries} />
+      <div className='app-container h-full'>
+        <Outlet />
       </div>
-      <Footer footerEntries={footerEntries} />
     </div>
+    <Footer footerEntries={footerEntries} />
+  </div>
 );
 export default Page;
