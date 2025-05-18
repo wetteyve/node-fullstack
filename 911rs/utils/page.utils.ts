@@ -25,10 +25,33 @@ export const fetchStrapiPages = async () => {
   };
 
   return axios.request(config).then(async (response: { data: { data: any } }) => {
-
     //transform the data to the format we need
     return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-      const pageObject: Page = page.attributes;
+      const pageObject: Page = {...page.attributes, id: page.id};
+      acc[page.attributes.slug] = pageObject;
+      return acc;
+    }, {});
+  });
+};
+
+export const fetchStrapiContent = async (path: string) => {
+  const config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: `${process.env['RS911_API_URL']}/pages?filters[slug][$eq]=${path}&populate[content][populate]=*`,
+    headers: {
+      Authorization: `Bearer ${process.env['RS911_API_KEY']}`,
+    },
+  };
+
+  return axios.request(config).then(async (response: { data: { data: any } }) => {
+    //transform the data to the format we need
+    return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
+      const pageObject: Page = {
+        ...page.attributes,
+        content: (page.attributes.content[0] as unknown as PageContent) || {},
+      };
+      
       acc[page.attributes.slug] = pageObject;
       return acc;
     }, {});

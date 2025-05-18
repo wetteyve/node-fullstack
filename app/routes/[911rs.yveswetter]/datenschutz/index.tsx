@@ -1,15 +1,16 @@
+import { fetchStrapiContent } from "#rs911/utils/page.utils";
 import { type Route } from "./+types";
 
-
-export const loader= async({request}:Route.LoaderArgs) => {
-    const {pathname} = new URL(request.url);
-    return {pathname}
+export const loader= async() => {
+  const path = 'datenschutz'
+  const {content} = (await fetchStrapiContent(path))[path]
+  return {content}
 };
 
-const Page = ({loaderData: {pathname}}: Route.ComponentProps) => {
+const Page = ({loaderData: {content}}: Route.ComponentProps) => {
   return (
     <div>
-      {pathname}
+      {content.__component}
     </div>
   );
 }
