@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs, redirect } from 'react-router';
+import { type LoaderFunctionArgs } from 'react-router';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (process.env.NODE_ENV === 'development') {
@@ -18,5 +18,4 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
     });
   }
-  return redirect(`${request.url}home`);
 };
