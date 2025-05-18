@@ -1,14 +1,12 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.vite.json" }
-  ],
-  "compilerOptions": {
-    "checkJs": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true
-  }
+	"include": ["**/*.ts", "**/*.tsx", ".react-router/types/**/*"],
+	"extends": ["@epic-web/config/typescript"],
+	"compilerOptions": {
+		// TODO: Probably should move this into epic-web/config
+		"types": ["@react-router/node", "vite/client"],
+		"rootDirs": [".", "./.react-router/types"],
+		"paths": {
+			"#app/*": ["./app/*"],
+		}
+	}
 }

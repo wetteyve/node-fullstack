@@ -1,0 +1,34 @@
+import { startTransition } from 'react';
+
+import { hydrateRoot } from 'react-dom/client';
+import { HydratedRouter } from 'react-router/dom';
+
+startTransition(() => {
+  const { tenant } = __TENANT__;
+  const isProdDomain = !!tenant;
+
+  if (isProdDomain) {
+    console.log('Tenant:', tenant);
+    // Adjust the path of the parent route for the active Tenant when the application is requested via prod domains.
+    // This strips the unneeded (sub)paths away and allows the client app to run
+    // on /home instead of /911rs/home for example.
+    let tenantRoutes: any = {};
+    for (const route in __reactRouterManifest.routes) {
+      if (route === 'root') {
+        tenantRoutes[route] = __reactRouterManifest.routes[route];
+      }
+      if (route.includes(tenant) || route === 'root') {
+        const path = __reactRouterManifest.routes[route].path.split(`${tenant}/`).join('');
+        tenantRoutes[route] = { ...__reactRouterManifest.routes[route], path };
+      }
+    }
+    __reactRouterManifest.routes = tenantRoutes;
+
+    // redirect empty pathnames to home in prod domains
+    if (window.location.pathname === '/') {
+      window.location.href = '/home';
+    }
+  }
+
+  hydrateRoot(document, <HydratedRouter />);
+});
