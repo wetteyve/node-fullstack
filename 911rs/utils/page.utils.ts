@@ -18,9 +18,9 @@ export const fetchStrapiPages = async () => {
   const config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `${import.meta.env['VITE_RS911_API_URL']}/pages?sort[0]=linkage:desc&sort[1]=linkage_position`,
+    url: `${process.env['RS911_API_URL']}/pages?sort[0]=linkage:desc&sort[1]=linkage_position`,
     headers: {
-      Authorization: `Bearer ${import.meta.env['VITE_RS911_API_KEY']}`,
+      Authorization: `Bearer ${process.env['RS911_API_KEY']}`,
     },
   };
 
