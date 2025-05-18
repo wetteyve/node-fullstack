@@ -92,12 +92,6 @@ if (viteDevServer) {
 	app.use('/node/v1',express.static('build/client', { maxAge: '1h' }))
 }
 
-app.get(['/img/*', '/favicons/*'], (_req, res: any) => {
-	// if we made it past the express.static for these, then we're missing something.
-	// So we'll just send a 404 and won't bother calling other middleware.
-	return res.status(404).send('Not found')
-})
-
 async function getBuild() {
 	try {
 		const build = viteDevServer

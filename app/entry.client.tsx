@@ -23,11 +23,6 @@ startTransition(() => {
       }
     }
     __reactRouterManifest.routes = tenantRoutes;
-
-    // redirect empty pathnames to home in prod domains
-    if (window.location.pathname === '/') {
-      window.location.href = '/home';
-    }
   }
 
   hydrateRoot(document, <HydratedRouter />);
