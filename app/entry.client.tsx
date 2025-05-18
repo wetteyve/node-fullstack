@@ -17,7 +17,8 @@ startTransition(() => {
         tenantRoutes[route] = __reactRouterManifest.routes[route];
       }
       if (route.includes(tenant) || route === 'root') {
-        const path = __reactRouterManifest.routes[route].path.split(`${tenant}/`).join('');
+        let path = __reactRouterManifest.routes[route].path.split(`${tenant}/`).join('');
+        if(path === tenant) path = ''
         tenantRoutes[route] = { ...__reactRouterManifest.routes[route], path };
       }
     }
