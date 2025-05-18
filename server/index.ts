@@ -117,13 +117,10 @@ if (!ALLOW_INDEXING) {
 app.all(
 	'*',
 	createRequestHandler({
-		getLoadContext: (req) => {
-			console.log('getLoadContext', req.headers)
-			return {
+		getLoadContext: (req) => ({
       serverBuild: getBuild(),           
       tenant: req.headers['x-tenant'] as string, //subdomain or tenant
- }
-		},
+ }),
 		mode: MODE,
 		build: async () => {
 			const { error, build } = await getBuild()
