@@ -7,6 +7,8 @@
 		"rootDirs": [".", "./.react-router/types"],
 		"paths": {
 			"#app/*": ["./app/*"],
+			"#rs911/*": ["./911rs/*"],
+			"#uht-herisau/*": ["./uht-herisau/*"],
 		}
 	}
 }

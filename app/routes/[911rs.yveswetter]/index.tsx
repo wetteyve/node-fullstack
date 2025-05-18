@@ -1,11 +1,11 @@
 import axios from "axios";
 import { Outlet } from "react-router";
-import Footer from "#app/components/911rs/footer/footer";
-import Navbar from "#app/components/911rs/navbar/navbar";
-import { splitArrayByKey } from "#app/utils/911rs/array.utils";
-import { type Page } from "#app/utils/911rs/page.utils";
+import Footer from "#rs911/components/footer/footer";
+import Navbar from "#rs911/components/navbar/navbar";
+import { splitArrayByKey } from "#rs911/utils/array.utils";
+import  {type Page} from "#rs911/utils/page.utils";
 import { type Route } from "./+types";
-import '#app/utils/911rs/app.css';
+import '#rs911/app.css';
 
 
 const fetchStrapiPages = async () => {
