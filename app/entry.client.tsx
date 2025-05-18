@@ -8,7 +8,6 @@ startTransition(() => {
   const isProdDomain = !!tenant;
 
   if (isProdDomain) {
-    console.log('Tenant:', tenant);
     // Adjust the path of the parent route for the active Tenant when the application is requested via prod domains.
     // This strips the unneeded (sub)paths away and allows the client app to run
     // on /home instead of /911rs/home for example.
