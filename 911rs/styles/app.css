@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #E30613;
+}
+
+.app-container {
+  @apply container mx-auto p-5;
+}
+
+@import './typography.css';

@@ -4,7 +4,21 @@ import Navbar from "#rs911/components/navbar/navbar";
 import { splitArrayByKey } from "#rs911/utils/array.utils";
 import  {fetchStrapiPages, type Page} from "#rs911/utils/page.utils";
 import { type Route } from "./+types";
-import '#rs911/app.css';
+import '#rs911/styles/app.css';
+
+
+export const links: Route.LinksFunction = () => [
+  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+  {
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap',
+  }
+];
 
 export const loader= async({request} : Route.LoaderArgs) => {
     const pages: {[key: string]: Page}= await fetchStrapiPages();

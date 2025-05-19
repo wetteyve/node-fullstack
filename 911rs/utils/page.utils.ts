@@ -35,7 +35,6 @@ export const fetchStrapiPages = async () => {
     return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
       const pageObject: Page = {...page.attributes, };
       acc[page.attributes.slug] = pageObject;
-      console.log('pageObject', pageObject);
       return acc;
     }, {});
   });
