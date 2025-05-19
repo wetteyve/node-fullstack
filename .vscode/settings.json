@@ -44,12 +44,11 @@
     "**/node_modules": false
   },
   "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-    ["tv\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
   ],
+    "tailwindCSS.classAttributes": ["className"],
   "tailwindCSS.experimental.configFile": {
-    "911rs/styles/app.css": ["911rs/**", "app/routes/[911rs.yveswetter]/**"]
+    "911rs/styles/app.css": ["911rs/**/*", "app/routes/[911rs.yveswetter]/**/*"]
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.autoImportFileExcludePatterns": [

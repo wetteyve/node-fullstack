@@ -72,7 +72,7 @@ const Page = ({ loaderData: { navbarEntries, footerEntries } }: Route.ComponentP
       <div className='flex flex-col justify-start'>
         <Navbar navbarEntries={navbarEntries} footerEntries={footerEntries} />
         <LoadingBar />
-        <div className='app-container h-full'>
+        <div className='app-container !pb-0'>
           <Outlet />
         </div>
       </div>

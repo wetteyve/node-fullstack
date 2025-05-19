@@ -53,14 +53,14 @@
 }
 
 @utility typo-display-md {
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-light);
     font-size: 1.4375rem;
     line-height: 135%;
     letter-spacing: normal;
 }
 
 @utility typo-display-sm {
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-light);
     font-size: 0.84375rem;
     line-height: 1;
     letter-spacing: normal;
