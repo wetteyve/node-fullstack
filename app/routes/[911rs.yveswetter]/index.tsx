@@ -1,4 +1,4 @@
-import { Outlet, type ShouldRevalidateFunction } from "react-router";
+import { Outlet } from "react-router";
 import Footer from "#rs911/components/footer/footer";
 import Navbar from "#rs911/components/navbar/navbar";
 import { splitArrayByKey } from "#rs911/utils/array.utils";
@@ -12,9 +12,6 @@ export const loader= async({request} : Route.LoaderArgs) => {
     const url = new URL(request.url);
     return { navbarEntries, footerEntries, publicUrl: `${url.origin}${url.pathname}` };
 };
-
-// The navbar and footer should not be revalidated, as they are static content
-export const shouldRevalidate: ShouldRevalidateFunction = () => false
 
 export const meta = ({data: {navbarEntries, footerEntries, publicUrl}}: Route.MetaArgs) : Route.MetaDescriptors => {
   const {seo_settings} = [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.slug}`)) || {};
