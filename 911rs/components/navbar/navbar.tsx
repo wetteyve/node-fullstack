@@ -35,7 +35,7 @@ const Navbar = ({navbarEntries, footerEntries}: NavbarProps) => {
     <div className={`sticky z-20 bg-white shadow-md ${visible && 'top-0 motion-safe:animate-fadeIn md:motion-safe:animate-fadeInLight'}`}>
       <div className='container mx-auto flex h-24 justify-between px-5 py-2'>
         <div className='flex'>
-          <NavLink to={`./${navbarEntries[0]?.slug}`} className='my-auto mr-5 flex flex-col items-center hover:cursor-pointer'>
+          <NavLink to={`./${navbarEntries[0]?.slug}`} className='my-auto mr-5 flex flex-col items-center hover:cursor-pointer' viewTransition>
             <p className='whitespace-nowrap text-primary typo-headline-xl'>911 RS</p>
             <p className='whitespace-nowrap typo-display-sm font-bold'>ALTE 11ER GARAGE</p>
             <p className='typo-display-sm'>ARBON</p>
