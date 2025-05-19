@@ -40,7 +40,7 @@ const MobileNavbar = ({navbarEntries, footerEntries}: NavbarProps) => {
         }}
         className='fixed left-0 top-24 -z-10 flex h-[calc(100%-96px)] w-full flex-col justify-between gap-2 overflow-auto bg-white transition-all duration-300'
       >
-        <div className='my-auto flex flex-col'>
+        <div className='flex flex-col'>
           {navbarEntries.map((e:any, i:any) => (
             <MobileNavbarItem onClick={() => setIsOpen(false)} key={i} href={e.slug} text={e.navigation_title} />
           ))}

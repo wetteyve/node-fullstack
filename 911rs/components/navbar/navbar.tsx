@@ -46,9 +46,7 @@ const Navbar = ({navbarEntries, footerEntries}: NavbarProps) => {
             <NavLink 
               key={i}
               to={e.slug}
-              className={({ isActive }) =>
-                  `mb-6 ml-12 mt-auto hover:cursor-pointer${isActive ? " text-primary" : ""}`
-                }
+              className={({ isActive }) => `mb-6 ml-12 mt-auto hover:cursor-pointer${isActive ? " text-primary" : ""}`}
             >
               <p
                 className={`typo-headline-md transition-all duration-150 ease-in hover:scale-105 ${pathname === e.slug && 'text-primary'}`}

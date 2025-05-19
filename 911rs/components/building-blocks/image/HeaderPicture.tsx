@@ -10,7 +10,7 @@ const HeaderPicture = ({ file }: Props) => {
   return (
     <div className='-translate-x-[calc(50svw-50%)]'>
       <div className='-mt-5 w-svw bg-cover'>
-        <Image height='min(60vh,692px)' url={url} alt={alternativeText} />
+        <Image height='auto' url={url} alt={alternativeText} />
       </div>
     </div>
   );
