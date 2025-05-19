@@ -55,8 +55,8 @@
 @utility typo-display-md {
     font-weight: var(--font-weight-regular);
     font-size: 1.4375rem;
-    line-height: 1.25rem;
-    letter-spacing: 5%;
+    line-height: 135%;
+    letter-spacing: normal;
 }
 
 @utility typo-display-sm {

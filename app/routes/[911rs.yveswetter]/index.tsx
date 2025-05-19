@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { Outlet } from "react-router";
 import { resourceBasePath } from "#app/utils/path";
 import Footer from "#rs911/components/footer/footer";
 import { LoadingBar } from "#rs911/components/loadingbar/Loadingbar";
 import Navbar from "#rs911/components/navbar/navbar";
+import { useScreenStore } from "#rs911/store/screen.store";
 import { splitArrayByKey } from "#rs911/utils/array.utils";
 import  {fetchStrapiPages, type Page} from "#rs911/utils/page.utils";
 import { type Route } from "./+types";
@@ -56,7 +58,15 @@ export const meta = ({data: {navbarEntries, footerEntries, publicUrl, faviconUrl
   return metaData
 }
 
-const Page = ({loaderData: {navbarEntries,footerEntries}}:Route.ComponentProps)=>{  
+const Page = ({loaderData: {navbarEntries,footerEntries}}:Route.ComponentProps)=>{
+  const updateScreenSize = useScreenStore.use.updateScreenSize();
+
+  useEffect(() => {
+    // track screen size
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, [updateScreenSize]);
+
   return (
     <div className='flex h-svh w-screen flex-col justify-between overflow-x-hidden'>
       <div className='flex flex-col justify-start'>
