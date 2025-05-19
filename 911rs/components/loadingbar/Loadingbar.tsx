@@ -29,9 +29,7 @@ export const LoadingBar = () =>{
         ref={ref}
         className={clsx(
           "h-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-500 ease-in-out",
-          navigation.state === "idle" &&
-            animationComplete &&
-            "w-0 opacity-0 transition-none",
+          navigation.state === "idle" && animationComplete && "w-0 opacity-0 transition-none",
           navigation.state === "submitting" && "w-4/12",
           navigation.state === "loading" && "w-10/12",
           navigation.state === "idle" && !animationComplete && "w-full"

@@ -21,11 +21,11 @@ export const links: Route.LinksFunction = () => [
   }
 ];
 
-export const loader= async({request} : Route.LoaderArgs) => {
+export const loader= async({ request, context: { tenant } } : Route.LoaderArgs) => {
     const pages: {[key: string]: Page}= await fetchStrapiPages();
     const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
     const url = new URL(request.url);
-    return { navbarEntries, footerEntries, publicUrl: `${url.origin}${url.pathname}` };
+    return { navbarEntries, footerEntries, publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}` };
 };
 
 export const meta = ({data: {navbarEntries, footerEntries, publicUrl}}: Route.MetaArgs) : Route.MetaDescriptors => {
