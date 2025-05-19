@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, type ShouldRevalidateFunction } from "react-router";
 import Footer from "#rs911/components/footer/footer";
 import Navbar from "#rs911/components/navbar/navbar";
 import { splitArrayByKey } from "#rs911/utils/array.utils";
@@ -6,11 +6,36 @@ import  {fetchStrapiPages, type Page} from "#rs911/utils/page.utils";
 import { type Route } from "./+types";
 import '#rs911/app.css';
 
-export const loader= async() => {
+export const loader= async({request} : Route.LoaderArgs) => {
     const pages: {[key: string]: Page}= await fetchStrapiPages();
     const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
-    return { navbarEntries, footerEntries }
+    const url = new URL(request.url);
+    return { navbarEntries, footerEntries, publicUrl: `${url.origin}${url.pathname}` };
 };
+
+// The navbar and footer should not be revalidated, as they are static content
+export const shouldRevalidate: ShouldRevalidateFunction = () => false
+
+export const meta = ({data: {navbarEntries, footerEntries, publicUrl}}: Route.MetaArgs) : Route.MetaDescriptors => {
+  const {seo_settings} = [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.slug}`)) || {};
+  const siteName = seo_settings?.title || 'Alte 11er Garage';
+  const description = seo_settings?.description || 'Alte 11er Garage';
+  const noIndex = !seo_settings?.allow_indexing
+
+  const metaData = [
+    { title: siteName },
+    // Open Graph Tags
+    { property: 'og:title', content: siteName },
+    { property: 'og:site_name', content: siteName },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: publicUrl },
+    // Meta Tags
+    { name: 'description', content: description },
+    { name: 'robots', content: 'max-image-preview:large' }
+  ];
+  if (noIndex) metaData.push({ name: 'robots', content: 'noindex, nofollow' });
+  return metaData
+}
 
 const Page = ({loaderData: {navbarEntries,footerEntries}}:Route.ComponentProps)=> (
   <div className='flex h-svh w-screen flex-col justify-between overflow-x-hidden'>
