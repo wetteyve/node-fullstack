@@ -44,7 +44,7 @@ export const fetchStrapiContent = async (path: string) => {
   const config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `${process.env['RS911_API_URL']}/pages?filters[slug][$eq]=${path}&populate[content][populate]=*`,
+    url: `${process.env['RS911_API_URL']}/pages?filters[slug][$eq]=${path}&populate=deep,5`,
     headers: {
       Authorization: `Bearer ${process.env['RS911_API_KEY']}`,
     },
