@@ -1,15 +1,14 @@
-import { useEffect } from "react";
-import { Outlet } from "react-router";
-import { resourceBasePath } from "#app/utils/path";
-import Footer from "#rs911/components/footer/footer";
-import { LoadingBar } from "#rs911/components/loadingbar/Loadingbar";
-import Navbar from "#rs911/components/navbar/navbar";
-import { useScreenStore } from "#rs911/store/screen.store";
-import { splitArrayByKey } from "#rs911/utils/array.utils";
-import  {fetchStrapiPages, type Page} from "#rs911/utils/page.utils";
-import { type Route } from "./+types";
+import { useEffect } from 'react';
+import { Outlet } from 'react-router';
+import { resourceBasePath } from '#app/utils/path';
+import Footer from '#rs911/components/footer/footer';
+import { LoadingBar } from '#rs911/components/loadingbar/Loadingbar';
+import Navbar from '#rs911/components/navbar/navbar';
+import { useScreenStore } from '#rs911/store/screen.store';
+import { splitArrayByKey } from '#rs911/utils/array.utils';
+import { fetchStrapiPages, type Page } from '#rs911/utils/page.utils';
+import { type Route } from './+types';
 import '#rs911/styles/app.css';
-
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -21,22 +20,23 @@ export const links: Route.LinksFunction = () => [
   {
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap',
-  }
+  },
 ];
 
-export const loader= async({ request, context: { tenant } } : Route.LoaderArgs) => {
-    const pages: {[key: string]: Page}= await fetchStrapiPages();
-    const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
-    const url = new URL(request.url);
-    const faviconUrl = `${resourceBasePath}/${tenant ? `favicon-${tenant}`: 'favicon'}.ico`
-    return { navbarEntries, footerEntries, faviconUrl, publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}` };
+export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs) => {
+  const pages: { [key: string]: Page } = await fetchStrapiPages();
+  const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
+  const url = new URL(request.url);
+  const faviconUrl = `${resourceBasePath}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
+  return { navbarEntries, footerEntries, faviconUrl, publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}` };
 };
 
-export const meta = ({data: {navbarEntries, footerEntries, publicUrl, faviconUrl}}: Route.MetaArgs) : Route.MetaDescriptors => {
-  const {seo_settings} = [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.slug}`)) || {};
+export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconUrl } }: Route.MetaArgs): Route.MetaDescriptors => {
+  const { seo_settings } =
+    [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.slug}`)) || {};
   const siteName = seo_settings?.title || 'Alte 11er Garage';
   const description = seo_settings?.description || 'Alte 11er Garage';
-  const noIndex = !seo_settings?.allow_indexing
+  const noIndex = !seo_settings?.allow_indexing;
 
   const metaData = [
     { title: siteName },
@@ -52,13 +52,13 @@ export const meta = ({data: {navbarEntries, footerEntries, publicUrl, faviconUrl
       tagName: 'link',
       rel: 'icon',
       href: faviconUrl,
-    }
+    },
   ];
   if (noIndex) metaData.push({ name: 'robots', content: 'noindex, nofollow' });
-  return metaData
-}
+  return metaData;
+};
 
-const Page = ({loaderData: {navbarEntries,footerEntries}}:Route.ComponentProps)=>{
+const Page = ({ loaderData: { navbarEntries, footerEntries } }: Route.ComponentProps) => {
   const updateScreenSize = useScreenStore.use.updateScreenSize();
 
   useEffect(() => {
@@ -78,6 +78,7 @@ const Page = ({loaderData: {navbarEntries,footerEntries}}:Route.ComponentProps)=
       </div>
       <Footer footerEntries={footerEntries} />
     </div>
-)};
+  );
+};
 
 export default Page;

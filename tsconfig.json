@@ -1,14 +1,14 @@
 {
-	"include": ["**/*.ts", "**/*.tsx", ".react-router/types/**/*"],
-	"extends": ["@epic-web/config/typescript"],
-	"compilerOptions": {
-		// TODO: Probably should move this into epic-web/config
-		"types": ["@react-router/node", "vite/client"],
-		"rootDirs": [".", "./.react-router/types"],
-		"paths": {
-			"#app/*": ["./app/*"],
-			"#rs911/*": ["./911rs/*"],
-			"#uht-herisau/*": ["./uht-herisau/*"],
-		}
-	}
+  "include": ["**/*.ts", "**/*.tsx", ".react-router/types/**/*"],
+  "extends": ["@epic-web/config/typescript"],
+  "compilerOptions": {
+    // TODO: Probably should move this into epic-web/config
+    "types": ["@react-router/node", "vite/client"],
+    "rootDirs": [".", "./.react-router/types"],
+    "paths": {
+      "#app/*": ["./app/*"],
+      "#rs911/*": ["./911rs/*"],
+      "#uht-herisau/*": ["./uht-herisau/*"]
+    }
+  }
 }

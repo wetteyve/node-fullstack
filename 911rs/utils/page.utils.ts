@@ -12,7 +12,7 @@ export type Page<Representation = PageContent> = {
     description: string;
     keywords: string;
     allow_indexing: boolean;
-  }
+  };
   content: Representation;
 };
 
@@ -33,7 +33,7 @@ export const fetchStrapiPages = async () => {
   return axios.request(config).then(async (response: { data: { data: any } }) => {
     //transform the data to the format we need
     return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-      const pageObject: Page = {...page.attributes, };
+      const pageObject: Page = { ...page.attributes };
       acc[page.attributes.slug] = pageObject;
       return acc;
     }, {});
@@ -57,7 +57,7 @@ export const fetchStrapiContent = async (path: string) => {
         ...page.attributes,
         content: (page.attributes.content[0] as unknown as PageContent) || {},
       };
-      
+
       acc[page.attributes.slug] = pageObject;
       return acc;
     }, {});

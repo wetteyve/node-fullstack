@@ -1,4 +1,3 @@
- 
 import http, { type IncomingMessage, type ServerResponse } from 'node:http';
 
 import chalk from 'chalk';
@@ -15,10 +14,7 @@ const setupPlayProxy = (proxyPort: number, tenant: string) => {
   const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
     if (req.url) {
       const originalPath = req.url;
-      if (
-        !originalPath.startsWith('/node/v1') &&
-        !originalPath.includes('/.well-known')
-      ) {
+      if (!originalPath.startsWith('/node/v1') && !originalPath.includes('/.well-known')) {
         req.url = `${tenant}/${originalPath}`;
         console.log(`Rewrite ${originalPath} -> ${req.url}`);
       }

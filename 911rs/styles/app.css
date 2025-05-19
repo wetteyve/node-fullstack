@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #E30613;
+  --color-911rs-primary: #E30613;
+  --color-911rs-secondary: #31313414;
 }
 
 .app-container {

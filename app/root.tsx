@@ -1,6 +1,6 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
-import  { type Route } from './+types/root';
+import { type Route } from './+types/root';
 
 export const loader = ({ context: { tenant } }: Route.LoaderArgs) => ({
   tenant,

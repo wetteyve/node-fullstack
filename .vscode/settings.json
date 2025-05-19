@@ -48,15 +48,17 @@
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
     ["tv\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "tailwindCSS.experimental.configFile": "packages/play-next/app/styles/tailwind.css",
+  "tailwindCSS.experimental.configFile": {
+    "911rs/styles/app.css": ["911rs/**", "app/routes/[911rs.yveswetter]/**"]
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.autoImportFileExcludePatterns": [
-		"@remix-run/server-runtime",
-		"express",
-		"@radix-ui/**",
-		"@react-email/**",
-		"node:stream/consumers",
-		"node:test",
-		"node:console"
-	],
+    "@remix-run/server-runtime",
+    "express",
+    "@radix-ui/**",
+    "@react-email/**",
+    "node:stream/consumers",
+    "node:test",
+    "node:console"
+  ]
 }

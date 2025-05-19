@@ -25,7 +25,7 @@ export type AboutContent = {
 
 export type BuildingBlockBeitrag = {
   external_link?: string | undefined;
-  lead_picture: any
+  lead_picture: any;
   title: string;
 };
 

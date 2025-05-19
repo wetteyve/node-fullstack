@@ -11,20 +11,17 @@ export default defineConfig(() => ({
   base: isProd ? '/node/v1/' : '/',
   build: {
     rtarget: 'es2022',
-		cssMinify: isProd,
+    cssMinify: isProd,
 
-		rollupOptions: {
-			external: [/node:.*/, 'fsevents'],
-		},
+    rollupOptions: {
+      external: [/node:.*/, 'fsevents'],
+    },
 
-		assetsInlineLimit: (source: string) => {
-			if (
-				source.endsWith('favicon.svg') ||
-				source.endsWith('apple-touch-icon.png')
-			) {
-				return false
-			}
-		},
+    assetsInlineLimit: (source: string) => {
+      if (source.endsWith('favicon.svg') || source.endsWith('apple-touch-icon.png')) {
+        return false;
+      }
+    },
   },
   plugins: [tailwindcss(), reactRouterDevTools(), reactRouter(), tsconfigPaths()],
 }));

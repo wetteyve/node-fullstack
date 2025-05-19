@@ -23,10 +23,10 @@ Through reverse proxying (e.g., Apache + `.htaccess`), incoming requests from re
 
 Apache rewrites incoming requests based on the domain. Here's a simplified breakdown:
 
-* Requests to `/` on `911rs.yveswetter.ch` redirect to `/home`. Use whatever is your applications entry point for this.
-* All paths (except API routes) are **proxied** and **prefixed** with `/911rs.yveswetter/`.
-* API routes (`/node/v1`) are proxied **as-is** without path rewriting.
-* An `X-Tenant` header is injected to provide tenant info to the Remix app. We read this information and pass it to the applications context on the server.
+- Requests to `/` on `911rs.yveswetter.ch` redirect to `/home`. Use whatever is your applications entry point for this.
+- All paths (except API routes) are **proxied** and **prefixed** with `/911rs.yveswetter/`.
+- API routes (`/node/v1`) are proxied **as-is** without path rewriting.
+- An `X-Tenant` header is injected to provide tenant info to the Remix app. We read this information and pass it to the applications context on the server.
 
 ```apacheconf
 RewriteCond %{HTTP_HOST} ^911rs\.yveswetter\.ch$ [NC]
@@ -87,9 +87,9 @@ To add a new domain:
 
 2. Update your proxy configuration to:
 
-   * Match `my-new-tenant.example.com`
-   * Rewrite requests to `/<tenant-name>/...`
-   * Set the `X-Tenant` header accordingly
+   - Match `my-new-tenant.example.com`
+   - Rewrite requests to `/<tenant-name>/...`
+   - Set the `X-Tenant` header accordingly
 
 3. That’s it! The client code will dynamically adjust to route properly.
 
@@ -97,26 +97,26 @@ To add a new domain:
 
 ## 🧪 Known Limitations
 
-* Requires strict domain-to-route-name mapping (case-sensitive).
-* Hacky manipulation of Remix internals — brittle and not future-proof.
-* Relies on Apache-specific behavior (can be ported to NGINX, etc.).
-* Cannot use `useLocation` or similar hooks before hydration if tenant data isn’t injected.
+- Requires strict domain-to-route-name mapping (case-sensitive).
+- Hacky manipulation of Remix internals — brittle and not future-proof.
+- Relies on Apache-specific behavior (can be ported to NGINX, etc.).
+- Cannot use `useLocation` or similar hooks before hydration if tenant data isn’t injected.
 
 ---
 
 ## ✅ When to Use This
 
-* You're building **private, low-traffic** apps for multiple domains.
-* You want **one deployment** for all tenants to save costs.
-* You understand the trade-offs and accept occasional jank.
+- You're building **private, low-traffic** apps for multiple domains.
+- You want **one deployment** for all tenants to save costs.
+- You understand the trade-offs and accept occasional jank.
 
 ---
 
-## 🚫 When *Not* to Use This
+## 🚫 When _Not_ to Use This
 
-* Public, high-traffic, or security-critical applications
-* Projects that require frequent Remix upgrades or long-term maintainability
-* If you need solid multi-tenant isolation or domain-level SSR
+- Public, high-traffic, or security-critical applications
+- Projects that require frequent Remix upgrades or long-term maintainability
+- If you need solid multi-tenant isolation or domain-level SSR
 
 ---
 

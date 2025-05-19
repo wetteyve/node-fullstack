@@ -2,17 +2,12 @@ import { PassThrough } from 'node:stream';
 
 import { createReadableStreamFromReadable } from '@react-router/node';
 import { isbot } from 'isbot';
-import  { type RenderToPipeableStreamOptions, renderToPipeableStream  } from 'react-dom/server';
-import { ServerRouter, type EntryContext  } from 'react-router';
+import { type RenderToPipeableStreamOptions, renderToPipeableStream } from 'react-dom/server';
+import { ServerRouter, type EntryContext } from 'react-router';
 
 export const streamTimeout = 5_000;
 
-export default function handleRequest(
-  request: Request,
-  responseStatusCode: number,
-  responseHeaders: Headers,
-  routerContext: EntryContext,
-) {
+export default function handleRequest(request: Request, responseStatusCode: number, responseHeaders: Headers, routerContext: EntryContext) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     let userAgent = request.headers.get('user-agent');
