@@ -1,14 +1,6 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
 import  { type Route } from './+types/root';
-import { resourceBasePath } from './utils/path';
-
-export const meta: Route.MetaFunction = ({data:{tenant}}) => (
-  [{
-    tagName: 'link',
-    rel: 'icon',
-    href: `${resourceBasePath}/${tenant ? `favicon-${tenant}`: 'favicon'}.ico`,
-  }]);
 
 export const loader = ({ context: { tenant } }: Route.LoaderArgs) => ({
   tenant,

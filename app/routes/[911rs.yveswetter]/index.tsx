@@ -1,4 +1,5 @@
 import { Outlet } from "react-router";
+import { resourceBasePath } from "#app/utils/path";
 import Footer from "#rs911/components/footer/footer";
 import { LoadingBar } from "#rs911/components/loadingbar/Loadingbar";
 import Navbar from "#rs911/components/navbar/navbar";
@@ -25,10 +26,11 @@ export const loader= async({ request, context: { tenant } } : Route.LoaderArgs) 
     const pages: {[key: string]: Page}= await fetchStrapiPages();
     const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
     const url = new URL(request.url);
-    return { navbarEntries, footerEntries, publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}` };
+    const faviconUrl = `${resourceBasePath}/${tenant ? `favicon-${tenant}`: 'favicon'}.ico`
+    return { navbarEntries, footerEntries, faviconUrl, publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}` };
 };
 
-export const meta = ({data: {navbarEntries, footerEntries, publicUrl}}: Route.MetaArgs) : Route.MetaDescriptors => {
+export const meta = ({data: {navbarEntries, footerEntries, publicUrl, faviconUrl}}: Route.MetaArgs) : Route.MetaDescriptors => {
   const {seo_settings} = [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.slug}`)) || {};
   const siteName = seo_settings?.title || 'Alte 11er Garage';
   const description = seo_settings?.description || 'Alte 11er Garage';
@@ -43,7 +45,12 @@ export const meta = ({data: {navbarEntries, footerEntries, publicUrl}}: Route.Me
     { property: 'og:url', content: publicUrl },
     // Meta Tags
     { name: 'description', content: description },
-    { name: 'robots', content: 'max-image-preview:large' }
+    { name: 'robots', content: 'max-image-preview:large' },
+    {
+      tagName: 'link',
+      rel: 'icon',
+      href: faviconUrl,
+    }
   ];
   if (noIndex) metaData.push({ name: 'robots', content: 'noindex, nofollow' });
   return metaData
