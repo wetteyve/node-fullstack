@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 
 const Footer = ({ footerEntries }: { footerEntries: any }) => (
   <div className='z-10 min-h-24 bg-primary text-white'>
@@ -7,9 +7,9 @@ const Footer = ({ footerEntries }: { footerEntries: any }) => (
         <span className='typo-headline-xs my-auto'>{`© ${new Date().getFullYear()} - 911 RS - Alte 11er Garage Arbon`}</span>
         <div className='my-auto flex flex-wrap gap-14 xl:gap-28'>
           {footerEntries.map((e: any, i: any) => (
-            <Link key={i} to={e.slug}>
+            <NavLink key={i} to={e.slug} className={({ isActive }) => `${isActive ? 'pointer-events-none' : ''}`}>
               <span className='typo-headline-xs hover:cursor-pointer'>{` ${e.navigation_title}`}</span>
-            </Link>
+            </NavLink>
           ))}
         </div>
       </div>

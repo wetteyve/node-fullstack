@@ -37,8 +37,9 @@ const Navbar = ({ navbarEntries, footerEntries }: NavbarProps) => {
         <div className='flex'>
           <NavLink
             to={`./${navbarEntries[0]?.slug}`}
-            className='my-auto mr-5 flex flex-col items-center hover:cursor-pointer'
-            viewTransition
+            className={({ isActive }) =>
+              `my-auto mr-5 flex flex-col items-center hover:cursor-pointer${isActive ? ' pointer-events-none' : ''}`
+            }
           >
             <p className='whitespace-nowrap text-primary typo-headline-xl'>911 RS</p>
             <p className='whitespace-nowrap typo-display-sm font-bold'>ALTE 11ER GARAGE</p>
@@ -49,8 +50,8 @@ const Navbar = ({ navbarEntries, footerEntries }: NavbarProps) => {
           {navbarEntriesWithoutFirst.map((e: any, i: any) => (
             <NavLink
               key={i}
-              to={e.slug}
-              className={({ isActive }) => `mb-6 ml-12 mt-auto hover:cursor-pointer${isActive ? ' text-primary' : ''}`}
+              to={`./${e.slug}`}
+              className={({ isActive }) => `mb-6 ml-12 mt-auto hover:cursor-pointer${isActive ? ' text-primary pointer-events-none' : ''}`}
             >
               <p
                 className={`typo-headline-md transition-all duration-150 ease-in hover:scale-105 ${pathname === e.slug && 'text-primary'}`}

@@ -7,7 +7,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const isProd = process.env.NODE_ENV === 'production';
 
 export default defineConfig(() => ({
-  // In production we serve our assets with the /play/v3 base path via Akamai.
+  // In production we serve our assets with the '/node/v1/' base path.
   base: isProd ? '/node/v1/' : '/',
   build: {
     rtarget: 'es2022',
