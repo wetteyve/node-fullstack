@@ -6,7 +6,8 @@
 }
 
 .app-container {
-  @apply container max-w-[1240px] mx-auto p-5;
+  @apply container mx-auto p-5;
+  max-width: 1240px !important;
 }
 
 @import './typography.css';

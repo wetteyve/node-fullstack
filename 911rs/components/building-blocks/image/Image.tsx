@@ -1,3 +1,6 @@
+import clsx, { type ClassValue } from 'clsx';
+import { getImage } from './get-image';
+
 type Props = {
   height?: string;
   width?: string;
@@ -5,10 +8,12 @@ type Props = {
   alt?: string;
 };
 
-export const Image = ({ height, url, alt, width = '100%' }: Props) => {
+export const Image = ({ file, twAspect = 'aspect-video' }: { file: Props; twAspect?: ClassValue }) => {
+  const { url, alternativeText } = getImage(file);
+
   return (
-    <div className={`mx-auto w-full overflow-hidden`} style={{ maxHeight: height }}>
-      <img style={{ width }} src={url} alt={alt} />
+    <div className='overflow-hidden h-auto'>
+      <img src={url} alt={alternativeText} className={clsx('w-full h-full object-cover', twAspect)} />
     </div>
   );
 };
