@@ -27,8 +27,8 @@
 @utility typo-headline-lg {
     font-weight: var(--font-weight-bold);
     font-size: 2.8125rem;
-    line-height: 3.125rem;
-    letter-spacing: 5%;
+    line-height: 1;
+    letter-spacing: 0.15625rem;
 }
 
 @utility typo-headline-md {
@@ -41,22 +41,22 @@
 @utility typo-headline-sm {
     font-weight: var(--font-weight-bold);
     font-size: 1.4375rem;
-    line-height: 1.35;
-    letter-spacing: 5%;
+    line-height: 1;
+    letter-spacing: 0.071875rem;
 }
 
 @utility typo-headline-xs {
     font-weight: var(--font-weight-bold);
     font-size: 0.9375rem;
-    line-height: 1.375rem;
-    letter-spacing: 5%;
+    line-height: 1;
+    letter-spacing: 0.046875;
 }
 
 @utility typo-display-md {
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-regular);
     font-size: 1.4375rem;
     line-height: 135%;
-    letter-spacing: normal;
+    letter-spacing: 0.071875rem;
 }
 
 @utility typo-display-sm {

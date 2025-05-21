@@ -4,7 +4,7 @@ import Lead from './Lead';
 
 export const Beitraege = ({ content }: { content: any }) => (
   <div className='w-full relative'>
-    <div className=' w-screen h-full bg-secondary absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-1' />
+    <div className=' w-screen h-full bg-secondary/[0.08] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-1' />
     <Lead lead={content.beitrag_lead} className='pt-10' />
     <div className='grid grid-cols-1 gap-12 md:gap-28 md:grid-cols-2 pt-5 pb-10'>
       {content.beitrag_collection.map((b: any) => (

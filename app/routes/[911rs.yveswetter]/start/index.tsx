@@ -15,7 +15,7 @@ const Page = ({ loaderData: { content } }: Route.ComponentProps) => {
     <>
       <HeaderPicture file={content.header_picture} />
       <h1 className='typo-headline-lg pt-6 text-primary'>{'Wartung, Pflege und Restauration'.toUpperCase()}</h1>
-      <Lead lead={content.lead} className='pb-12' />
+      <Lead lead={content.lead} className='pb-12' titleStyles='text-secondary' />
       <Beitraege content={content} />
     </>
   );
