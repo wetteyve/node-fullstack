@@ -11,14 +11,7 @@ export const Image = ({ file, twAspect = 'aspect-video' }: { file: any; twAspect
   );
 };
 
-export const CarouselImage = ({ file, isActive, twAspect = 'aspect-video' }: { file: any; isActive?: boolean; twAspect?: ClassValue }) => {
-  const { url, alternativeText } = getImage(file);
-
-  return (
-    <img src={url} alt={alternativeText} className={clsx('w-full', twAspect, isActive ? 'relative opacity-100' : 'hidden opacity-0')} />
-  );
-};
-export const CarouselImage2 = ({ file, isActive, twAspect = 'aspect-video' }: { file: any; isActive?: boolean; twAspect?: ClassValue }) => {
+export const CarouselImage = ({ file, twAspect = 'aspect-video' }: { file: any; twAspect?: ClassValue }) => {
   const { url, alternativeText } = getImage(file);
 
   return (
