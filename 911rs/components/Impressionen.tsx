@@ -6,6 +6,8 @@ export const Impressionen = ({ impressionen }: { impressionen: { data: any[] } }
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  console.log(activeIndex);
+
   const displayCarousel = impressionen.data.length > 1;
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export const Impressionen = ({ impressionen }: { impressionen: { data: any[] } }
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.35, // Adjust as needed for sensitivity
+        threshold: 0.5, // Adjust as needed for sensitivity
       }
     );
 
@@ -82,23 +84,10 @@ export const Impressionen = ({ impressionen }: { impressionen: { data: any[] } }
     </div>
   );
 
-  const TouchButtons = (
-    <>
-      <button
-        className='absolute top-1/2 left-1 cursor-pointer md:size-14 size-8 p-2 bg-secondary/60 text-center rounded-full'
-        aria-label='previous image'
-        onClick={backClick}
-      >
-        <IoIosArrowRoundBack className='text-white w-full text-[15px] md:text-[35px]' />
-      </button>
-      <button
-        className='absolute top-1/2 right-1 cursor-pointer md:size-14 size-8 p-2 bg-secondary/60 text-center rounded-full'
-        aria-label='next image'
-        onClick={nextClick}
-      >
-        <IoIosArrowRoundForward className='text-white w-full text-[15px] md:text-[35px]' />
-      </button>
-    </>
+  const TouchIndicator = (
+    <div className='mouse:hidden absolute bottom-0 right-0 z-10 size-1/5 bg-secondary flex items-center text-white typo-headline-xs justify-center px-8 gap-12'>
+      <span>{`${activeIndex + 1}/${impressionen.data.length}`}</span>
+    </div>
   );
 
   return (
@@ -109,7 +98,7 @@ export const Impressionen = ({ impressionen }: { impressionen: { data: any[] } }
           <>
             {Carousel}
             {PointerButtons}
-            {TouchButtons}
+            {TouchIndicator}
           </>
         ) : (
           <Image file={impressionen.data[0]} />
