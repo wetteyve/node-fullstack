@@ -33,4 +33,12 @@
   scrollbar-width: none;
 }
 
+ul {
+  @apply list-disc list-inside leading-[165%];
+
+  & li {
+    @apply leading-0;
+  }
+}
+
 @import './typography.css';
