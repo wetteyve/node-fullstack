@@ -34,10 +34,10 @@
 }
 
 ul {
-  @apply list-disc list-inside leading-[165%];
+  @apply list-disc leading-[165%];
 
   & li {
-    @apply leading-normal -mb-8;
+    @apply leading-normal -mb-8 ml-5;
   }
 }
 
