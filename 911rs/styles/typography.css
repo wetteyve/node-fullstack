@@ -60,6 +60,13 @@
 }
 
 @utility typo-display-sm {
+    font-weight: var(--font-weight-regular);
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    letter-spacing: normal;
+}
+
+@utility typo-display-xs {
     font-weight: var(--font-weight-light);
     font-size: 0.84375rem;
     line-height: 1;

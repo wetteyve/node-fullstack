@@ -42,8 +42,8 @@ const Navbar = ({ navbarEntries, footerEntries }: NavbarProps) => {
             }
           >
             <p className='whitespace-nowrap text-primary typo-headline-xl'>911 RS</p>
-            <p className='whitespace-nowrap typo-display-sm font-bold'>ALTE 11ER GARAGE</p>
-            <p className='typo-display-sm'>ARBON</p>
+            <p className='whitespace-nowrap typo-display-xs font-bold'>ALTE 11ER GARAGE</p>
+            <p className='typo-display-xs'>ARBON</p>
           </NavLink>
         </div>
         <div className='touch:hidden flex'>
