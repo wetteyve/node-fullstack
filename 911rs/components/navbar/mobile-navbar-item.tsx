@@ -10,7 +10,7 @@ const MobileNavbarItem = (props: MobileNavbarItemProps) => {
   return (
     <NavLink
       className={({ isActive }) =>
-        `mt-6 typo-headline-md w-full whitespace-nowrap px-4 py-4${isActive ? ' text-primary pointer-events-none' : ' text-black'}`
+        `typo-headline-md w-full whitespace-nowrap px-4 py-4${isActive ? ' text-primary pointer-events-none' : ' text-black'}`
       }
       to={props.href}
       onClick={props.onClick}

@@ -46,7 +46,7 @@ const Navbar = ({ navbarEntries, footerEntries }: NavbarProps) => {
             <p className='typo-display-sm'>ARBON</p>
           </NavLink>
         </div>
-        <div className='hidden md:flex'>
+        <div className='touch:hidden flex'>
           {navbarEntriesWithoutFirst.map((e: any, i: any) => (
             <NavLink
               key={i}
@@ -61,7 +61,7 @@ const Navbar = ({ navbarEntries, footerEntries }: NavbarProps) => {
             </NavLink>
           ))}
         </div>
-        <div className='block md:hidden'>
+        <div className='block mouse:hidden'>
           <MobileNavbar navbarEntries={navbarEntriesWithoutFirst} footerEntries={footerEntries} />
         </div>
       </div>
