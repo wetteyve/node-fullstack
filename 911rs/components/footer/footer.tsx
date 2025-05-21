@@ -7,7 +7,7 @@ const Footer = ({ footerEntries }: { footerEntries: any }) => (
         <span className='typo-headline-xs my-auto'>{`© ${new Date().getFullYear()} - 911 RS - Alte 11er Garage Arbon`}</span>
         <div className='my-auto flex flex-wrap gap-14 xl:gap-28'>
           {footerEntries.map((e: any, i: any) => (
-            <NavLink key={i} to={e.slug} className={({ isActive }) => `${isActive ? 'pointer-events-none' : ''}`}>
+            <NavLink key={i} to={e.slug} className={({ isActive }) => `${isActive ? 'pointer-events-none text-black' : ''}`}>
               <span className='typo-headline-xs hover:cursor-pointer'>{` ${e.navigation_title}`}</span>
             </NavLink>
           ))}
