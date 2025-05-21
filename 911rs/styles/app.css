@@ -37,7 +37,7 @@ ul {
   @apply list-disc list-inside leading-[165%];
 
   & li {
-    @apply leading-0;
+    @apply leading-normal -mb-8;
   }
 }
 
