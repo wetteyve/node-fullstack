@@ -19,7 +19,9 @@ const placeholderImage = {
  * @param format - The desired format of the image file (optional, defaults to the defaultImgFormat from useScreenStore()).
  * @returns The image file with additional properties (id and url).
  */
-export const getImage = (image?: any, format: ImageFormatKey = useScreenStore.use.defaultImgFormat()): File => {
+export const getImage = (rawImage: any, format: ImageFormatKey = useScreenStore.use.defaultImgFormat()): File => {
+  const image = rawImage?.data ? rawImage : { data: rawImage };
+
   // if no image-file is provided, return placeholder image
   if (!image || !image.data.attributes.mime.startsWith('image')) {
     return placeholderImage;

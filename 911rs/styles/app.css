@@ -5,9 +5,32 @@
   --color-secondary: #313134;
 }
 
+@custom-variant touch {
+
+  @media (any-hover: none),
+  (pointer: coarse) {
+    @slot;
+  }
+}
+
+@custom-variant mouse {
+  @media (hover: hover) {
+    @slot;
+  }
+}
+
 .app-container {
   @apply container mx-auto p-5;
   max-width: 1240px !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @import './typography.css';
