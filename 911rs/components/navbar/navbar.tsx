@@ -4,10 +4,9 @@ import MobileNavbar from './mobile-navbar';
 
 type NavbarProps = {
   navbarEntries: any;
-  footerEntries: any;
 };
 
-const Navbar = ({ navbarEntries, footerEntries }: NavbarProps) => {
+const Navbar = ({ navbarEntries }: NavbarProps) => {
   const pathname = useLocation().pathname.substring(1);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -62,7 +61,7 @@ const Navbar = ({ navbarEntries, footerEntries }: NavbarProps) => {
           ))}
         </div>
         <div className='block mouse:hidden'>
-          <MobileNavbar navbarEntries={navbarEntriesWithoutFirst} footerEntries={footerEntries} />
+          <MobileNavbar navbarEntries={navbarEntriesWithoutFirst} />
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { createSelectors } from './create-selectors';
 
 export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
-const imageFormatMapping: Record<ScreenSize, ImageFormatKey> = {
+export const imageFormatMapping: Record<ScreenSize, ImageFormatKey> = {
   sm: 'small',
   md: 'medium',
   lg: 'medium',
@@ -21,8 +21,9 @@ const breakpoints = {
 };
 
 const getCurrentScreenSize = (): ScreenSize => {
+  // Check if window is defined (for SSR)
   if (typeof window === 'undefined') {
-    return '2xl';
+    return 'md';
   }
   switch (true) {
     case window?.innerWidth < breakpoints.sm:

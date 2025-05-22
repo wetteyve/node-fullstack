@@ -34,7 +34,7 @@
 }
 
 ul {
-  @apply list-disc leading-[165%];
+  @apply list-disc leading-[165%] -mt-16;
 
   & li {
     @apply leading-normal -mb-8 ml-5;

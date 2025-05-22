@@ -2,15 +2,13 @@ import { useEffect, useState } from 'react';
 import { TfiClose } from 'react-icons/tfi';
 import { VscMenu } from 'react-icons/vsc';
 import { useLocation } from 'react-router';
-import Footer from '../footer/footer';
 import MobileNavbarItem from './mobile-navbar-item';
 
 type NavbarProps = {
   navbarEntries: any;
-  footerEntries: any;
 };
 
-const MobileNavbar = ({ navbarEntries, footerEntries }: NavbarProps) => {
+const MobileNavbar = ({ navbarEntries }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
 

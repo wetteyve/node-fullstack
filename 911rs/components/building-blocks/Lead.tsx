@@ -13,7 +13,7 @@ type Props = {
 const Lead = ({ lead, className = '', titleStyles }: Props) => {
   return (
     <div className={clsx('w-full max-w-[912px]', className)}>
-      <h2 className={clsx('typo-headline-lg', titleStyles)}>{lead.title}</h2>
+      {lead.title && <h2 className={clsx('typo-headline-lg', titleStyles)}>{lead.title}</h2>}
       <Markdown
         className='pt-4 max-w-[950px] typo-display-md whitespace-pre-wrap'
         remarkPlugins={[remarkGfm, remarkBreaks]}

@@ -6,8 +6,6 @@ export const Impressionen = ({ impressionen }: { impressionen: { data: any[] } }
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  console.log(activeIndex);
-
   const displayCarousel = impressionen.data.length > 1;
 
   useEffect(() => {
