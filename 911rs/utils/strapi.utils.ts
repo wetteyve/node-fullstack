@@ -11,8 +11,8 @@ export type LeistungenContent = {
   __component: 'pages.leistungen-page';
   header_picture: any;
   lead: BuildingBlockLead;
-  bildstrecken_lead: BuildingBlockLead;
-  bildstrecken_collection: BuildingBlockBildstrecke[];
+  baugruppen_lead: BuildingBlockLead;
+  baugruppen: BuildingBlockInformation[];
 };
 
 export type AboutContent = {
@@ -36,4 +36,10 @@ export type BuildingBlockLead = { description?: string | undefined } & {
 export type BuildingBlockBildstrecke = {
   title: string;
   bilder: any;
+};
+
+export type BuildingBlockInformation = {
+  title: string;
+  description: string;
+  picture: any;
 };

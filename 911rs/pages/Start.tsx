@@ -2,16 +2,9 @@ import { Beitraege } from '#rs911/components/Beitraege';
 import HeaderPicture from '#rs911/components/building-blocks/image/HeaderPicture';
 import Lead from '#rs911/components/building-blocks/Lead';
 import { Impressionen } from '#rs911/components/Impressionen';
-import { fetchStrapiContent } from '#rs911/utils/page.utils';
-import { type Route } from './+types';
+import { type HomeContent } from '#rs911/utils/strapi.utils';
 
-export const loader = async () => {
-  const path = 'start';
-  const { content } = (await fetchStrapiContent(path))[path];
-  return { content };
-};
-
-const Page = ({ loaderData: { content } }: Route.ComponentProps) => {
+export const Start = ({ content }: { content: HomeContent }) => {
   return (
     <>
       <HeaderPicture file={content.header_picture} />
@@ -22,5 +15,3 @@ const Page = ({ loaderData: { content } }: Route.ComponentProps) => {
     </>
   );
 };
-
-export default Page;

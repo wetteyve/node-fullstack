@@ -5,16 +5,9 @@ import { Baugruppen } from '#rs911/components/Baugruppen';
 import HeaderPicture from '#rs911/components/building-blocks/image/HeaderPicture';
 import { Image } from '#rs911/components/building-blocks/image/Image';
 import Lead from '#rs911/components/building-blocks/Lead';
-import { fetchStrapiContent } from '#rs911/utils/page.utils';
-import { type Route } from './+types';
+import { type LeistungenContent } from '#rs911/utils/strapi.utils';
 
-export const loader = async () => {
-  const path = 'leistungen';
-  const { content } = (await fetchStrapiContent(path))[path];
-  return { content };
-};
-
-const Page = ({ loaderData: { content } }: Route.ComponentProps) => {
+export const Leistungen = ({ content }: { content: LeistungenContent }) => {
   const hydrated = useHydrated();
   const baugruppeIndex = useLocation().hash.split('-')[1];
   const baugruppe = hydrated && baugruppeIndex && content.baugruppen[Number(baugruppeIndex)];
@@ -46,5 +39,3 @@ const Page = ({ loaderData: { content } }: Route.ComponentProps) => {
     </>
   );
 };
-
-export default Page;
