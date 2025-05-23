@@ -71,7 +71,7 @@ const Page = ({ loaderData: { navbarEntries, footerEntries } }: Route.ComponentP
     <div className='relative'>
       <Navbar navbarEntries={navbarEntries} />
       <LoadingBar />
-      <div className='app-container !pb-0'>
+      <div className='app-container !pb-0 min-h-[calc(100svh-97px-96px)]'>
         <Outlet />
       </div>
       <Footer footerEntries={footerEntries} />
