@@ -68,13 +68,11 @@ const Page = ({ loaderData: { navbarEntries, footerEntries } }: Route.ComponentP
   }, [updateScreenSize]);
 
   return (
-    <div className='flex h-svh w-screen flex-col justify-between overflow-x-hidden'>
-      <div className='flex flex-col justify-start'>
-        <Navbar navbarEntries={navbarEntries} />
-        <LoadingBar />
-        <div id='main' className='app-container !pb-0'>
-          <Outlet />
-        </div>
+    <div className='relative'>
+      <Navbar navbarEntries={navbarEntries} />
+      <LoadingBar />
+      <div className='app-container !pb-0'>
+        <Outlet />
       </div>
       <Footer footerEntries={footerEntries} />
     </div>

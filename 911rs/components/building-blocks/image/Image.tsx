@@ -9,7 +9,7 @@ export const Image = ({ file, twAspect = 'aspect-video' }: { file: any; twAspect
   const url = hdyrated ? clientUrl : initialUrl;
 
   return (
-    <div className='overflow-hidden h-auto'>
+    <div className='h-auto'>
       <img src={url} alt={alternativeText} className={clsx('w-full h-full object-cover', twAspect)} />
     </div>
   );

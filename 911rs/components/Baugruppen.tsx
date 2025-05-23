@@ -1,15 +1,18 @@
 import clsx, { type ClassValue } from 'clsx';
+import { useLinkClickHandler, useLocation } from 'react-router';
 import { Image } from './building-blocks/image/Image';
 import Lead from './building-blocks/Lead';
 
 export const Baugruppen = ({ content }: { content: any }) => {
+  const { pathname } = useLocation();
+
   const GridLayout = (
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 py-12 '>
       {content.baugruppen.map((baugruppe: any, i: number) => (
         <LinkButton
           key={i}
-          url={`#baugruppe-${i}`}
-          className='w-full mt-auto grayscale-100 brightness-80 hover:grayscale-0 hover:brightness-100'
+          url={`${pathname}#baugruppe-${i}`}
+          className='w-full mt-auto grayscale-100 brightness-80 hover:grayscale-0 hover:brightness-100 hover:cursor-pointer'
         >
           <Image twAspect='aspect-square' file={baugruppe.picture} />
           <h3 className='mt-4 typo-display-sm'>{baugruppe.title}</h3>
@@ -27,16 +30,11 @@ export const Baugruppen = ({ content }: { content: any }) => {
   );
 };
 
-const LinkButton = ({ url, children, className }: { url: string; children: React.ReactNode; className?: ClassValue }) => (
-  <button
-    role='link'
-    className={clsx(className)}
-    onClick={() => {
-      window.location.href = url;
-      // todo: scroll to top
-      // window.scrollTo({ top: 0, behavior: 'smooth' });
-    }}
-  >
-    {children}
-  </button>
-);
+const LinkButton = ({ url, children, className }: { url: string; children: React.ReactNode; className?: ClassValue }) => {
+  const handleClick = useLinkClickHandler(url);
+  return (
+    <button role='link' className={clsx(className)} onClick={(e: any) => handleClick(e)}>
+      {children}
+    </button>
+  );
+};

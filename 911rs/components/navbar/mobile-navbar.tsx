@@ -18,7 +18,7 @@ const MobileNavbar = ({ navbarEntries }: NavbarProps) => {
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'auto';
+    else document.body.style.removeProperty('overflow');
   }, [isOpen]);
 
   return (

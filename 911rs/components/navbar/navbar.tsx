@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router';
 import MobileNavbar from './mobile-navbar';
 
@@ -8,31 +7,11 @@ type NavbarProps = {
 
 const Navbar = ({ navbarEntries }: NavbarProps) => {
   const pathname = useLocation().pathname.substring(1);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
   const navbarEntriesWithoutFirst = navbarEntries.slice(1);
 
-  const handleScroll = () => {
-    const currentScrollPos = window.scrollY;
-
-    if (currentScrollPos > prevScrollPos) {
-      setVisible(false);
-    } else {
-      setVisible(true);
-    }
-
-    setPrevScrollPos(currentScrollPos);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  });
-
   return (
-    <div className={`sticky z-20 bg-white shadow-md ${visible && 'top-0 motion-safe:animate-fadeIn md:motion-safe:animate-fadeInLight'}`}>
-      <div className='container max-w-[1240px] mx-auto flex h-24 justify-between px-5 py-2'>
+    <div className='w-full z-10 bg-white shadow-md sticky top-0'>
+      <div className='container max-w-[1240px] mx-auto flex justify-between px-5 py-2'>
         <div className='flex'>
           <NavLink
             to={`./${navbarEntries[0]?.slug}`}
