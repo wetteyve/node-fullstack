@@ -35,14 +35,12 @@
 
 .style-link {
 
-  a,
-  #link-text {
+  a {
     @apply relative inline-block text-primary cursor-pointer touch:underline mouse:no-underline;
   }
 
   /* Pseudo-element for the underline animation */
-  a::before,
-  #link-text::before {
+  a::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -56,12 +54,30 @@
   }
 
   /* Hover state to reveal the underline */
-  a:hover::before,
-  #link-text:hover::before {
+  a:hover::before {
     transform: scaleX(1);
     transform-origin: bottom center;
   }
 }
+
+.underline-on-hover::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom center;
+  transition: transform 0.15s ease-out;
+}
+
+.group:hover .underline-on-hover::before {
+  transform: scaleX(1);
+}
+
+
 
 ul {
   @apply list-disc leading-[165%] -mt-16;

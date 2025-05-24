@@ -37,7 +37,7 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.slug}`)) || {};
   const siteName = seo_settings?.title || 'Alte 11er Garage';
   const description = seo_settings?.description || 'Alte 11er Garage';
-  const imageUrl = seo_settings?.previewImage
+  const imageUrl = seo_settings?.previewImage.data
     ? getImage(seo_settings.previewImage, 'small').url
     : 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/small_911_martini_george_7d3968f9f6.png';
   const keywords =
