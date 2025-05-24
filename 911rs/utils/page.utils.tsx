@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { isRouteErrorResponse } from 'react-router';
+import { About } from '#rs911/pages/About';
 import { Leistungen } from '#rs911/pages/Leistungen';
 import { Start } from '#rs911/pages/Start';
 import { type AboutContent, type HomeContent, type LeistungenContent } from './strapi.utils';
@@ -75,7 +76,7 @@ export const getRouteElement = (content: { __component: string }) => {
     case 'pages.leistungen-page':
       return <Leistungen content={content as LeistungenContent} />;
     case 'pages.about-page':
-      return <div>Über mich</div>;
+      return <About content={content as AboutContent} />;
     case 'pages.links-page':
       return <div>Links</div>;
     case 'pages.agenda-page':

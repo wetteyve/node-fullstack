@@ -1,6 +1,6 @@
 import clsx, { type ClassValue } from 'clsx';
 import { Image } from './building-blocks/image/Image';
-import Lead from './building-blocks/Lead';
+import { Lead } from './building-blocks/Lead';
 
 export const Beitraege = ({ content }: { content: any }) => (
   <div className='w-full relative'>

@@ -3,7 +3,7 @@ import { Image } from './Image';
 type Props = {
   file: any;
 };
-const HeaderPicture = ({ file }: Props) => {
+export const HeaderPicture = ({ file }: Props) => {
   return (
     <div className='-translate-x-[calc(50svw-50%)]'>
       <div className='-mt-5 w-svw'>
@@ -12,5 +12,3 @@ const HeaderPicture = ({ file }: Props) => {
     </div>
   );
 };
-
-export default HeaderPicture;

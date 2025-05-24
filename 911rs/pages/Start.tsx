@@ -1,6 +1,6 @@
 import { Beitraege } from '#rs911/components/Beitraege';
-import HeaderPicture from '#rs911/components/building-blocks/image/HeaderPicture';
-import Lead from '#rs911/components/building-blocks/Lead';
+import { HeaderPicture } from '#rs911/components/building-blocks/image/HeaderPicture';
+import { Lead } from '#rs911/components/building-blocks/Lead';
 import { Impressionen } from '#rs911/components/Impressionen';
 import { type HomeContent } from '#rs911/utils/strapi.utils';
 

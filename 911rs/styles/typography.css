@@ -31,6 +31,13 @@
     letter-spacing: 0.15625rem;
 }
 
+@utility typo-headline-md-lg {
+    font-weight: var(--font-weight-bold);
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.109375rem;
+}
+
 @utility typo-headline-md {
     font-weight: var(--font-weight-bold);
     font-size: 1.625rem;

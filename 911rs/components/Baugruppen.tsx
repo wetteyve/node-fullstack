@@ -1,7 +1,7 @@
 import clsx, { type ClassValue } from 'clsx';
 import { useLinkClickHandler, useLocation } from 'react-router';
 import { Image } from './building-blocks/image/Image';
-import Lead from './building-blocks/Lead';
+import { Lead } from './building-blocks/Lead';
 
 export const Baugruppen = ({ content }: { content: any }) => {
   const { pathname } = useLocation();

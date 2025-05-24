@@ -17,10 +17,8 @@ export type LeistungenContent = {
 
 export type AboutContent = {
   __component: 'pages.about-page';
-  header_picture: any;
-  lead: BuildingBlockLead;
-  lead_picture: any;
-  impressionen: any;
+  about: BuildingBlockInformation;
+  car: BuildingBlockInformation;
 };
 
 export type BuildingBlockBeitrag = {

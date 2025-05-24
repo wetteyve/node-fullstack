@@ -10,7 +10,7 @@ type Props = {
   titleStyles?: ClassValue;
 };
 
-const Lead = ({ lead, className = '', titleStyles }: Props) => {
+export const Lead = ({ lead, className = '', titleStyles }: Props) => {
   return (
     <div className={clsx('w-full max-w-[912px]', className)}>
       {lead.title && <h2 className={clsx('typo-headline-lg', titleStyles)}>{lead.title}</h2>}
@@ -22,5 +22,3 @@ const Lead = ({ lead, className = '', titleStyles }: Props) => {
     </div>
   );
 };
-
-export default Lead;

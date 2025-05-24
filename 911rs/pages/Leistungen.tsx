@@ -2,9 +2,9 @@ import { IoIosArrowRoundBack } from 'react-icons/io';
 import { useLocation } from 'react-router';
 import { useHydrated } from '#app/utils/use-hydrated';
 import { Baugruppen } from '#rs911/components/Baugruppen';
-import HeaderPicture from '#rs911/components/building-blocks/image/HeaderPicture';
+import { HeaderPicture } from '#rs911/components/building-blocks/image/HeaderPicture';
 import { Image } from '#rs911/components/building-blocks/image/Image';
-import Lead from '#rs911/components/building-blocks/Lead';
+import { Lead } from '#rs911/components/building-blocks/Lead';
 import { type LeistungenContent } from '#rs911/utils/strapi.utils';
 
 export const Leistungen = ({ content }: { content: LeistungenContent }) => {
