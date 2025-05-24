@@ -36,6 +36,9 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.slug}`)) || {};
   const siteName = seo_settings?.title || 'Alte 11er Garage';
   const description = seo_settings?.description || 'Alte 11er Garage';
+  const keywords =
+    seo_settings?.keywords ||
+    'Alte 11er Garage, Oldtimer Restauration, Klassiker Wartung, Oldtimer Pflege, Oldtimer Werkstatt Arbon, George Wetter, Oldtimer Spezialist Schweiz, Klassiker 1965–1993, Fahrzeugrestauration Arbon, Oldtimer Service Thurgau, Restauration Oldtimer';
   const noIndex = !seo_settings?.allow_indexing;
 
   const metaData = [
@@ -66,6 +69,7 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     { property: 'og:image:alt', content: 'Alte 11er Garage - 911 RSR Martini' },
     // Meta Tags
     { name: 'description', content: description },
+    { name: 'keywords', content: keywords },
     { name: 'robots', content: 'max-image-preview:large' },
     {
       tagName: 'link',
