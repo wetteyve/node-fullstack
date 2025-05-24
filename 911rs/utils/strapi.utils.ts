@@ -21,6 +21,11 @@ export type AboutContent = {
   car: BuildingBlockInformation;
 };
 
+export type LinksContent = {
+  __component: 'pages.links-page';
+  links: BuildingBlockInformation;
+};
+
 export type BuildingBlockBeitrag = {
   external_link?: string | undefined;
   lead_picture: any;

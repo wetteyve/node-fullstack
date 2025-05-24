@@ -2,8 +2,9 @@ import axios from 'axios';
 import { isRouteErrorResponse } from 'react-router';
 import { About } from '#rs911/pages/About';
 import { Leistungen } from '#rs911/pages/Leistungen';
+import { Links } from '#rs911/pages/Links';
 import { Start } from '#rs911/pages/Start';
-import { type AboutContent, type HomeContent, type LeistungenContent } from './strapi.utils';
+import { type LinksContent, type AboutContent, type HomeContent, type LeistungenContent } from './strapi.utils';
 
 export type PageContent = HomeContent | LeistungenContent | AboutContent;
 
@@ -78,7 +79,7 @@ export const getRouteElement = (content: { __component: string }) => {
     case 'pages.about-page':
       return <About content={content as AboutContent} />;
     case 'pages.links-page':
-      return <div>Links</div>;
+      return <Links content={content as LinksContent} />;
     case 'pages.agenda-page':
       return <div>Agenda</div>;
     case 'pages.kontakt-page':

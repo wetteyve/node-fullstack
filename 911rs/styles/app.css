@@ -33,6 +33,35 @@
   scrollbar-width: none;
 }
 
+.style-link {
+  a {
+    @apply relative inline-block text-primary cursor-pointer;
+
+    /* Remove default underline */
+    text-decoration: none;
+  }
+
+  /* Pseudo-element for the underline animation */
+  a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom center;
+    transition: transform 0.15s ease-out;
+  }
+
+  /* Hover state to reveal the underline */
+  a:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom center;
+  }
+}
+
 ul {
   @apply list-disc leading-[165%] -mt-16;
 
