@@ -45,6 +45,12 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     { property: 'og:site_name', content: siteName },
     { property: 'og:description', content: description },
     { property: 'og:url', content: publicUrl },
+    { property: 'og:type', content: 'website' },
+    {
+      property: 'og:image',
+      content: 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/large_911_martini_george_7d3968f9f6.png',
+    },
+    { property: 'og:image:alt', content: 'Alte 11er Garage - 911 RSR Martini' },
     // Meta Tags
     { name: 'description', content: description },
     { name: 'robots', content: 'max-image-preview:large' },
