@@ -48,7 +48,20 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     { property: 'og:type', content: 'website' },
     {
       property: 'og:image',
-      content: 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/large_911_martini_george_7d3968f9f6.png',
+      content: 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/small_911_martini_george_7d3968f9f6.png',
+    },
+    {
+      property: 'og:image:width',
+      content: '320',
+    },
+    {
+      property: 'og:image:height',
+      content: '180',
+    },
+    { property: 'og:image:type', content: 'image/png' },
+    {
+      property: 'og:image:secure_url',
+      content: 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/small_911_martini_george_7d3968f9f6.png',
     },
     { property: 'og:image:alt', content: 'Alte 11er Garage - 911 RSR Martini' },
     // Meta Tags
