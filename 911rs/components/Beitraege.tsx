@@ -16,7 +16,7 @@ export const Beitraege = ({ content }: { content: HomeContent }) => (
 
 const LinkCard = ({ beitrag }: { beitrag: HomeContent['beitrag_collection'][number] }) => (
   <a href={beitrag.external_link} target='_blank' rel='noreferrer'>
-    <div className='w-full mt-auto style-link style-link'>
+    <div className='w-full mt-auto style-link'>
       <h3 className='typo-headline-sm mb-4'>{beitrag.title}</h3>
       <Image file={beitrag.lead_picture} />
       <p id='link-text' className='typo-display-md mt-4'>

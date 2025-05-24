@@ -37,10 +37,7 @@
 
   a,
   #link-text {
-    @apply relative inline-block text-primary cursor-pointer;
-
-    /* Remove default underline */
-    text-decoration: none;
+    @apply relative inline-block text-primary cursor-pointer touch:underline mouse:no-underline;
   }
 
   /* Pseudo-element for the underline animation */

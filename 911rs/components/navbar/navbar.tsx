@@ -10,7 +10,7 @@ const Navbar = ({ navbarEntries }: NavbarProps) => {
   const navbarEntriesWithoutFirst = navbarEntries.slice(1);
 
   return (
-    <div className='w-full z-10 bg-white shadow-md sticky top-0'>
+    <div className='w-full z-10 bg-white shadow-md sticky top-0 h-24'>
       <div className='container max-w-[1240px] mx-auto flex justify-between px-5 py-2'>
         <div className='flex'>
           <NavLink

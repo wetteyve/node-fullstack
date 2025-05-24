@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import { resourceBasePath } from '#app/utils/path';
+import { getImage } from '#rs911/components/building-blocks/image/get-image';
 import Footer from '#rs911/components/footer/footer';
 import { LoadingBar } from '#rs911/components/loadingbar/Loadingbar';
 import Navbar from '#rs911/components/navbar/navbar';
@@ -36,6 +37,9 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.slug}`)) || {};
   const siteName = seo_settings?.title || 'Alte 11er Garage';
   const description = seo_settings?.description || 'Alte 11er Garage';
+  const imageUrl = seo_settings?.previewImage
+    ? getImage(seo_settings.previewImage, 'small').url
+    : 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/small_911_martini_george_7d3968f9f6.png';
   const keywords =
     seo_settings?.keywords ||
     'Alte 11er Garage, Oldtimer Restauration, Klassiker Wartung, Oldtimer Pflege, Oldtimer Werkstatt Arbon, George Wetter, Oldtimer Spezialist Schweiz, Klassiker 1965–1993, Fahrzeugrestauration Arbon, Oldtimer Service Thurgau, Restauration Oldtimer';
@@ -51,7 +55,7 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     { property: 'og:type', content: 'website' },
     {
       property: 'og:image',
-      content: 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/small_911_martini_george_7d3968f9f6.png',
+      content: imageUrl,
     },
     {
       property: 'og:image:width',
@@ -64,7 +68,7 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     { property: 'og:image:type', content: 'image/png' },
     {
       property: 'og:image:secure_url',
-      content: 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/small_911_martini_george_7d3968f9f6.png',
+      content: imageUrl,
     },
     { property: 'og:image:alt', content: 'Alte 11er Garage - 911 RSR Martini' },
     // Meta Tags
@@ -94,7 +98,7 @@ const Page = ({ loaderData: { navbarEntries, footerEntries } }: Route.ComponentP
     <div className='relative'>
       <Navbar navbarEntries={navbarEntries} />
       <LoadingBar />
-      <div className='app-container !pb-0 min-h-[calc(100svh-97px-96px)]'>
+      <div className='app-container !pb-0 min-h-[calc(100svh-96px-96px)]'>
         <Outlet />
       </div>
       <Footer footerEntries={footerEntries} />

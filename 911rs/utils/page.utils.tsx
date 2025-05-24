@@ -17,6 +17,7 @@ export type Page<Representation = PageContent> = {
     description: string;
     keywords: string;
     allow_indexing: boolean;
+    previewImage?: any;
   };
   content: Representation;
 };
