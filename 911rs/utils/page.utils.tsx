@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { isRouteErrorResponse } from 'react-router';
+import { Leistungen } from '#rs911/pages/Leistungen';
+import { Start } from '#rs911/pages/Start';
 import { type AboutContent, type HomeContent, type LeistungenContent } from './strapi.utils';
 
 export type PageContent = HomeContent | LeistungenContent | AboutContent;
@@ -62,4 +65,35 @@ export const fetchStrapiContent = async (path: string) => {
       return acc;
     }, {});
   });
+};
+
+export const getRouteElement = (content: { __component: string }) => {
+  switch (content.__component) {
+    case 'pages.home-page': {
+      return <Start content={content as HomeContent} />;
+    }
+    case 'pages.leistungen-page':
+      return <Leistungen content={content as LeistungenContent} />;
+    case 'pages.about-page':
+      return <div>Über mich</div>;
+    case 'pages.links-page':
+      return <div>Links</div>;
+    case 'pages.agenda-page':
+      return <div>Agenda</div>;
+    case 'pages.kontakt-page':
+      return <div>Kontakt</div>;
+    case 'pages.impressum-page':
+      return <div>Impressum</div>;
+    case 'pages.datenschutz-page':
+      return <div>Datenschutz</div>;
+    default:
+      throw new Response('Representation not found', { status: 501 });
+  }
+};
+
+export const handleError = (error: unknown): 'NotFound' | 'NotImplemented' | 'ServerError' => {
+  if (error instanceof Response || isRouteErrorResponse(error)) {
+    return error.status === 404 ? 'NotFound' : error.status === 501 ? 'NotImplemented' : 'ServerError';
+  }
+  return 'ServerError';
 };
