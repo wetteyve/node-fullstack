@@ -20,7 +20,7 @@ export const Lead = ({ lead, className = '', titleStyles, linkColor = 'text-prim
         className={clsx(
           'pt-4 max-w-[950px] typo-display-md [&>*>a]:touch:!underline mouse:style-link',
           `[&>*>a]:${linkColor}`,
-          !smallBreaks && 'whitespace-pre-wrap'
+          smallBreaks ? '' : 'whitespace-pre-wrap'
         )}
         remarkPlugins={[remarkGfm, remarkBreaks]}
         children={lead.description}
