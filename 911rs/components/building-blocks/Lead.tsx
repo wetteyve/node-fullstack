@@ -1,5 +1,5 @@
 import clsx, { type ClassValue } from 'clsx';
-import Markdown from 'react-markdown';
+import Markdown, { defaultUrlTransform } from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import { type BuildingBlockLead } from '#rs911/utils/strapi.utils';
@@ -24,6 +24,7 @@ export const Lead = ({ lead, className = '', titleStyles, linkColor = 'text-prim
         )}
         remarkPlugins={[remarkGfm, remarkBreaks]}
         children={lead.description}
+        urlTransform={(url) => (url.startsWith('tel:') ? url : defaultUrlTransform(url))}
       />
     </div>
   );
