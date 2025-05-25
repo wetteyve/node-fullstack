@@ -1,0 +1,43 @@
+@utility style-link {
+
+    a {
+        @apply relative inline-block cursor-pointer no-underline;
+    }
+
+    a::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: currentColor;
+        transform-origin: bottom center;
+        transition: transform 0.15s ease-out;
+    }
+
+    a:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom center;
+    }
+}
+
+@utility underline-on-hover {
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: bottom center;
+        transition: transform 0.15s ease-out;
+    }
+
+    .group:hover &::before {
+        transform: scaleX(1);
+    }
+}

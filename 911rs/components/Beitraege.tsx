@@ -16,10 +16,10 @@ export const Beitraege = ({ content }: { content: HomeContent }) => (
 
 const LinkCard = ({ beitrag }: { beitrag: HomeContent['beitrag_collection'][number] }) => (
   <a href={beitrag.external_link} target='_blank' rel='noreferrer' className='group block'>
-    <div className='w-full mt-auto style-link'>
+    <div className='w-full mt-auto'>
       <h3 className='typo-headline-sm mb-4'>{beitrag.title}</h3>
       <Image file={beitrag.lead_picture} />
-      <p className='typo-display-md mt-4 relative inline-block text-primary underline-on-hover touch:!underline'>Mehr erfahren</p>
+      <p className='typo-display-md mt-4 relative inline-block text-primary mouse:underline-on-hover touch:!underline'>Mehr erfahren</p>
     </div>
   </a>
 );

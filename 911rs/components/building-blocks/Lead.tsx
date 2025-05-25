@@ -15,7 +15,7 @@ export const Lead = ({ lead, className = '', titleStyles }: Props) => {
     <div className={clsx('w-full max-w-[912px]', className)}>
       {lead.title && <h2 className={clsx('typo-headline-lg', titleStyles)}>{lead.title}</h2>}
       <Markdown
-        className='pt-4 max-w-[950px] typo-display-md whitespace-pre-wrap'
+        className='pt-4 max-w-[950px] typo-display-md whitespace-pre-wrap [&>*>a]:text-primary [&>*>a]:touch:!underline mouse:style-link'
         remarkPlugins={[remarkGfm, remarkBreaks]}
         children={lead.description}
       />
