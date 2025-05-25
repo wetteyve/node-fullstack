@@ -1,4 +1,5 @@
 import { fetchStrapiContent, getRouteElement, handleError, type Page } from '#rs911/utils/page.utils';
+import { groupEventsByYearAndMonth } from '#rs911/utils/strapi.utils';
 import { type Route } from './+types';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
@@ -7,6 +8,14 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
   if (!pageData) {
     throw new Response('Not Found', { status: 404 });
   }
+
+  // presort agenda events if the page is an agenda page
+  if (pageData.content.__component === 'pages.agenda-page') {
+    if (Array.isArray(pageData.content.events)) {
+      pageData.content.events = groupEventsByYearAndMonth(pageData.content.events);
+    }
+  }
+
   return { content: pageData.content };
 };
 
