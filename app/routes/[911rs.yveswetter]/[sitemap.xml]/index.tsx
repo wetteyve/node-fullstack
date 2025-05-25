@@ -1,8 +1,8 @@
-import { fetchStrapiPages, type Page } from '#rs911/utils/page.utils';
+import { fetchStrapiPages } from '#rs911/utils/page.utils';
 import { type Route } from '../+types';
 
 export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs) => {
-  const pages: { [key: string]: Page } = await fetchStrapiPages();
+  const pages = await fetchStrapiPages();
   const { pathname, host } = new URL(request.url);
   const cleanPathname = tenant ? pathname.replace(`/${tenant}`, '') : pathname;
   const locations = Object.keys(pages)

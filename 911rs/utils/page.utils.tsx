@@ -43,7 +43,7 @@ export type Page<Representation = PageContent> = {
   content: Representation;
 };
 
-export const fetchStrapiPages = async () => {
+export const fetchStrapiPages = async (): Promise<{ [key: string]: Page<PageContent> }> => {
   const config = {
     method: 'get',
     maxBodyLength: Infinity,

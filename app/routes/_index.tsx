@@ -1,16 +1,16 @@
 import { type LoaderFunctionArgs } from 'react-router';
+import { fetchStrapiPages } from '#rs911/utils/page.utils';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (process.env.NODE_ENV === 'development') {
+    const rs911Pages = await fetchStrapiPages();
+    const rs9111links = Object.values(rs911Pages).reduce((acc: { [key: string]: string }, page) => {
+      acc[page.slug] = `${request.url}911rs.yveswetter/${page.slug}`;
+      return acc;
+    }, {});
+
     const links = {
-      '911rs': {
-        start: `${request.url}911rs.yveswetter/start`,
-        leistungen: `${request.url}911rs.yveswetter/leistungen`,
-        ueberMich: `${request.url}911rs.yveswetter/ueber-mich`,
-        links: `${request.url}911rs.yveswetter/links`,
-        agenda: `${request.url}911rs.yveswetter/agenda`,
-        kontakt: `${request.url}911rs.yveswetter/kontakt`,
-      },
+      '911rs': { ...rs9111links, sitemap: `${request.url}911rs.yveswetter/sitemap.xml` },
       'uht-herisau': {
         home: `${request.url}new.uht-herisau/home`,
       },

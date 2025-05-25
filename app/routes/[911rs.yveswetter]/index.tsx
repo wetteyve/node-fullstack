@@ -25,7 +25,7 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs) => {
-  const pages: { [key: string]: Page } = await fetchStrapiPages();
+  const pages = await fetchStrapiPages();
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);
   const faviconUrl = `${process.env.NODE_ENV !== 'development' ? resourceBasePath : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
