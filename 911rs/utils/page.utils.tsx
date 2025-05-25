@@ -2,6 +2,7 @@ import axios from 'axios';
 import { isRouteErrorResponse } from 'react-router';
 import { About } from '#rs911/pages/About';
 import { Agenda } from '#rs911/pages/Agenda';
+import { Datenschutz } from '#rs911/pages/Datenschutz';
 import { Impressum } from '#rs911/pages/Impressum';
 import { Kontakt } from '#rs911/pages/Kontakt';
 import { Leistungen } from '#rs911/pages/Leistungen';
@@ -15,9 +16,18 @@ import {
   type AgendaContent,
   type KontaktContent,
   type ImpressumContent,
+  type DatenschutzContent,
 } from './strapi.utils';
 
-type PageContent = HomeContent | LeistungenContent | AboutContent | LinksContent | AgendaContent | KontaktContent | ImpressumContent;
+type PageContent =
+  | HomeContent
+  | LeistungenContent
+  | AboutContent
+  | LinksContent
+  | AgendaContent
+  | KontaktContent
+  | ImpressumContent
+  | DatenschutzContent;
 
 export type Page<Representation = PageContent> = {
   slug: string;
@@ -95,7 +105,7 @@ export const getRouteElement = (content: { __component: string }) => {
     case 'pages.impressum-page':
       return <Impressum content={content as ImpressumContent} />;
     case 'pages.datenschutz-page':
-      return <div>Datenschutz</div>;
+      return <Datenschutz content={content as DatenschutzContent} />;
     default:
       throw new Response('Representation not found', { status: 501 });
   }

@@ -49,6 +49,14 @@ export type ImpressumContent = {
   };
 };
 
+export type DatenschutzContent = {
+  __component: 'pages.datenschutz-page';
+  datenschutz: {
+    title: string;
+    description: string;
+  };
+};
+
 export type BuildingBlockBeitrag = {
   external_link: string;
   lead_picture: any;
