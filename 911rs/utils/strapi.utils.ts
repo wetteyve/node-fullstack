@@ -40,6 +40,15 @@ export type KontaktContent = {
   address: string;
 };
 
+export type ImpressumContent = {
+  __component: 'pages.impressum-page';
+  impressum: {
+    title: string;
+    description: string;
+    picture: any;
+  };
+};
+
 export type BuildingBlockBeitrag = {
   external_link: string;
   lead_picture: any;

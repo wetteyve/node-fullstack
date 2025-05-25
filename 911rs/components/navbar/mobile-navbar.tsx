@@ -25,7 +25,7 @@ const MobileNavbar = ({ navbarEntries }: NavbarProps) => {
     <div>
       <div>
         <button
-          className={`bg-transparent p-6 text-black transition-all focus-visible:outline-none active:scale-95 `}
+          className={`bg-transparent p-6 pr-0 text-black transition-all focus-visible:outline-none active:scale-95 `}
           onClick={() => setIsOpen((o) => !o)}
         >
           {isOpen ? <TfiClose size={32} /> : <VscMenu size={32} />}

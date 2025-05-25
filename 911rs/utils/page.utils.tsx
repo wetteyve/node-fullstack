@@ -2,6 +2,7 @@ import axios from 'axios';
 import { isRouteErrorResponse } from 'react-router';
 import { About } from '#rs911/pages/About';
 import { Agenda } from '#rs911/pages/Agenda';
+import { Impressum } from '#rs911/pages/Impressum';
 import { Kontakt } from '#rs911/pages/Kontakt';
 import { Leistungen } from '#rs911/pages/Leistungen';
 import { Links } from '#rs911/pages/Links';
@@ -13,9 +14,10 @@ import {
   type LeistungenContent,
   type AgendaContent,
   type KontaktContent,
+  type ImpressumContent,
 } from './strapi.utils';
 
-export type PageContent = HomeContent | LeistungenContent | AboutContent | LinksContent | AgendaContent | KontaktContent;
+type PageContent = HomeContent | LeistungenContent | AboutContent | LinksContent | AgendaContent | KontaktContent | ImpressumContent;
 
 export type Page<Representation = PageContent> = {
   slug: string;
@@ -30,13 +32,6 @@ export type Page<Representation = PageContent> = {
   };
   content: Representation;
 };
-
-export type HomePage = Page<HomeContent>;
-export type LeistungenPage = Page<LeistungenContent>;
-export type AboutPage = Page<AboutContent>;
-export type LinksPage = Page<LinksContent>;
-export type AgendaPage = Page<AgendaContent>;
-export type KontaktPage = Page<KontaktContent>;
 
 export const fetchStrapiPages = async () => {
   const config = {
@@ -98,7 +93,7 @@ export const getRouteElement = (content: { __component: string }) => {
     case 'pages.kontakt-page':
       return <Kontakt content={content as KontaktContent} />;
     case 'pages.impressum-page':
-      return <div>Impressum</div>;
+      return <Impressum content={content as ImpressumContent} />;
     case 'pages.datenschutz-page':
       return <div>Datenschutz</div>;
     default:

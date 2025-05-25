@@ -6,8 +6,8 @@ export const Kontakt = ({ content: { title, lead, address } }: { content: Kontak
     <div className='relative text-white pb-8'>
       <div className=' w-screen h-[calc(100%+52px)] bg-primary absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[calc(50%+52px)] -z-1' />
       <h1 className='typo-headline-lg my-8'>{title}</h1>
-      <Lead lead={{ title: '', description: lead }} className='pb-12' linkColor='text-white' smallBreaks />
-      <Lead lead={{ title: '', description: address }} className='pb-12' linkColor='text-white' smallBreaks />
+      <Lead lead={{ title: '', description: lead }} className='pb-12' linkColor={false} smallBreaks />
+      <Lead lead={{ title: '', description: address }} className='pb-12' linkColor={false} smallBreaks />
     </div>
     <div className='my-8 w-full'>
       <iframe
