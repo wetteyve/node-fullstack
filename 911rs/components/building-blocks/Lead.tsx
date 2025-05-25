@@ -8,14 +8,20 @@ type Props = {
   lead: BuildingBlockLead;
   className?: ClassValue;
   titleStyles?: ClassValue;
+  linkColor?: ClassValue;
+  smallBreaks?: boolean;
 };
 
-export const Lead = ({ lead, className = '', titleStyles }: Props) => {
+export const Lead = ({ lead, className = '', titleStyles, linkColor = 'text-primary', smallBreaks = false }: Props) => {
   return (
     <div className={clsx('w-full max-w-[912px]', className)}>
       {lead.title && <h2 className={clsx('typo-headline-lg', titleStyles)}>{lead.title}</h2>}
       <Markdown
-        className='pt-4 max-w-[950px] typo-display-md whitespace-pre-wrap [&>*>a]:text-primary [&>*>a]:touch:!underline mouse:style-link'
+        className={clsx(
+          'pt-4 max-w-[950px] typo-display-md [&>*>a]:touch:!underline mouse:style-link',
+          `[&>*>a]:${linkColor}`,
+          !smallBreaks && 'whitespace-pre-wrap'
+        )}
         remarkPlugins={[remarkGfm, remarkBreaks]}
         children={lead.description}
       />

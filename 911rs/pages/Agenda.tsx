@@ -9,7 +9,7 @@ export const Agenda = ({
   <>
     <h1 className='typo-headline-lg my-8'>{title}</h1>
     <div className='w-fll border-b-2 border-primary'>
-      <Lead lead={{ title: '', description }} className='pb-12' />
+      <Lead lead={{ title: '', description }} className='pb-12' smallBreaks />
     </div>
     {Object.keys(events).map((year, yIndex) => (
       <section key={`${year}-${yIndex}`} className='sm:px-12'>

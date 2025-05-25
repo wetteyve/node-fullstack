@@ -33,6 +33,13 @@ export type AgendaContent = {
   lead: string;
 };
 
+export type KontaktContent = {
+  __component: 'pages.kontakt-page';
+  title: string;
+  lead: string;
+  address: string;
+};
+
 export type BuildingBlockBeitrag = {
   external_link: string;
   lead_picture: any;
