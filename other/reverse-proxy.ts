@@ -1,7 +1,9 @@
 import http, { type IncomingMessage, type ServerResponse } from 'node:http';
-
 import chalk from 'chalk';
+import dotenv from 'dotenv';
 import httpProxy from 'http-proxy';
+
+dotenv.config(); // Load environment variables from .env file into process.env
 
 const setupPlayProxy = (proxyPort: number, tenant: string) => {
   const targetPort = 3000;
@@ -15,7 +17,7 @@ const setupPlayProxy = (proxyPort: number, tenant: string) => {
     if (req.url) {
       const originalPath = req.url;
       if (!originalPath.startsWith('/node/v1') && !originalPath.includes('/.well-known')) {
-        req.url = `${tenant}/${originalPath}`;
+        req.url = `/${tenant}${originalPath}`;
         console.log(`Rewrite ${originalPath} -> ${req.url}`);
       }
     }
@@ -32,5 +34,5 @@ const setupPlayProxy = (proxyPort: number, tenant: string) => {
   });
 };
 
-setupPlayProxy(8080, '911rs');
-setupPlayProxy(8081, 'uht-herisau');
+setupPlayProxy(8080, process.env.RS911_PROXY ?? '911rs');
+setupPlayProxy(8081, process.env.UHT_PROXY ?? 'uht-herisau');

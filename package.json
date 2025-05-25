@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development node ./server/dev-server.js",
     "start": "cross-env NODE_ENV=production node .",
     "start:proxy": "run-p start proxy",
-    "proxy": "tsx reverse-proxy.ts",
+    "proxy": "tsx ./other/reverse-proxy.ts",
     "typecheck": "react-router typegen && tsc -b",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\""
