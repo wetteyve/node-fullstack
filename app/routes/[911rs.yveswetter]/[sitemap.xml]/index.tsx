@@ -1,11 +1,13 @@
 import { fetchStrapiPages, type Page } from '#rs911/utils/page.utils';
 import { type Route } from '../+types';
 
-export const loader = async ({ request: { url } }: Route.LoaderArgs) => {
+export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs) => {
   const pages: { [key: string]: Page } = await fetchStrapiPages();
+  const { protocol, origin, pathname } = new URL(request.url);
+  const cleanPathname = tenant ? pathname.replace(`/${tenant}`, '') : pathname;
   const locations = Object.keys(pages)
     .map((slug) => {
-      const fullUrl = url.replace('/sitemap.xml', `/${slug}`);
+      const fullUrl = `${protocol}//${origin}${cleanPathname.replace('/sitemap.xml', `/${slug}`)}`;
       return `<url><loc>${fullUrl}</loc></url>`;
     })
     .join();
