@@ -4,8 +4,12 @@ import { createReadableStreamFromReadable } from '@react-router/node';
 import { isbot } from 'isbot';
 import { type RenderToPipeableStreamOptions, renderToPipeableStream } from 'react-dom/server';
 import { ServerRouter, type EntryContext } from 'react-router';
+import { checkEnvironment, getEnv } from './utils/server/env.server';
 
 export const streamTimeout = 5_000;
+
+checkEnvironment();
+global.ENV = getEnv();
 
 export default function handleRequest(request: Request, responseStatusCode: number, responseHeaders: Headers, routerContext: EntryContext) {
   return new Promise((resolve, reject) => {

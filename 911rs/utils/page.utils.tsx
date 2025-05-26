@@ -47,9 +47,9 @@ export const fetchStrapiPages = async (): Promise<{ [key: string]: Page<PageCont
   const config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `${process.env['RS911_CMS_API']}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_settings][populate]=*`,
+    url: `${ENV.RS911_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_settings][populate]=*`,
     headers: {
-      Authorization: `Bearer ${process.env['RS911_CMS_KEY']}`,
+      Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
     },
   };
 
@@ -67,9 +67,9 @@ export const fetchStrapiContent = async (path: string) => {
   const config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `${process.env['RS911_CMS_API']}/pages?filters[slug][$eq]=${path}&populate=deep,5`,
+    url: `${ENV.RS911_CMS_API}/pages?filters[slug][$eq]=${path}&populate=deep,5`,
     headers: {
-      Authorization: `Bearer ${process.env['RS911_CMS_KEY']}`,
+      Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
     },
   };
 

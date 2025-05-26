@@ -28,7 +28,7 @@ export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs)
   const pages = await fetchStrapiPages();
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);
-  const faviconUrl = `${process.env.NODE_ENV !== 'development' ? resourceBasePath : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
+  const faviconUrl = `${ENV.MODE !== 'development' ? resourceBasePath : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
   return { navbarEntries, footerEntries, faviconUrl, publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}` };
 };
 

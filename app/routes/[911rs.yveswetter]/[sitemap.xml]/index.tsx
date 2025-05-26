@@ -7,7 +7,7 @@ export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs)
   const cleanPathname = tenant ? pathname.replace(`/${tenant}`, '') : pathname;
   const locations = Object.keys(pages)
     .map((slug) => {
-      const fullUrl = `${process.env.NODE_ENV === 'production' ? 'https' : 'http'}://${host}${cleanPathname.replace('/sitemap.xml', `/${slug}`)}`;
+      const fullUrl = `${ENV.MODE === 'production' ? 'https' : 'http'}://${host}${cleanPathname.replace('/sitemap.xml', `/${slug}`)}`;
       return `<url><loc>${fullUrl}</loc></url>`;
     })
     .join();
