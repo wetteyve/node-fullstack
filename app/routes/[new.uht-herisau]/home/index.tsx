@@ -1,5 +1,5 @@
 const App = () => {
-  return <div>uht-herisau page</div>;
+  return <div className='typo-xl'>uht-herisau page</div>;
 };
 
 export default App;

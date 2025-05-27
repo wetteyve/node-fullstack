@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #282c34;
+    --color-uht-gray: #282c34;
+    --color-uht-red: '#ff69b4';
+}
+
+@custom-variant touch {
+
+    @media (any-hover: none),
+    (pointer: coarse) {
+        @slot;
+    }
+}
+
+@custom-variant mouse {
+    @media (hover: hover) {
+        @slot;
+    }
+}
+
+@import './typography.css';

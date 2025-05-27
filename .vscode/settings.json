@@ -43,12 +43,11 @@
     "**/.factorypath": true,
     "**/node_modules": false
   },
-  "tailwindCSS.experimental.classRegex": [
-    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-  ],
-    "tailwindCSS.classAttributes": ["className"],
+  "tailwindCSS.experimental.classRegex": [["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]],
+  "tailwindCSS.classAttributes": ["className"],
   "tailwindCSS.experimental.configFile": {
-    "911rs/styles/app.css": ["911rs/**/*", "app/routes/[911rs.yveswetter]/**/*"]
+    "911rs/styles/app.css": ["911rs/**/*", "app/routes/[911rs.yveswetter]/**/*"],
+    "uht-herisau/styles/app.css": ["uht-herisau/**/*", "app/routes/[new.uht-herisau]/**/*"]
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.autoImportFileExcludePatterns": [
