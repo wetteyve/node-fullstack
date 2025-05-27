@@ -1,0 +1,59 @@
+@theme {
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+    --animate-fade-in: fade-in 0.2s ease-in;
+    --animate-fade-in-light: fade-in-light 0.2s ease-in;
+    --animate-wiggle: wiggle 1s ease-in-out infinite;
+
+    @keyframes accordion-down {
+        0% {
+            height: 0;
+        }
+
+        100% {
+            height: var(--radix-accordion-content-height);
+        }
+    }
+
+    @keyframes accordion-up {
+        0% {
+            height: var(--radix-accordion-content-height);
+        }
+
+        100% {
+            height: 0;
+        }
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-in-light {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes wiggle {
+
+        0%,
+        100% {
+            transform: rotate(-3deg);
+        }
+
+        50% {
+            transform: rotate(3deg);
+        }
+    }
+}
