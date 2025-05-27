@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
 
 type MobileNavbarItemProps = {
   href: string;
@@ -11,12 +10,12 @@ export const MobileNavbarItem = (props: MobileNavbarItemProps) => {
   const pathname = useLocation().pathname.substring(1);
 
   return (
-    <Link
+    <NavLink
       className={`typo-xl w-full whitespace-nowrap px-4 py-4 text-center font-light text-black ${pathname === props.href ? 'text-primary' : ''}`}
-      to={props.href}
+      to={`./${props.href}`}
       onClick={props.onClick}
     >
       {props.text.toUpperCase()}
-    </Link>
+    </NavLink>
   );
 };

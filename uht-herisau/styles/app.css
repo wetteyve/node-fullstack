@@ -20,5 +20,9 @@
     }
 }
 
+@utility app-container {
+    @apply container mx-auto p-5;
+}
+
 @import './typography.css';
 @import './animations.css';

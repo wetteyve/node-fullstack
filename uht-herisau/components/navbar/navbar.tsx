@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
 import { groupBy } from '#app/utils/array.utils';
 import { MobileNavbar } from '#uht-herisau/components/navbar/mobile-navbar';
 import { type Page } from '#uht-herisau/utils/page.utils';
@@ -51,12 +51,12 @@ export const Navbar = ({ navbarEntries: entriesRaw }: NavbarProps) => {
     >
       <div className='container mx-auto flex h-24 justify-between px-5 py-2'>
         <div className='flex'>
-          <Link to={`/${entriesRaw[0]?.path}`} className='my-auto mr-5 flex flex-col items-center hover:cursor-pointer'>
-            <p className='typo-md text-blacl whitespace-nowrap font-semibold leading-none'>Unihockey Turnier</p>
+          <NavLink to={`./${entriesRaw[0]?.path}`} className='my-auto mr-5 flex flex-col items-center hover:cursor-pointer'>
+            <p className='typo-md text-black whitespace-nowrap font-semibold leading-none'>Unihockey Turnier</p>
             <p className='typo-sm whitespace-nowrap leading-none'>Herisau</p>
-          </Link>
+          </NavLink>
         </div>
-        <div className='hidden md:flex'>
+        <div className='touch:hidden md:flex'>
           {Object.keys(navbarEntriesGrouped).map((key) => {
             const isDropdown = navbarEntriesGrouped[key]!.length > 1;
             const showDropdownForKey = showDropdown[key];
@@ -73,22 +73,22 @@ export const Navbar = ({ navbarEntries: entriesRaw }: NavbarProps) => {
                   {showDropdownForKey && (
                     <div className='absolute left-0 top-full rounded-sm bg-white p-4 text-black shadow-md'>
                       {navbarEntriesGrouped[key]?.map((item) => (
-                        <Link key={item.path} className='mb-6 ml-12 mt-auto hover:cursor-pointer' to={item.path}>
+                        <NavLink key={item.path} className='mb-6 ml-12 mt-auto hover:cursor-pointer' to={`./${item.path}`}>
                           <p className={`typo-xs font-regular transition-all duration-150 ease-in hover:scale-105`}>{item.title}</p>
-                        </Link>
+                        </NavLink>
                       ))}
                     </div>
                   )}
                 </button>
               </div>
             ) : (
-              <Link key={key} className='mb-6 ml-12 mt-auto hover:cursor-pointer' to={navbarEntriesGrouped[key]![0]?.path ?? '#'}>
+              <NavLink key={key} className='mb-6 ml-12 mt-auto hover:cursor-pointer' to={`./${navbarEntriesGrouped[key]![0]?.path}`}>
                 <p className={`typo-xs font-semibold transition-all duration-150 ease-in hover:scale-105`}>{title}</p>
-              </Link>
+              </NavLink>
             );
           })}
         </div>
-        <div className='block md:hidden'>
+        <div className='block mouse:hidden'>
           <MobileNavbar navbarEntries={navbarEntries} />
         </div>
       </div>

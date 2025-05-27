@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { isRouteErrorResponse } from 'react-router';
 import {
   type LandingContent,
   type MakrdownContent,
@@ -80,4 +81,39 @@ export const fetchStrapiContent = async (path: string) => {
       return acc;
     }, {});
   });
+};
+
+export const getRouteElement = (content: { __component: string }) => {
+  switch (content.__component) {
+    case 'representation.landing': {
+      return <div>Landing Representation not implemented</div>;
+    }
+    case 'representation.categories': {
+      return <div>Categories Representation not implemented</div>;
+    }
+    case 'representation.rankings': {
+      return <div>Rankings Representation not implemented</div>;
+    }
+    case 'representation.markdown': {
+      return <div>Markdown Representation not implemented</div>;
+    }
+    case 'representation.organisation': {
+      return <div>Organisation Representation not implemented</div>;
+    }
+    case 'representation.sponsors': {
+      return <div>Sponsors Representation not implemented</div>;
+    }
+    case 'representation.registration': {
+      return <div>Registration Representation not implemented</div>;
+    }
+    default:
+      return <div>Representation not implemented</div>;
+  }
+};
+
+export const handleError = (error: unknown): 'NotFound' | 'NotImplemented' | 'ServerError' => {
+  if (error instanceof Response || isRouteErrorResponse(error)) {
+    return error.status === 404 ? 'NotFound' : error.status === 501 ? 'NotImplemented' : 'ServerError';
+  }
+  return 'ServerError';
 };
