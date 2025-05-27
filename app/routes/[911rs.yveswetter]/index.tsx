@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
+import { splitArrayByKey } from '#app/utils/array.utils';
+import { getImage } from '#app/utils/get-strapi-image.utils';
 import { resourceBasePath } from '#app/utils/path';
-import { getImage } from '#rs911/components/building-blocks/image/get-image';
+import { useScreenStore } from '#app/utils/store/screen.store';
 import Footer from '#rs911/components/footer/footer';
 import { LoadingBar } from '#rs911/components/loadingbar/Loadingbar';
 import Navbar from '#rs911/components/navbar/navbar';
-import { useScreenStore } from '#rs911/store/screen.store';
-import { splitArrayByKey } from '#rs911/utils/array.utils';
 import { fetchStrapiPages, type Page } from '#rs911/utils/page.utils';
 import { type Route } from './+types';
 import '#rs911/styles/app.css';

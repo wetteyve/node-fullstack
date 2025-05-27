@@ -1,6 +1,6 @@
 import { type ImageFormatKey, type ImageFormats, imageSizeOrder, type File } from '#rs911/utils/file.utils';
 import placeholderUrl from '/images/image-placeholder.svg?url';
-import { useScreenStore } from '../../../store/screen.store';
+import { useScreenStore } from './store/screen.store';
 
 const placeholderImage = {
   id: 'placeholder',

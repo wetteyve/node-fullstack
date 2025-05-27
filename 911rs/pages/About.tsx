@@ -1,7 +1,7 @@
+import { type ScreenSize, useScreenStore } from '#app/utils/store/screen.store';
 import { HeaderPicture } from '#rs911/components/building-blocks/image/HeaderPicture';
 import { Image } from '#rs911/components/building-blocks/image/Image';
 import { Lead } from '#rs911/components/building-blocks/Lead';
-import { type ScreenSize, useScreenStore } from '#rs911/store/screen.store';
 import { type AboutContent } from '#rs911/utils/strapi.utils';
 
 // this screen sizes are considered small
