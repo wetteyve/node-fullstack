@@ -5,6 +5,7 @@ import { splitArrayByKey } from '#app/utils/array.utils';
 import { getImage } from '#app/utils/get-strapi-image.utils';
 import { resourceBasePath } from '#app/utils/path';
 import { useScreenStore } from '#app/utils/store/screen.store';
+import Footer from '#uht-herisau/components/footer/footer';
 import { Navbar } from '#uht-herisau/components/navbar/navbar';
 import { fetchStrapiPages, type Page } from '#uht-herisau/utils/page.utils';
 import { type Route } from './+types';
@@ -94,12 +95,12 @@ const UhtLayout = ({ loaderData: { navbarEntries, footerEntries } }: Route.Compo
   }, [updateScreenSize]);
 
   return (
-    <div className='relative overflow-x-hidden'>
+    <div className='relative overflow-x-hidden bg-primary text-white'>
       <Navbar navbarEntries={navbarEntries ?? []} />
       <div className='app-container !pb-0 min-h-[calc(100svh-96px-96px)]'>
         <Outlet />
       </div>
-      <div className='h-24 bg-primary text-white typo-xl'>Footer</div>
+      <Footer footerEntries={footerEntries ?? []} />
     </div>
   );
 };
