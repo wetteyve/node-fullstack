@@ -95,7 +95,7 @@ const Page = ({ loaderData: { navbarEntries, footerEntries } }: Route.ComponentP
   }, [updateScreenSize]);
 
   return (
-    <div className='relative'>
+    <div className='relative overflow-x-hidden'>
       <Navbar navbarEntries={navbarEntries} />
       <LoadingBar />
       <div className='app-container !pb-0 min-h-[calc(100svh-96px-96px)]'>
