@@ -30,7 +30,7 @@ const setupPlayProxy = (proxyPort: number, tenant: string) => {
   });
 
   server.listen(proxyPort, () => {
-    console.log(`${chalk.bold(tenant.toUpperCase())}:    ${chalk.cyan(`http://localhost:${proxyPort}/home`)}`);
+    console.log(`${chalk.bold(tenant.toUpperCase())}:    ${chalk.cyan(`http://localhost:${proxyPort}/start`)}`);
   });
 };
 
