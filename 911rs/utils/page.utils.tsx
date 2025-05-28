@@ -87,25 +87,25 @@ export const fetchStrapiContent = async (path: string) => {
   });
 };
 
-export const getRouteElement = (content: { __component: string }) => {
+export const getRouteElement = (content: PageContent) => {
   switch (content.__component) {
     case 'pages.home-page': {
-      return <Start content={content as HomeContent} />;
+      return <Start content={content} />;
     }
     case 'pages.leistungen-page':
-      return <Leistungen content={content as LeistungenContent} />;
+      return <Leistungen content={content} />;
     case 'pages.about-page':
-      return <About content={content as AboutContent} />;
+      return <About content={content} />;
     case 'pages.links-page':
-      return <Links content={content as LinksContent} />;
+      return <Links content={content} />;
     case 'pages.agenda-page':
-      return <Agenda content={content as AgendaContent} />;
+      return <Agenda content={content} />;
     case 'pages.kontakt-page':
-      return <Kontakt content={content as KontaktContent} />;
+      return <Kontakt content={content} />;
     case 'pages.impressum-page':
-      return <Impressum content={content as ImpressumContent} />;
+      return <Impressum content={content} />;
     case 'pages.datenschutz-page':
-      return <Datenschutz content={content as DatenschutzContent} />;
+      return <Datenschutz content={content} />;
     default:
       throw new Response('Representation not found', { status: 501 });
   }

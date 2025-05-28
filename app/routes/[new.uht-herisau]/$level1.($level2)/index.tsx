@@ -2,9 +2,9 @@ import { fetchStrapiContent, getRouteElement, handleError, type Page } from '#uh
 import { type Route } from './+types';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
-  const { page, subPage } = params;
-  const slug = subPage ? `${page}/${subPage}` : page;
-  const pageData: Page | undefined = (await fetchStrapiContent(slug))[slug];
+  const { level1, level2 } = params;
+  const path = `${level1}${level2 ? `/${level2}` : ''}`;
+  const pageData: Page | undefined = (await fetchStrapiContent(path))[path];
   if (!pageData) {
     throw new Response('Not Found', { status: 404 });
   }

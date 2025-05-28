@@ -14,10 +14,10 @@ import {
 
 export type SeoDataItem = {
   allow_indexing: boolean;
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   keywords?: string;
-  previewImage?: any;
+  preview_image?: any;
 };
 
 export type PageContent =
@@ -83,7 +83,7 @@ export const fetchStrapiContent = async (path: string) => {
   });
 };
 
-export const getRouteElement = (content: { __component: string }) => {
+export const getRouteElement = (content: PageContent) => {
   switch (content.__component) {
     case 'representation.landing': {
       return <div>Landing Representation not implemented</div>;
