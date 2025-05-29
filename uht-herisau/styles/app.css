@@ -3,7 +3,7 @@
 @theme {
     --color-primary: #282c34;
     --color-uht-gray: #282c34;
-    --color-uht-red: '#ff69b4';
+    --color-uht-red: #ff69b4;
 }
 
 @custom-variant touch {

@@ -23,7 +23,7 @@ const breakpoints = {
 const getCurrentScreenSize = (): ScreenSize => {
   // Check if window is defined (for SSR)
   if (typeof window === 'undefined') {
-    return 'md';
+    return 'lg';
   }
   switch (true) {
     case window?.innerWidth < breakpoints.sm:

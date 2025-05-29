@@ -1,6 +1,5 @@
 import clsx, { type ClassValue } from 'clsx';
 import React from 'react';
-import { getImage } from '#app/utils/get-strapi-image.utils';
 import { Image } from '#uht-herisau/components/building-blocks/Image';
 import { type Sponsor } from '#uht-herisau/utils/strapi.utils';
 
@@ -29,13 +28,10 @@ export const SponsorCard = ({
   sponsor: Sponsor;
   titleOverride?: string;
   className?: ClassValue;
-}): React.ReactNode => {
-  const { url, alternativeText } = getImage(sponsor.picture);
-  return (
-    <UhtCard title={titleOverride ?? sponsor.name} className={className}>
-      <div className='p-5 my-auto'>
-        <Image url={url} alt={alternativeText} link={sponsor.url} />
-      </div>
-    </UhtCard>
-  );
-};
+}): React.ReactNode => (
+  <UhtCard title={titleOverride ?? sponsor.name} className={className}>
+    <div className='p-5 my-auto'>
+      <Image file={{ ...sponsor.picture, link: sponsor.url }} twFit='object-contain' />
+    </div>
+  </UhtCard>
+);

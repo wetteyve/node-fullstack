@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import StyledMarkdown from '#uht-herisau/components/building-blocks/Markdown';
-import Slider from '#uht-herisau/components/building-blocks/Slider';
+import { Slider } from '#uht-herisau/components/building-blocks/Slider';
 import UhtCard, { SponsorCard } from '#uht-herisau/components/building-blocks/UhtCard';
 import { Button } from '#uht-herisau/components/ui/button';
 import { type Sponsor, type LandingContent } from '#uht-herisau/utils/strapi.utils';
@@ -19,7 +19,7 @@ export const LandingRepresentation = ({
   return (
     <div className='flex flex-col gap-5 pb-5'>
       <section className='-mt-5 w-full'>
-        <Slider slider={strapiSlider} autoPlay={{ delay: 7000, playOnInit: true }} />
+        <Slider slides={{ data: strapiSlider.data }} />
       </section>
       <section>
         <UhtCard title={lead.label}>
@@ -43,10 +43,8 @@ export const LandingRepresentation = ({
           <UhtCard title={'Sponsor:innen'}>
             <div className='p-5 w-full'>
               <Slider
-                slider={{
-                  data: sponsors.map((sponsor) => ({ ...sponsor.picture.data, link: sponsor.url })),
-                }}
-                autoPlay={{ delay: 3500, playOnInit: true }}
+                slides={{ data: sponsors.map((sponsor) => ({ ...sponsor.picture.data, link: sponsor.url })) }}
+                twFit='object-contain'
               />
             </div>
           </UhtCard>

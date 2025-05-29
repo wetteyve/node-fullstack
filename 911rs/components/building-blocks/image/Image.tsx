@@ -1,6 +1,6 @@
 import clsx, { type ClassValue } from 'clsx';
+import { getImage } from '#app/utils/get-strapi-image.utils';
 import { useHydrated } from '#app/utils/use-hydrated';
-import { getImage } from '../../../../app/utils/get-strapi-image.utils';
 
 export const Image = ({ file, twAspect = 'aspect-video' }: { file: any; twAspect?: ClassValue }) => {
   const hdyrated = useHydrated();
