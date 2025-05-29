@@ -38,6 +38,7 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
   const siteName = seo_data?.title || 'UHT Herisau';
   const description = seo_data?.description || 'UHT Herisau';
   const { url, width, height, alternativeText } = seo_data?.preview_image.data ? getImage(seo_data?.preview_image, 'small') : {};
+  console.log(getImage(seo_data?.preview_image, 'small'));
   const keywords =
     seo_data?.keywords ||
     'Unihockeyturnier, Herisau, Indoor-Sport, News, Ergebnisse, Spielpläne, Ostschweiz, Veranstaltung, Bilder, Impressionen';

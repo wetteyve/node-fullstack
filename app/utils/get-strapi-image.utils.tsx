@@ -27,33 +27,31 @@ export const getImage = (rawImage: any, format: ImageFormatKey = useScreenStore.
     return placeholderImage;
   }
 
-  const url = getFormatUrl(format, image.data.attributes.formats) || image.data.attributes.url;
+  const { url, width, height, size } = getFormat(format, image.data.attributes.formats) || image.data.attributes;
   const { hash: id } = image.data.attributes;
 
-  return { ...image.data.attributes, id, url } as File;
+  return { ...image.data.attributes, id, url, width, height, size } as File;
 };
 
 /**
- * Get the URL of the requested image format from the available formats.
+ * Get the requested image format from the available formats.
  * @param requestedSize - The requested size of the image format.
  * @param formats - The available image formats.
- * @returns The URL of the requested image format, or undefined if no formats are available.
+ * @returns The requested image format, or undefined if no formats are available.
  */
-const getFormatUrl = (requestedSize: ImageFormatKey, formats: unknown) => {
+const getFormat = (requestedSize: ImageFormatKey, formats: unknown) => {
   // if no formats are available, return undefined
   if (!formats) return undefined;
 
   const typedFormats = formats as ImageFormats;
 
   // if requested format is available, return it
-  if (typedFormats[requestedSize]) return typedFormats[requestedSize]?.url;
+  if (typedFormats[requestedSize]) return typedFormats[requestedSize];
 
   // if requested format is not available, return next best format
   const startIndex = imageSizeOrder.indexOf(requestedSize);
   for (let i = startIndex; i < imageSizeOrder.length; i++) {
     const size = imageSizeOrder[i];
-    if (typedFormats[size!]) {
-      return typedFormats[size!]?.url;
-    }
+    if (size) return typedFormats[size];
   }
 };
