@@ -35,17 +35,15 @@ export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs)
 export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconUrl } }: Route.MetaArgs): Route.MetaDescriptors => {
   const { seo_data } =
     [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.path}`)) || {};
-  const siteName = seo_data?.title || 'Alte 11er Garage';
-  const description = seo_data?.description || 'Alte 11er Garage';
-  const imageUrl = seo_data?.previewImage.data
-    ? getImage(seo_data.previewImage, 'small').url
-    : 'https://res.cloudinary.com/djngkbkmp/image/upload/v1706558292/small_911_martini_george_7d3968f9f6.png';
+  const siteName = seo_data?.title || 'UHT Herisau';
+  const description = seo_data?.description || 'UHT Herisau';
+  const { url, width, height, alternativeText } = seo_data?.preview_image.data ? getImage(seo_data?.preview_image, 'small') : {};
   const keywords =
     seo_data?.keywords ||
-    'Alte 11er Garage, Oldtimer Restauration, Klassiker Wartung, Oldtimer Pflege, Oldtimer Werkstatt Arbon, George Wetter, Oldtimer Spezialist Schweiz, Klassiker 1965-1993, Fahrzeugrestauration Arbon, Oldtimer Service Thurgau, Restauration Oldtimer';
+    'Unihockeyturnier, Herisau, Indoor-Sport, News, Ergebnisse, Spielpläne, Ostschweiz, Veranstaltung, Bilder, Impressionen';
   const noIndex = !seo_data?.allow_indexing;
 
-  const metaData = [
+  const metaData: Route.MetaDescriptors = [
     { title: siteName },
     // Open Graph Tags
     { property: 'og:title', content: siteName },
@@ -53,24 +51,6 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     { property: 'og:description', content: description },
     { property: 'og:url', content: publicUrl },
     { property: 'og:type', content: 'website' },
-    {
-      property: 'og:image',
-      content: imageUrl,
-    },
-    {
-      property: 'og:image:width',
-      content: '320',
-    },
-    {
-      property: 'og:image:height',
-      content: '180',
-    },
-    { property: 'og:image:type', content: 'image/png' },
-    {
-      property: 'og:image:secure_url',
-      content: imageUrl,
-    },
-    { property: 'og:image:alt', content: 'Alte 11er Garage - 911 RSR Martini' },
     // Meta Tags
     { name: 'description', content: description },
     { name: 'keywords', content: keywords },
@@ -81,6 +61,30 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
       href: faviconUrl,
     },
   ];
+  // If a preview image is set, add Open Graph image tags
+  if (url && width && height) {
+    metaData.concat([
+      {
+        property: 'og:image',
+        content: url,
+      },
+      {
+        property: 'og:image:width',
+        content: width,
+      },
+      {
+        property: 'og:image:height',
+        content: height,
+      },
+      { property: 'og:image:type', content: 'image/png' },
+      {
+        property: 'og:image:secure_url',
+        content: url,
+      },
+      { property: 'og:image:alt', content: alternativeText || 'Unihockeyturnier Herisau' },
+    ]);
+  }
+  // If noIndex is true, add noindex meta tag
   if (noIndex) metaData.push({ name: 'robots', content: 'noindex, nofollow' });
   return metaData;
 };
