@@ -8,6 +8,15 @@ export type Category = {
   description?: string;
 };
 
+export type Sponsor = {
+  id: number;
+  name: string;
+  type: 'main_sponsor' | 'regular_sponsor';
+  url?: string;
+  show_on_page: boolean;
+  picture: any;
+};
+
 type MakrdownBlock = { id: number; label: string; text?: string };
 type RegistrationBlock = { id: number; label?: string; text: string };
 

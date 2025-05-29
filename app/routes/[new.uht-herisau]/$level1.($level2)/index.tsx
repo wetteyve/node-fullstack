@@ -1,14 +1,16 @@
-import { fetchStrapiContent, getRouteElement, handleError, type Page } from '#uht-herisau/utils/page.utils';
+import { shuffle } from '#app/utils/array.utils';
+import { fetchStrapiContent, fetchStrapiSponsors, getRouteElement, handleError, type Page } from '#uht-herisau/utils/page.utils';
 import { type Route } from './+types';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const { level1, level2 } = params;
   const path = `${level1}${level2 ? `/${level2}` : ''}`;
-  const pageData: Page | undefined = (await fetchStrapiContent(path))[path];
+  const [pages, sponsors] = await Promise.all([fetchStrapiContent(path), fetchStrapiSponsors()]);
+  const pageData: Page | undefined = pages[path];
   if (!pageData) {
     throw new Response('Not Found', { status: 404 });
   }
-  return { content: pageData.content };
+  return { content: { ...pageData.content, sponsors: shuffle(sponsors) } };
 };
 
 export const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps) => {
