@@ -38,7 +38,6 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
   const siteName = seo_data?.title || 'UHT Herisau';
   const description = seo_data?.description || 'UHT Herisau';
   const { url, width, height, alternativeText } = seo_data?.preview_image.data ? getImage(seo_data?.preview_image, 'small') : {};
-  console.log(getImage(seo_data?.preview_image, 'small'));
   const keywords =
     seo_data?.keywords ||
     'Unihockeyturnier, Herisau, Indoor-Sport, News, Ergebnisse, Spielpläne, Ostschweiz, Veranstaltung, Bilder, Impressionen';
@@ -64,26 +63,28 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
   ];
   // If a preview image is set, add Open Graph image tags
   if (url && width && height) {
-    metaData.concat([
-      {
-        property: 'og:image',
-        content: url,
-      },
-      {
-        property: 'og:image:width',
-        content: width,
-      },
-      {
-        property: 'og:image:height',
-        content: height,
-      },
-      { property: 'og:image:type', content: 'image/png' },
-      {
-        property: 'og:image:secure_url',
-        content: url,
-      },
-      { property: 'og:image:alt', content: alternativeText || 'Unihockeyturnier Herisau' },
-    ]);
+    metaData.push(
+      ...[
+        {
+          property: 'og:image',
+          content: url,
+        },
+        {
+          property: 'og:image:width',
+          content: width,
+        },
+        {
+          property: 'og:image:height',
+          content: height,
+        },
+        { property: 'og:image:type', content: 'image/png' },
+        {
+          property: 'og:image:secure_url',
+          content: url,
+        },
+        { property: 'og:image:alt', content: alternativeText || 'Unihockeyturnier Herisau' },
+      ]
+    );
   }
   // If noIndex is true, add noindex meta tag
   if (noIndex) metaData.push({ name: 'robots', content: 'noindex, nofollow' });
