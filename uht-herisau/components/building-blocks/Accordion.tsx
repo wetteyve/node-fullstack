@@ -7,7 +7,7 @@ type Props = {
 
 export const AccordionWrapper = ({ items }: Props) => {
   return (
-    <Accordion className='bg-white text-black rounded-sm r-text-xs' type='single' collapsible>
+    <Accordion className='bg-white text-black rounded-sm typo-xs' type='single' collapsible>
       {items.map((item, index) => (
         <AccordionItem key={index} value={`item-${index}`}>
           <AccordionTrigger className='px-5'>{item.title}</AccordionTrigger>

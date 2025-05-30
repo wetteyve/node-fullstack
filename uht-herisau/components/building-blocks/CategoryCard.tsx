@@ -7,7 +7,7 @@ export const CategoryCard = ({ categories }: { categories: Category[] }) => {
   return categories.map((category, index) => (
     <div className='border last:mb-0 mb-5 rounded-sm' key={index}>
       <UhtCard title={`${category.short_key} - ${category.name}`}>
-        <ul className='py-5 text-center r-text-s font-semibold'>
+        <ul className='py-5 text-center typo-sm font-semibold'>
           <li className='grid grid-flow-row grid-cols-4'>
             <PiCheck className='m-auto' />
             <span>Jahrgänge</span>

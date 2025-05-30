@@ -7,7 +7,7 @@ const OrganisationRepresentation = ({ ok_ressorts }: OrganisationContent) => (
     {ok_ressorts.map((ressort, index) => (
       <UhtCard key={index} title={ressort.ressort_name}>
         <Image file={ressort.icon} twFit='object-contain' />
-        <p className='r-text-l pb-5 px-5 whitespace-normal'>{ressort.members}</p>
+        <p className='typo-lg pb-5 px-5 whitespace-normal'>{ressort.members}</p>
       </UhtCard>
     ))}
   </div>

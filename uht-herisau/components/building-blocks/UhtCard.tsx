@@ -12,7 +12,7 @@ type Props = {
 export const UhtCard = ({ title, children, className }: Props) => (
   <div className={clsx('flex flex-col w-full items-center bg-white rounded-sm text-[#000000D9]', className)}>
     <div className='border-b-[1px] w-full h-[75px]'>
-      <h1 className='r-text-l text-center font-semibold py-4'>{title}</h1>
+      <h1 className='typo-lg text-center font-semibold py-4'>{title}</h1>
     </div>
     {children}
   </div>

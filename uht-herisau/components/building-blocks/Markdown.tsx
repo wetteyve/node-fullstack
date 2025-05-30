@@ -11,7 +11,7 @@ type Props = {
 
 const StyledMarkdown = ({ markdown, align = 'text-center', className }: Props) => (
   <Markdown
-    className={cn('w-full r-text-xs whitespace-pre-wrap p-6 a-markdown', align, className)}
+    className={cn('w-full typo-xs whitespace-pre-wrap p-6 a-markdown', align, className)}
     remarkPlugins={[remarkGfm]}
     children={markdown}
   />
