@@ -5,6 +5,7 @@ import { LandingRepresentation } from '#uht-herisau/pages/Landing';
 import MarkdownRepresentation from '#uht-herisau/pages/Markdown';
 import OrganisationRepresentation from '#uht-herisau/pages/Organisation';
 import { RankingRepresentation } from '#uht-herisau/pages/Ranking';
+import RegistrationRepresentation from '#uht-herisau/pages/Registration';
 import SponsorsRepresentation from '#uht-herisau/pages/Sponsors';
 import {
   type LandingContent,
@@ -151,7 +152,7 @@ export const getRouteElement = (content: PageContent & { sponsors: Sponsor[]; ca
       return <SponsorsRepresentation {...content} />;
     }
     case 'representation.registration': {
-      return <div>Registration Representation not implemented</div>;
+      return <RegistrationRepresentation {...content} />;
     }
     default:
       return <div>Representation not implemented</div>;
