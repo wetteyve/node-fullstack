@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router';
+import { NavLink } from 'react-router';
 import StyledMarkdown from '#uht-herisau/components/building-blocks/Markdown';
 import { Slider } from '#uht-herisau/components/building-blocks/Slider';
 import { SponsorCard, UhtCard } from '#uht-herisau/components/building-blocks/UhtCard';
-import { Button } from '#uht-herisau/components/ui/button';
 import { type Sponsor, type LandingContent } from '#uht-herisau/utils/strapi.utils';
 
 export const LandingRepresentation = ({
@@ -13,7 +12,6 @@ export const LandingRepresentation = ({
 }: LandingContent & { sponsors: Sponsor[] }) => {
   const mainSponsor = allSponsors.find((sponsor) => sponsor.type === 'main_sponsor');
   const sponsors = allSponsors.filter((sponsor) => sponsor.type !== 'main_sponsor' && sponsor.show_on_page);
-  const navigate = useNavigate();
 
   return (
     <div className='flex flex-col gap-5 pb-5'>
@@ -26,15 +24,12 @@ export const LandingRepresentation = ({
         </UhtCard>
       </section>
       {sign_up_button.show_on_page && (
-        <section>
-          <Button
-            onClick={() => navigate(`/${sign_up_button.path}`)}
-            variant='ghost'
-            className='w-full r-text-l text-center font-semibold rounded-sm outline hover:outline-white h-[200px]'
-          >
-            {sign_up_button.label}
-          </Button>
-        </section>
+        <NavLink
+          to={`../${sign_up_button.path}`}
+          className='w-full typo-lg text-center font-semibold outline rounded-sm hover:bg-white hover:text-primary h-[200px] flex items-center justify-center'
+        >
+          {sign_up_button.label}
+        </NavLink>
       )}
       <section>
         <div className='flex flex-col gap-5 lg:flex-row'>
