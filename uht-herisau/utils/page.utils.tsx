@@ -2,6 +2,10 @@ import axios from 'axios';
 import { isRouteErrorResponse } from 'react-router';
 import { CategoryRepresentation } from '#uht-herisau/pages/Categories';
 import { LandingRepresentation } from '#uht-herisau/pages/Landing';
+import MarkdownRepresentation from '#uht-herisau/pages/Markdown';
+import OrganisationRepresentation from '#uht-herisau/pages/Organisation';
+import { RankingRepresentation } from '#uht-herisau/pages/Ranking';
+import SponsorsRepresentation from '#uht-herisau/pages/Sponsors';
 import {
   type LandingContent,
   type MakrdownContent,
@@ -135,16 +139,16 @@ export const getRouteElement = (content: PageContent & { sponsors: Sponsor[]; ca
       return <CategoryRepresentation {...content} />;
     }
     case 'representation.rankings': {
-      return <div>Rankings Representation not implemented</div>;
+      return <RankingRepresentation {...content} />;
     }
     case 'representation.markdown': {
-      return <div>Markdown Representation not implemented</div>;
+      return <MarkdownRepresentation {...content} />;
     }
     case 'representation.organisation': {
-      return <div>Organisation Representation not implemented</div>;
+      return <OrganisationRepresentation {...content} />;
     }
     case 'representation.sponsors': {
-      return <div>Sponsors Representation not implemented</div>;
+      return <SponsorsRepresentation {...content} />;
     }
     case 'representation.registration': {
       return <div>Registration Representation not implemented</div>;

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router';
 import { groupBy } from '#app/utils/array.utils';
@@ -75,7 +76,16 @@ export const Navbar = ({ navbarEntries: entriesRaw }: NavbarProps) => {
                     <div className='absolute left-0 top-full rounded-sm bg-white p-4 text-black shadow-md'>
                       {navbarEntriesGrouped[key]?.map((item) => (
                         <NavLink key={item.path} className='mb-6 ml-12 mt-auto hover:cursor-pointer' to={`./${item.path}`}>
-                          <p className={`typo-xs font-regular transition-all duration-150 ease-in hover:scale-105`}>{item.title}</p>
+                          {({ isActive }) => (
+                            <p
+                              className={clsx(
+                                'typo-xs font-semibold transition-all duration-150 ease-in hover:scale-105',
+                                isActive && 'underline'
+                              )}
+                            >
+                              {item.title}
+                            </p>
+                          )}
                         </NavLink>
                       ))}
                     </div>
@@ -83,8 +93,12 @@ export const Navbar = ({ navbarEntries: entriesRaw }: NavbarProps) => {
                 </button>
               </div>
             ) : (
-              <NavLink key={key} className='mb-6 ml-12 mt-auto hover:cursor-pointer' to={`./${navbarEntriesGrouped[key]![0]?.path}`}>
-                <p className={`typo-xs font-semibold transition-all duration-150 ease-in hover:scale-105`}>{title}</p>
+              <NavLink key={key} className='mb-6 ml-12 mt-auto' to={`./${navbarEntriesGrouped[key]![0]?.path}`}>
+                {({ isActive }) => (
+                  <p className={clsx('typo-xs font-semibold transition-all duration-150 ease-in hover:scale-105', isActive && 'underline')}>
+                    {title}
+                  </p>
+                )}
               </NavLink>
             );
           })}

@@ -11,8 +11,7 @@ export const LandingRepresentation = ({
   sign_up_button,
   sponsors: allSponsors,
 }: LandingContent & { sponsors: Sponsor[] }) => {
-  const mainIndex = allSponsors.findIndex((sponsor) => sponsor.type === 'main_sponsor');
-  const mainSponsor = allSponsors[mainIndex] || undefined;
+  const mainSponsor = allSponsors.find((sponsor) => sponsor.type === 'main_sponsor');
   const sponsors = allSponsors.filter((sponsor) => sponsor.type !== 'main_sponsor' && sponsor.show_on_page);
   const navigate = useNavigate();
 
