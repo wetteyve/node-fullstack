@@ -70,7 +70,7 @@ export const Slider = ({ slides, twFit }: { slides: { data: any[] }; twFit?: Cla
   const nextClick = () => handleSetActiveIndex((activeIndex + 1) % slides.data.length);
 
   const PointerButtons = (
-    <div className='touch:hidden absolute bottom-0 right-0 z-10 size-1/5 bg-uht-red flex items-center text-white typo-headline-xs justify-center px-8 gap-12'>
+    <div className='touch:hidden absolute bottom-0 right-0 z-10 size-1/5 bg-primary/20 flex items-center text-white typo-headline-xs justify-center px-8 gap-12 min-w-min backdrop-blur-xs'>
       <span>{`${activeIndex + 1}/${slides.data.length}`}</span>
       <div className='h-full flex items-center'>
         <button className='h-full cursor-pointer px-2' aria-label='previous image' onClick={backClick}>
@@ -84,7 +84,7 @@ export const Slider = ({ slides, twFit }: { slides: { data: any[] }; twFit?: Cla
   );
 
   const TouchIndicator = (
-    <div className='mouse:hidden absolute bottom-0 right-0 z-10 size-1/5 bg-uht-red flex items-center text-white typo-headline-xs justify-center px-8 gap-12'>
+    <div className='mouse:hidden absolute bottom-0 right-0 z-10 size-1/5 bg-primary/20 flex items-center text-white typo-headline-xs justify-center px-8 gap-12 backdrop-blur-xs'>
       <span>{`${activeIndex + 1}/${slides.data.length}`}</span>
     </div>
   );

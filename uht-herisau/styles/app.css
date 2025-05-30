@@ -2,7 +2,7 @@
 
 @theme {
     --color-primary: #282c34;
-    --color-uht-gray: #282c34;
+    --color-secondary: #94969a;
     --color-uht-red: #ff69b4;
 }
 
@@ -22,6 +22,15 @@
 
 @utility app-container {
     @apply container mx-auto p-5;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 @import './typography.css';

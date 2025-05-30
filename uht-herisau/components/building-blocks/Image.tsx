@@ -10,14 +10,13 @@ type ImageProps = {
 
 export const Image = ({ file, twAspect = 'aspect-video', twFit = 'object-cover' }: ImageProps) => {
   const hdyrated = useHydrated();
-  const { url: initialUrl, alternativeText, caption } = getImage(file, 'medium');
+  const { url: initialUrl, alternativeText } = getImage(file, 'medium');
   const { url: clientUrl } = getImage(file);
   const url = hdyrated ? clientUrl : initialUrl;
 
   return (
     <div className='h-auto'>
-      <img src={url} alt={alternativeText} className={clsx('w-full h-full', twAspect, twFit)} />
-      {caption && <caption className='w-full whitespace-nowrap mt-6 typo-display-md'>{caption}</caption>}
+      <WrappedImage url={url} alternativeText={alternativeText} twAspect={twAspect} twFit={twFit} link={file?.link} />
     </div>
   );
 };
@@ -30,7 +29,30 @@ export const CarouselImage = ({ file, twAspect = 'aspect-video', twFit = 'object
 
   return (
     <div className='flex-shrink-0 w-full h-full snap-center flex items-center justify-center'>
-      <img src={url} alt={alternativeText} className={clsx('w-full h-full', twAspect, twFit)} />
+      <WrappedImage url={url} alternativeText={alternativeText} twAspect={twAspect} twFit={twFit} link={file?.link} />
     </div>
+  );
+};
+
+export const WrappedImage = ({
+  url,
+  link,
+  alternativeText,
+  twAspect,
+  twFit,
+}: {
+  url: string;
+  link?: string;
+  alternativeText?: string;
+  twAspect?: ClassValue;
+  twFit?: ClassValue;
+}) => {
+  const Image = <img src={url} alt={alternativeText} className={clsx('w-full h-full', twAspect, twFit)} />;
+  return link ? (
+    <a href={link} target='_blank' referrerPolicy='no-referrer'>
+      {Image}
+    </a>
+  ) : (
+    Image
   );
 };

@@ -13,7 +13,7 @@ export const LandingRepresentation = ({
 }: LandingContent & { sponsors: Sponsor[] }) => {
   const mainIndex = allSponsors.findIndex((sponsor) => sponsor.type === 'main_sponsor');
   const mainSponsor = allSponsors[mainIndex] || undefined;
-  const sponsors = allSponsors.splice(0, mainIndex).concat(allSponsors.slice(mainIndex + 1));
+  const sponsors = allSponsors.filter((sponsor) => sponsor.type !== 'main_sponsor' && sponsor.show_on_page);
   const navigate = useNavigate();
 
   return (

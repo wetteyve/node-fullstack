@@ -47,7 +47,7 @@ export const Navbar = ({ navbarEntries: entriesRaw }: NavbarProps) => {
 
   return (
     <div
-      className={`sticky z-20 bg-white text-uht-gray shadow-md ${visible && 'top-0 motion-safe:animate-fadeIn md:motion-safe:animate-fadeInLight'}`}
+      className={`sticky z-20 bg-white text-primary shadow-md ${visible && 'top-0 motion-safe:animate-fadeIn md:motion-safe:animate-fadeInLight'}`}
     >
       <div className='container mx-auto flex h-24 justify-between px-5 py-2'>
         <div className='flex'>
