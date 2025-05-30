@@ -14,7 +14,7 @@ export const Leistungen = ({ content }: { content: LeistungenContent }) => {
 
   const BaugruppeOverlay = baugruppe && (
     <div className='relative'>
-      <h1 className='typo-headline-lg my-8'>{baugruppe.title}</h1>
+      <h1 className='typo-headline-lg my-8'>{baugruppe.title.toUpperCase()}</h1>
       <Image file={baugruppe.picture} twAspect='aspect-video' />
       <Lead lead={{ title: '', description: baugruppe.description }} className='py-12' />
       <button

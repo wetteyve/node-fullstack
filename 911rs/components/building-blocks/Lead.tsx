@@ -15,7 +15,7 @@ type Props = {
 export const Lead = ({ lead, className = '', titleStyles, linkColor = true, smallBreaks = false }: Props) => {
   return (
     <div className={clsx('w-full max-w-[912px]', className)}>
-      {lead.title && <h2 className={clsx('typo-headline-lg', titleStyles)}>{lead.title}</h2>}
+      {lead.title && <h2 className={clsx('typo-headline-lg', titleStyles)}>{lead.title.toUpperCase()}</h2>}
       <Markdown
         className={clsx(
           'pt-4 max-w-[950px] typo-display-md [&>*>a]:touch:!underline mouse:style-link',

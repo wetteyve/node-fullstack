@@ -15,7 +15,7 @@ export const About = ({ content: { about, car } }: { content: AboutContent }) =>
   ) : (
     <Image file={about.picture} twAspect='w-[36%] !object-contain' />
   );
-  const AboutTitle = <h1 className='typo-headline-lg mt-8'>{about.title}</h1>;
+  const AboutTitle = <h1 className='typo-headline-lg mt-8'>{about.title.toUpperCase()}</h1>;
   const AboutDescription = <Lead lead={{ title: '', description: about.description }} className='pb-12' />;
 
   return (
@@ -38,7 +38,7 @@ export const About = ({ content: { about, car } }: { content: AboutContent }) =>
         )}
       </section>
       <section>
-        <h2 className='typo-headline-md-lg mb-4'>{car.title}</h2>
+        <h2 className='typo-headline-md-lg mb-4'>{car.title.toUpperCase()}</h2>
         <Image file={car.picture} twAspect='aspect-video' />
         <Lead lead={{ title: '', description: car.description }} className='py-12' />
       </section>

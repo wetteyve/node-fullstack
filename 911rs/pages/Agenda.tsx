@@ -7,7 +7,7 @@ export const Agenda = ({
   content: Omit<AgendaContent, 'events'> & { events: ReturnType<typeof groupEventsByYearAndMonth> };
 }) => (
   <>
-    <h1 className='typo-headline-lg my-8'>{title}</h1>
+    <h1 className='typo-headline-lg my-8'>{title.toUpperCase()}</h1>
     <div className='w-fll border-b-2 border-primary'>
       <Lead lead={{ title: '', description }} className='pb-12' smallBreaks />
     </div>
@@ -53,6 +53,6 @@ const getEventDate = (start: string, end?: string) => {
   const endDate = end ? new Date(end) : undefined;
   const sameMonth = startDate.getMonth() === (endDate ? endDate.getMonth() : startDate.getMonth());
   return endDate
-    ? `${startDate.toLocaleDateString('de-CH', sameMonth ? { day: 'numeric' } : { day: 'numeric', month: 'numeric' })}${sameMonth ? '.' : ''} - ${endDate.toLocaleDateString('de-CH')}`
+    ? `${startDate.toLocaleDateString('de-CH', sameMonth ? { day: 'numeric' } : { day: 'numeric', month: 'numeric' })}${sameMonth ? '.' : ''} – ${endDate.toLocaleDateString('de-CH')}`
     : new Date(start).toLocaleDateString('de-CH');
 };

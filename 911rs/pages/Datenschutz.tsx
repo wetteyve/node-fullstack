@@ -9,7 +9,7 @@ export const Datenschutz = ({
   content: DatenschutzContent;
 }) => (
   <>
-    <h1 className='typo-headline-lg my-8'>{title}</h1>
+    <h1 className='typo-headline-lg my-8'>{title.toUpperCase()}</h1>
     <Lead lead={{ title: '', description: description }} className='pb-12 !max-w-[full] [&>*>p]:mb-8' smallBreaks />
   </>
 );

@@ -10,7 +10,7 @@ export const Impressum = ({
   content: ImpressumContent;
 }) => (
   <>
-    <h1 className='typo-headline-lg my-8'>{title}</h1>
+    <h1 className='typo-headline-lg my-8'>{title.toUpperCase()}</h1>
     <div className='flex flex-col sm:flex-row gap-0 sm:gap-12 mb-12'>
       <Lead lead={{ title: '', description: description }} className='pb-12 !max-w-[350px]' smallBreaks />
       <div className='pt-4 w-full'>
