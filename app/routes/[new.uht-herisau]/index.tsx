@@ -37,7 +37,14 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
     [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.path}`)) || {};
   const siteName = seo_data?.title || 'UHT Herisau';
   const description = seo_data?.description || 'UHT Herisau';
-  const { url, width, height, alternativeText } = seo_data?.preview_image.data ? getImage(seo_data?.preview_image, 'small') : {};
+  const { url, width, height, alternativeText } = seo_data?.preview_image.data
+    ? getImage(seo_data?.preview_image, 'small')
+    : {
+        url: 'https://uhtherisauassets.blob.core.windows.net/uht-herisau-assets/prod/assets/small_unihocketurnier_herisau_1_c262ce38dd.jpg',
+        width: 800,
+        height: 533,
+        alternativeText: 'Unihockeyturnier Herisau',
+      };
   const keywords =
     seo_data?.keywords ||
     'Unihockeyturnier, Herisau, Indoor-Sport, News, Ergebnisse, Spielpläne, Ostschweiz, Veranstaltung, Bilder, Impressionen';
