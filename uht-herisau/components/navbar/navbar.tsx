@@ -68,6 +68,7 @@ export const Navbar = ({ navbarEntries: entriesRaw }: NavbarProps) => {
                   className='hover:cursor-pointer'
                   onMouseEnter={() => setShowDropdown({ ...showDropdown, [key]: true })}
                   onMouseLeave={handleMouseLeave}
+                  onFocus={() => setShowDropdown({ ...showDropdown, [key]: true })}
                 >
                   <p className={`typo-xs font-semibold transition-all duration-150 ease-in hover:scale-105`}>{title}</p>
                   {showDropdownForKey && (

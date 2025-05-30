@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 import StyledMarkdown from '#uht-herisau/components/building-blocks/Markdown';
 import { Slider } from '#uht-herisau/components/building-blocks/Slider';
-import UhtCard, { SponsorCard } from '#uht-herisau/components/building-blocks/UhtCard';
+import { SponsorCard, UhtCard } from '#uht-herisau/components/building-blocks/UhtCard';
 import { Button } from '#uht-herisau/components/ui/button';
 import { type Sponsor, type LandingContent } from '#uht-herisau/utils/strapi.utils';
 

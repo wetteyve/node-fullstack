@@ -41,6 +41,7 @@
     "express": "4.21.2",
     "get-port": "7.1.0",
     "isbot": "5.1.27",
+    "lucide-react": "0.424.0",
     "morgan": "1.10.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",

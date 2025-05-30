@@ -1,6 +1,6 @@
 import { PiCheck, PiIdentificationCard, PiMoney } from 'react-icons/pi';
 import StyledMarkdown from '#uht-herisau/components/building-blocks/Markdown';
-import UhtCard from '#uht-herisau/components/building-blocks/UhtCard';
+import { UhtCard } from '#uht-herisau/components/building-blocks/UhtCard';
 import { type Category } from '#uht-herisau/utils/strapi.utils';
 
 export const CategoryCard = ({ categories }: { categories: Category[] }) => {

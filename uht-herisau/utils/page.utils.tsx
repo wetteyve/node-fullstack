@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { isRouteErrorResponse } from 'react-router';
+import { CategoryRepresentation } from '#uht-herisau/pages/Categories';
 import { LandingRepresentation } from '#uht-herisau/pages/Landing';
 import {
   type LandingContent,
@@ -12,6 +13,7 @@ import {
   type SponsorsContent,
   type CategoriesContent,
   type Sponsor,
+  type Category,
 } from '#uht-herisau/utils/strapi.utils';
 import { getReqConfig } from './api.utils';
 
@@ -105,13 +107,32 @@ export const fetchStrapiSponsors = async () => {
   });
 };
 
-export const getRouteElement = (content: PageContent & { sponsors: Sponsor[] }) => {
+export const fetchStrapiCategories = async () => {
+  const config = getReqConfig('categories', {
+    sort: {
+      0: 'short_key:asc',
+    },
+  });
+
+  return axios.request(config).then(async (response: { data: { data: any[] } }) => {
+    //transform the data to the format we need
+    return response.data.data.map(
+      (category) =>
+        ({
+          ...category.attributes,
+          id: category.id,
+        }) as Category
+    );
+  });
+};
+
+export const getRouteElement = (content: PageContent & { sponsors: Sponsor[]; categories: Category[] }) => {
   switch (content.__component) {
     case 'representation.landing': {
       return <LandingRepresentation {...content} />;
     }
     case 'representation.categories': {
-      return <div>Categories Representation not implemented</div>;
+      return <CategoryRepresentation {...content} />;
     }
     case 'representation.rankings': {
       return <div>Rankings Representation not implemented</div>;
