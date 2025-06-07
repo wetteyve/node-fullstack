@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-
 import { RegistrationService } from '#uht-herisau/services/registration-service';
 import { RegistrationSchema, type Registration, getDefaultFormValues } from '#uht-herisau/utils/registration.utils';
 import { type Price, type RegistrationContent } from '#uht-herisau/utils/strapi.utils';

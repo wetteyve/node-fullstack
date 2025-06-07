@@ -14,8 +14,7 @@ export const VOTING_OPTIONS = [
 const VotingOptionSchema = z.enum(VOTING_OPTIONS);
 const phoneRegex = new RegExp(/^(\+\d{1,3}\s?)?((\(\d{1,4}\))|\d{1,4})[\s-/]?\d{1,5}[\s-/]?\d{1,5}[\s-/]?\d{1,5}$/);
 const REQUIRED_MESSAGE = 'Wird benötigt';
-const stringToBoolean = (val: string): boolean => val === 'true';
-const zStringBoolean = z.enum(['true', 'false']).transform(stringToBoolean);
+const zStringBoolean = z.preprocess((val) => (val === 'true' ? true : val === 'false' ? false : val), z.boolean());
 
 // Teammate
 const TeammateSchema = z.object({
@@ -37,6 +36,10 @@ const CaptainSchema = z.object({
   email: z.string().email({ message: 'Email verwenden' }),
 });
 
+const zTrueOnly = z.preprocess(
+  (val) => (val === 'true' || val === 1 ? true : val),
+  z.literal(true, { errorMap: () => ({ message: REQUIRED_MESSAGE }) })
+);
 // Registration
 export const RegistrationSchema = z.object({
   team_name: z.string().min(1, { message: REQUIRED_MESSAGE }),
@@ -45,7 +48,9 @@ export const RegistrationSchema = z.object({
   teammates: TeammateSchema.array().min(4).max(7),
   erinnerungspreis: zStringBoolean.default('false'),
   faesslicup: zStringBoolean.default('false'),
-  termsAcceptance: z.boolean().array().min(1),
+  termsAcceptance: z.array(zTrueOnly).min(1, {
+    message: REQUIRED_MESSAGE,
+  }),
   votingOption: VotingOptionSchema,
 });
 
@@ -68,7 +73,7 @@ export const getDefaultFormValues = (termsLength: number): Registration => ({
   erinnerungspreis: false,
   faesslicup: false,
   termsAcceptance: Array(termsLength).fill(false),
-  votingOption: VOTING_OPTIONS[0],
+  votingOption: VOTING_OPTIONS[VOTING_OPTIONS.length - 1]!, // Default to last option
 });
 
 export const EMPTY_PLAYER: Teammate = {

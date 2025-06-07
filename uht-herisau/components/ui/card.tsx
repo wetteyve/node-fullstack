@@ -3,14 +3,7 @@ import * as React from 'react';
 import { cn } from '#uht-herisau/lib/utils';
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      'rounded-lg border border-gray-200 bg-white text-gray-950 shadow-sm dark:border-gray-800 dark:bg-gray-950 dark:text-gray-50',
-      className
-    )}
-    {...props}
-  />
+  <div ref={ref} className={cn('rounded-lg border border-gray-200 bg-white text-gray-950 shadow-sm', className)} {...props} />
 ));
 Card.displayName = 'Card';
 
@@ -25,7 +18,7 @@ const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HT
 CardTitle.displayName = 'CardTitle';
 
 const CardDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => <p ref={ref} className={cn('text-sm text-gray-500 dark:text-gray-400', className)} {...props} />
+  ({ className, ...props }, ref) => <p ref={ref} className={cn('text-sm text-gray-500', className)} {...props} />
 );
 CardDescription.displayName = 'CardDescription';
 

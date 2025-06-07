@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { parseFormSafe } from '#app/utils/server/zodix';
+import { parseFormSafe } from '#app/utils/server/parser/parsers';
 import { type Route } from './+types/download-registrations';
 
 const bodySchema = z.object({

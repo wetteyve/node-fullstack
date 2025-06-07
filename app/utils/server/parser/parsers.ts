@@ -1,9 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { type ActionFunctionArgs } from 'react-router';
 import { z, type output, type SafeParseReturnType, type ZodObject, type ZodRawShape, type ZodTypeAny } from 'zod';
-import { createErrorResponse } from '#app/utils/server/zodix/error';
-
-type Params = ActionFunctionArgs['params'];
 
 type Options<Parser = SearchParamsParser> = {
   /** Custom error message for when the validation fails. */
@@ -39,53 +34,6 @@ export type SafeParsedData<T extends ZodRawShape | ZodTypeAny> = T extends ZodTy
     : never;
 
 /**
- * Parse and validate Params from LoaderArgs or ActionArgs. Throws an error if validation fails.
- * @param params - A Remix Params object.
- * @param schema - A Zod object shape or object schema to validate.
- * @throws {Response} - Throws an error Response if validation fails.
- */
-export const parseParams = <T extends ZodRawShape | ZodTypeAny>(params: Params, schema: T, options?: Options): ParsedData<T> => {
-  try {
-    const finalSchema = isZodType(schema) ? schema : z.object(schema);
-    return finalSchema.parse(params);
-  } catch (_error) {
-    throw createErrorResponse(options);
-  }
-};
-
-/**
- * Parse and validate Params from LoaderArgs or ActionArgs. Doesn't throw if validation fails.
- * @param params - A Remix Params object.
- * @param schema - A Zod object shape or object schema to validate.
- * @returns {SafeParseReturnType} - An object with the parsed data or a ZodError.
- */
-export const parseParamsSafe = <T extends ZodRawShape | ZodTypeAny>(params: Params, schema: T): SafeParsedData<T> => {
-  const finalSchema = isZodType(schema) ? schema : z.object(schema);
-  return finalSchema.safeParse(params) as SafeParsedData<T>;
-};
-
-/**
- * Parse and validate URLSearchParams or a Request. Throws an error if validation fails.
- * @param request - A Request or URLSearchParams
- * @param schema - A Zod object shape or object schema to validate.
- * @throws {Response} - Throws an error Response if validation fails.
- */
-export const parseQuery = <T extends ZodRawShape | ZodTypeAny>(
-  request: Request | URLSearchParams,
-  schema: T,
-  options?: Options
-): ParsedData<T> => {
-  try {
-    const searchParams = isURLSearchParams(request) ? request : getSearchParamsFromRequest(request as Request);
-    const params = parseSearchParams(searchParams as URLSearchParams, options?.parser);
-    const finalSchema = isZodType(schema) ? schema : z.object(schema);
-    return finalSchema.parse(params);
-  } catch (_error) {
-    throw createErrorResponse(options);
-  }
-};
-
-/**
  * Parse and validate URLSearchParams or a Request. Doesn't throw if validation fails.
  * @param request - A Request or URLSearchParams
  * @param schema - A Zod object shape or object schema to validate.
@@ -100,27 +48,6 @@ export const parseQuerySafe = <T extends ZodRawShape | ZodTypeAny>(
   const params = parseSearchParams(searchParams as URLSearchParams, options?.parser);
   const finalSchema = isZodType(schema) ? schema : z.object(schema);
   return finalSchema.safeParse(params) as SafeParsedData<T>;
-};
-
-/**
- * Parse and validate FormData from a Request. Throws an error if validation fails.
- * @param request - A Request or FormData
- * @param schema - A Zod object shape or object schema to validate.
- * @throws {Response} - Throws an error Response if validation fails.
- */
-export const parseForm = async <T extends ZodRawShape | ZodTypeAny, Parser extends SearchParamsParser<never>>(
-  request: Request | FormData,
-  schema: T,
-  options?: Options<Parser>
-): Promise<ParsedData<T>> => {
-  try {
-    const formData = isFormData(request) ? request : await request.clone().formData();
-    const data = await parseFormData(formData, options?.parser);
-    const finalSchema = isZodType(schema) ? schema : z.object(schema);
-    return await finalSchema.parseAsync(data);
-  } catch (_error) {
-    throw createErrorResponse(options);
-  }
 };
 
 /**

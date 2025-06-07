@@ -40,7 +40,7 @@ const CustomFormItem = ({ control, name, placeholder = 'Enter Response', type = 
             >
               <Checkbox className='size-5 mt-[10px]' style={{ gridArea: 'check' }} id={name} {...field} />
               <label
-                className='font-semibold r-text-xs h-[1.25rem] md:h-[1.4375rem] mt-[10px] md:mt-[calc((40px-1.4375rem)/2)]'
+                className='font-semibold typo-xs h-[1.25rem] md:h-[1.4375rem] mt-[10px] md:mt-[calc((40px-1.4375rem)/2)]'
                 style={{ gridArea: 'label' }}
                 htmlFor={name}
               >

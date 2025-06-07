@@ -41,7 +41,7 @@ const RegistrationRepresentation = ({
 
   return (
     <section>
-      <UhtCard className='!mt-8' title='Anmeldung'>
+      <UhtCard className='mb-5' title='Anmeldung'>
         {allow_registration ? (
           <SignupForm
             surveyOptions={surveyOptions}

@@ -6196,6 +6196,11 @@ remix-flat-routes@0.6.5:
     fs-extra "^11.1.1"
     minimatch "^5.1.0"
 
+remix-hook-form@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/remix-hook-form/-/remix-hook-form-7.0.1.tgz#49403cd498135696206c25990943b7f75ef17acb"
+  integrity sha512-1qTeY08f0TVh/jq4OTbJG3lbB5mePe7UmtWXVWoJCGlk9gWRNweupYJ/POuHtyDVCnxNhgbsSi8gd/IhkB7RwA==
+
 require-from-string@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"

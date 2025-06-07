@@ -3,7 +3,7 @@ import { AxiosBaseService } from './axios-base.service';
 
 export class RegistrationService extends AxiosBaseService {
   constructor() {
-    super('https://yveswetter-remix-production.up.railway.app/node/v1/api/uht-registration');
+    super('/node/v1/api/uht-registration');
   }
 
   public async addNewRegistration(newRegistration: Registration): Promise<unknown> {

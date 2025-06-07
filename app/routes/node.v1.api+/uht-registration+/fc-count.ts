@@ -9,5 +9,5 @@ export const loader = async () => {
   };
   const registrations: { attributes: { category: string } }[] = (await axios.get(url, config)).data.data;
   const fcCount = registrations.filter((registration) => registration.attributes.category.includes('FC')).length;
-  return { fcCount };
+  return fcCount;
 };

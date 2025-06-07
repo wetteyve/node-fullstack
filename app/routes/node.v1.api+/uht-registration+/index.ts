@@ -1,5 +1,4 @@
 import axios, { type AxiosRequestConfig } from 'axios';
-import { parseFormSafe } from '#app/utils/server/zodix';
 import { RegistrationSchema } from '#uht-herisau/utils/registration.utils';
 import { type Route } from './+types';
 
@@ -9,10 +8,13 @@ export const action = async ({ request }: Route.ActionArgs) => {
     throw new Response('Method not allowed', { status: 405 });
   }
   // Parse and validate the request body
-  const { success, data: registration, error } = await parseFormSafe(request, RegistrationSchema);
+  const body = await request.json();
+  const { success, data: registration, error } = RegistrationSchema.safeParse(body);
   if (!success) {
     throw new Response(error.message, { status: 400 });
   }
+
+  console.log('Parsed registration data:', registration);
 
   const config: AxiosRequestConfig = {
     method: 'POST',
