@@ -56,7 +56,7 @@ export const fetchStrapiPages = async (): Promise<{ [key: string]: Page<PageCont
   const config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `${ENV.UHT_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_data][populate]=*`,
+    url: `${ENV.UHT_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_data][populate]=*&populate[navigation_extensions][populate]=*`,
     headers: {
       Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
     },

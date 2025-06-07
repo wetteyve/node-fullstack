@@ -25,10 +25,17 @@ export const links: Route.LinksFunction = () => [
 
 export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs) => {
   const pages = await fetchStrapiPages();
+  const navigationExtensions = Object.values(pages).find((page) => page.navigation_extensions)?.navigation_extensions;
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);
   const faviconUrl = `${ENV.MODE !== 'development' ? resourceBasePath : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
-  return { navbarEntries, footerEntries, faviconUrl, publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}` };
+  return {
+    navbarEntries,
+    footerEntries,
+    navigationExtensions,
+    faviconUrl,
+    publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}`,
+  };
 };
 
 // todo: fallback UHT Herisau meta data
@@ -98,7 +105,7 @@ export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconU
   return metaData;
 };
 
-const UhtLayout = ({ loaderData: { navbarEntries, footerEntries } }: Route.ComponentProps) => {
+const UhtLayout = ({ loaderData: { navbarEntries, footerEntries, navigationExtensions } }: Route.ComponentProps) => {
   const updateScreenSize = useScreenStore.use.updateScreenSize();
 
   useEffect(() => {
@@ -113,7 +120,7 @@ const UhtLayout = ({ loaderData: { navbarEntries, footerEntries } }: Route.Compo
       <div className='app-container !pb-0 min-h-[calc(100svh-96px-96px)]'>
         <Outlet />
       </div>
-      <Footer footerEntries={footerEntries ?? []} />
+      <Footer footerEntries={footerEntries ?? []} navigation_extensions={navigationExtensions} />
     </div>
   );
 };
