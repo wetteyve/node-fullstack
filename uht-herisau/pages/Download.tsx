@@ -37,19 +37,17 @@ export const DownloadRepresentation = () => {
     await new RegistrationService()
       .downloadRegistrations(data)
       .then((registrations) => {
-        const csvString = [
-          ['ID', 'Teamname', 'Kategorie', 'Name', 'Vorname', 'Strasse', 'Ort', 'Tel', 'E-mail'],
-          ...registrations.map(
-            ({
-              id,
-              attributes: {
-                team_name,
-                category,
-                captain: { lastname, firstname, street, place, phone, email },
-              },
-            }) => [id, team_name, category, lastname, firstname, street, place, phone, email]
-          ),
-        ]
+        const rows: any[] = [];
+        registrations.forEach((registration) => {
+          const { id, attributes } = registration;
+          const { team_name, category, captain, faesslicup } = attributes;
+          const { lastname, firstname, street, place, phone, email } = captain;
+          rows.push([id, team_name, category, lastname, firstname, street, place, phone, email]);
+          if (faesslicup) {
+            rows.push([id, team_name, 'FC Fässlicup', lastname, firstname, street, place, phone, email]);
+          }
+        });
+        const csvString = [['ID', 'Teamname', 'Kategorie', 'Name', 'Vorname', 'Strasse', 'Ort', 'Tel', 'E-mail'], ...rows]
           .map((e) => e.join(','))
           .join('\n');
         form.reset();
