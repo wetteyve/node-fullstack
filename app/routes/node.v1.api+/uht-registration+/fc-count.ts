@@ -7,7 +7,7 @@ export const loader = async () => {
       Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
     },
   };
-  const registrations: { attributes: { category: string } }[] = (await axios.get(url, config)).data.data;
-  const fcCount = registrations.filter((registration) => registration.attributes.category.includes('FC')).length;
+  const registrations: { attributes: { faesslicup: boolean } }[] = (await axios.get(url, config)).data.data;
+  const fcCount = registrations.filter((registration) => registration.attributes.faesslicup).length;
   return fcCount;
 };
