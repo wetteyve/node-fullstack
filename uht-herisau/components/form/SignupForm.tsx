@@ -85,7 +85,7 @@ const SignupForm = ({ terms, categoryOptions, price, isFaesslicupAvailable, faes
         <Terms termsArray={terms} control={form.control} />
 
         <Button className='mt-2 block' type='submit' disabled={isSubmitting}>
-          Submit
+          Anmelden
         </Button>
       </form>
     </Form>

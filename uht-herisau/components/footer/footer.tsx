@@ -1,7 +1,8 @@
+import { type ReactNode } from 'react';
 import { IoLogoInstagram, IoLogoFacebook } from 'react-icons/io';
-import { type IconType } from 'react-icons/lib';
 import { NavLink } from 'react-router';
 import { type Page } from '#uht-herisau/utils/page.utils';
+import { Image } from '../building-blocks/Image';
 
 const Footer = ({
   footerEntries,
@@ -14,8 +15,8 @@ const Footer = ({
   return (
     <div className='z-10 bg-white text-black font-semibold'>
       <div className='app-container typo-xs'>
-        <div className='flex h-full items-center justify-between gap-4'>
-          <div className='my-auto flex flex-col flex-wrap justify-between xl:gap-28'>
+        <div className='flex h-full items-center justify-between'>
+          <div className='my-auto flex flex-col flex-wrap justify-between gap-4'>
             {footerEntries.map((e, i) => (
               <NavLink key={i} to={`./${e.path}`}>
                 <span className='hover:cursor-pointer'>{` ${e.title}`}</span>
@@ -23,12 +24,12 @@ const Footer = ({
             ))}
             <a href={`mailto:${uht_contact}`}>Kontakt</a>
           </div>
-          {jwbr_logo && jwbr_url && <div>im the logo</div>}
+          {jwbr_logo && jwbr_url && <SocialLink url={jwbr_url} Component={<Image file={jwbr_logo} />} />}
           <div className='flex flex-col'>
             {facebook_url || insta_url ? (
               <div className='flex w-full justify-end gap-4'>
-                {insta_url && <SocialLink url={insta_url} Icon={IoLogoInstagram} />}
-                {facebook_url && <SocialLink url={facebook_url} Icon={IoLogoFacebook} />}
+                {insta_url && <SocialLink url={insta_url} Component={<IoLogoInstagram size={48} />} />}
+                {facebook_url && <SocialLink url={facebook_url} Component={<IoLogoFacebook size={48} />} />}
               </div>
             ) : null}
             <span className='my-auto'>{`© ${new Date().getFullYear()} - UHT Herisau`}</span>
@@ -41,8 +42,8 @@ const Footer = ({
 
 export default Footer;
 
-const SocialLink = ({ url, Icon }: { url: string; Icon: IconType }) => (
-  <a href={url} target='_blank' rel='noopener noreferrer'>
-    <Icon size={48} />
+const SocialLink = ({ url, Component }: { url: string; Component: ReactNode }) => (
+  <a href={url} target='_blank' rel='noopener noreferrer' className='max-w-32'>
+    {Component}
   </a>
 );
