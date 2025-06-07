@@ -12,6 +12,13 @@ import { type Route } from './+types';
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const { level1, level2 } = params;
   const path = `${level1}${level2 ? `/${level2}` : ''}`;
+
+  // If the path is 'download-registrations', we return a special content object
+  if (path === 'download-registrations') {
+    return { content: { __component: 'representation.download' as const, sponsors: [], categories: [] } };
+  }
+
+  // Fetch the content, sponsors, and categories from Strapi otherwise
   const [pages, sponsors, categories] = await Promise.all([fetchStrapiContent(path), fetchStrapiSponsors(), fetchStrapiCategories()]);
   const pageData: Page | undefined = pages[path];
   if (!pageData) {

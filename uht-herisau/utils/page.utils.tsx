@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { isRouteErrorResponse } from 'react-router';
 import { CategoryRepresentation } from '#uht-herisau/pages/Categories';
+import { DownloadRepresentation } from '#uht-herisau/pages/Download';
 import { LandingRepresentation } from '#uht-herisau/pages/Landing';
 import MarkdownRepresentation from '#uht-herisau/pages/Markdown';
 import OrganisationRepresentation from '#uht-herisau/pages/Organisation';
@@ -19,6 +20,7 @@ import {
   type CategoriesContent,
   type Sponsor,
   type Category,
+  type DownloadContent,
 } from '#uht-herisau/utils/strapi.utils';
 import { getReqConfig } from './api.utils';
 
@@ -38,7 +40,8 @@ export type PageContent =
   | PicturesContent
   | RankingsContent
   | RegistrationContent
-  | SponsorsContent;
+  | SponsorsContent
+  | DownloadContent;
 
 export type Page<Representation = PageContent> = {
   path: string;
@@ -153,6 +156,9 @@ export const getRouteElement = (content: PageContent & { sponsors: Sponsor[]; ca
     }
     case 'representation.registration': {
       return <RegistrationRepresentation {...content} />;
+    }
+    case 'representation.download': {
+      return <DownloadRepresentation />;
     }
     default:
       return <div>Representation not implemented</div>;

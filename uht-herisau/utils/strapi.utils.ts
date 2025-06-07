@@ -60,6 +60,9 @@ export type SponsorsContent = {
   __component: 'representation.sponsors';
   lead: MakrdownBlock;
 };
+export type DownloadContent = {
+  __component: 'representation.download';
+};
 
 export type NaviagtionExtensions = {
   uht_contact: string;

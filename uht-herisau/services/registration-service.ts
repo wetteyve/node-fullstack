@@ -1,3 +1,4 @@
+import { type DownloadBody } from '#app/routes/node.v1.api+/uht-registration+/download-registrations';
 import { type Registration } from '#uht-herisau/utils/registration.utils';
 import { AxiosBaseService } from './axios-base.service';
 
@@ -10,8 +11,9 @@ export class RegistrationService extends AxiosBaseService {
     return await this.instance.post('/', newRegistration).then(this.responseBody).catch(this.errorHandling);
   }
 
-  public async downloadRegistrations(downloadPassword: string): Promise<unknown[]> {
-    return await this.instance.post('/download-registrations', { downloadPassword }).then(this.responseBody).catch(this.errorHandling);
+  public async downloadRegistrations({ downloadKey }: DownloadBody): Promise<{ id: number; attributes: Registration }[]> {
+    console.log('Download key:', downloadKey);
+    return await this.instance.post('/download-registrations', { downloadKey }).then(this.responseBody).catch(this.errorHandling);
   }
 
   public async getFaesslicount(): Promise<number> {
