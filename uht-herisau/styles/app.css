@@ -33,5 +33,10 @@
     scrollbar-width: none;
 }
 
+.a-markdown>p>a {
+    @apply text-uht-red;
+    font-weight: 600;
+}
+
 @import './typography.css';
 @import './animations.css';
