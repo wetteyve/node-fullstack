@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { parseFormSafe } from '#app/utils/server/parser/parsers';
 import { type Route } from './+types/download-registrations';
 
 const bodySchema = z.object({
@@ -13,7 +12,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
     throw new Response('Method not allowed', { status: 405 });
   }
   // Parse and validate the request body
-  const { success, data, error } = await parseFormSafe(request, bodySchema);
+  const body = await request.json();
+  const { success, data, error } = bodySchema.safeParse(body);
   if (!success) {
     throw new Response(error.message, { status: 400 });
   }
@@ -30,7 +30,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       })
       .catch((e: Error) => {
         console.error(e.message);
-        throw Error('strapi registrations unavailabvle');
+        throw Error('strapi registrations unavailable');
       })
   ).data.data;
 };
