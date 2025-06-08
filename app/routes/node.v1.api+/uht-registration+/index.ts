@@ -1,4 +1,5 @@
 import axios, { type AxiosRequestConfig } from 'axios';
+import { sendEmailToRegistrar } from '#uht-herisau/utils/mail.utils';
 import { RegistrationSchema } from '#uht-herisau/utils/registration.utils';
 import { type Route } from './+types';
 
@@ -13,9 +14,6 @@ export const action = async ({ request }: Route.ActionArgs) => {
   if (!success) {
     throw new Response(error.message, { status: 400 });
   }
-
-  console.log('Parsed registration data:', registration);
-
   const config: AxiosRequestConfig = {
     method: 'POST',
     maxBodyLength: Infinity,
@@ -26,10 +24,11 @@ export const action = async ({ request }: Route.ActionArgs) => {
     },
     data: { data: registration },
   };
-  return (
-    await axios.request(config).catch((e: Error) => {
-      console.error(e.message, e.stack);
-      throw new Response('strapi registration failed', { status: 500 });
-    })
-  ).data;
+
+  await axios.request(config).catch((e: Error) => {
+    console.error(e.message, e.stack);
+    throw new Response('strapi registration failed', { status: 500 });
+  });
+  await sendEmailToRegistrar(registration);
+  return new Response('Registration successful', { status: 200 });
 };

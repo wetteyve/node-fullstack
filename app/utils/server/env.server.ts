@@ -11,6 +11,10 @@ const schema = z.object({
   UHT_CMS_KEY: z.string().min(1),
   UHT_CMS_SERVER_KEY: z.string().min(1),
   UHT_DOWNLOAD_REGISTRATIONS_KEY: z.string().min(1),
+  EMAIL_UHT: z.string().email(),
+  EMAIL_UHT_KEY: z.string().min(1),
+  EMAIL_YVES: z.string().email(),
+  EMAIL_YVES_KEY: z.string().min(1),
 });
 
 declare global {

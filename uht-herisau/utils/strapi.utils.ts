@@ -52,9 +52,6 @@ export type RegistrationContent = {
   faesslicup: RegistrationBlock;
   id: number;
   price: Price;
-  tournament_edition_nr: number;
-  tournament_end_date: string;
-  tournament_start_date: string;
 };
 export type SponsorsContent = {
   __component: 'representation.sponsors';

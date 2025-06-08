@@ -96,6 +96,26 @@ export const fetchStrapiContent = async (path: string) => {
   });
 };
 
+export const fetchStrapiContentById = async (id: number) => {
+  const config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: `${ENV.UHT_CMS_API}/pages/${id}?populate=deep,5`,
+    headers: {
+      Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
+    },
+  };
+  const response = await axios.request(config);
+  if (!response.data.data) {
+    throw new Error(`Content with ID ${id} not found`);
+  }
+  //transform the data to the format we need
+  return {
+    ...response.data.data.attributes,
+    content: (response.data.data.attributes.content[0] as unknown as PageContent) || {},
+  } as Page;
+};
+
 export const fetchStrapiSponsors = async () => {
   const config = getReqConfig('sponsors', {
     filters: {
