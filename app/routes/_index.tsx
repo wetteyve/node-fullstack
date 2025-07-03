@@ -6,7 +6,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (ENV.MODE === 'development') {
     const rs911Pages = await fetch911rsPages();
     const rs911links = Object.values(rs911Pages).reduce((acc: { [key: string]: string }, page) => {
-      acc[page.slug] = `${request.url}911rs.yveswetter/${page.slug}`;
+      acc[page.slug] = `${request.url}911rs/${page.slug}`;
       return acc;
     }, {});
     const uhtPages = await fetchUhtPages();
@@ -16,7 +16,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     }, {});
 
     return {
-      '911rs': { ...rs911links, sitemap: `${request.url}911rs.yveswetter/sitemap.xml` },
+      '911rs': { ...rs911links, sitemap: `${request.url}911rs/sitemap.xml` },
       'uht-herisau': { ...uhtlinks, sitemap: `${request.url}new.uht-herisau/sitemap.xml` },
     };
   }
