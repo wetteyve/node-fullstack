@@ -17,14 +17,14 @@ Instead of running multiple Remix apps (one per tenant/domain), we run **a singl
 /another-domain/*
 ```
 
-Through reverse proxying (e.g., Apache + `.htaccess`), incoming requests from real domains (like `911rs.yveswetter.ch`) are rewritten to match the internal Remix route structure.
+Through reverse proxying (e.g., Apache + `.htaccess`), incoming requests from real domains (like `911rs.ch` or `uht-herisau.ch`) are rewritten to match the internal Remix route structure.
 
 ### ↻ Domain Proxy via `.htaccess`
 
 Apache rewrites incoming requests based on the domain. Here's a simplified breakdown:
 
-- Requests to `/` on `911rs.yveswetter.ch` redirect to `/home`. Use whatever is your applications entry point for this.
-- All paths (except API routes) are **proxied** and **prefixed** with `/911rs.yveswetter/`.
+- Requests to `/` on `911rs.ch` redirect to `/start`. Use whatever is your applications entry point for this.
+- All paths (except API routes) are **proxied** and **prefixed** with `/911rs/`.
 - API routes (`/node/v1`) are proxied **as-is** without path rewriting.
 - An `X-Tenant` header is injected to provide tenant info to the Remix app. We read this information and pass it to the applications context on the server.
 
@@ -32,7 +32,7 @@ See the example file [here](https://github.com/wetteyve/node-fullstack/blob/main
 
 ### 🧪 Client-Side Routing Adjustment
 
-Because Remix's manifest assumes the full route (`/911rs.yveswetter/home`), we **manipulate the `__reactRouterManifest` before hydration** to strip the tenant prefix and make the client behave as if it's running at `/home`.
+Because Remix's manifest assumes the full route (`/911rs/start`), we **manipulate the `__reactRouterManifest` before hydration** to strip the tenant prefix and make the client behave as if it's running at `/start`.
 
 This is done in `entry.client.tsx`:
 
@@ -40,6 +40,7 @@ This is done in `entry.client.tsx`:
 if (isProdDomain) {
   // Strip tenant prefix from routes before hydration
   const tenant = __TENANT__.tenant;
+  const tenantRoutes = //manipulate routes
   ...
   __reactRouterManifest.routes = tenantRoutes;
 }
@@ -64,7 +65,7 @@ yarn start
 You can run a local reverse proxy using:
 
 ```bash
-yarn start:proxy
+yarn build && yarn start:proxy
 ```
 
 Make sure your proxy setup mimics the production `.htaccess` logic, including the proper path rewrites and header injection.
@@ -83,7 +84,7 @@ To add a new domain:
 
 2. Update your proxy configuration to:
 
-   - Match `my-new-tenant.example.com`
+   - Match `my-new-tenant.com`
    - Rewrite requests to `/<tenant-name>/...`
    - Set the `X-Tenant` header accordingly
 
