@@ -1,17 +1,10 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, redirect, Scripts, ScrollRestoration } from 'react-router';
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
 import { type Route } from './+types/root';
 
-export const loader = ({ context: { tenant }, request }: Route.LoaderArgs) => {
-  // If the request is for a subdomain that starts with 'www.', redirect to the non-www version
-  const url = new URL(request.url);
-  if (url.hostname.startsWith('www.')) {
-    url.hostname = request.url.slice(4);
-    return redirect(url.toString());
-  }
-
-  return { tenant };
-};
+export const loader = ({ context: { tenant } }: Route.LoaderArgs) => ({
+  tenant,
+});
 
 export default function App({ loaderData: { tenant } }: Route.ComponentProps) {
   return (
