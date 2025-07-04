@@ -28,11 +28,7 @@ Apache rewrites incoming requests based on the domain. Here's a simplified break
 - API routes (`/node/v1`) are proxied **as-is** without path rewriting.
 - An `X-Tenant` header is injected to provide tenant info to the Remix app. We read this information and pass it to the applications context on the server.
 
-```apacheconf
-RewriteCond %{HTTP_HOST} ^911rs\.yveswetter\.ch$ [NC]
-RewriteRule ^(.*)$ https://remix.app/911rs.yveswetter/$1 [P,L]
-RequestHeader set X-Tenant "911rs.yveswetter"
-```
+See the example file [here](https://github.com/wetteyve/node-fullstack/blob/main/other/example.htaccess)
 
 ### 🧪 Client-Side Routing Adjustment
 
