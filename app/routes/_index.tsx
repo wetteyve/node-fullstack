@@ -11,13 +11,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     }, {});
     const uhtPages = await fetchUhtPages();
     const uhtlinks = Object.values(uhtPages).reduce((acc: { [key: string]: string }, page) => {
-      acc[page.path] = `${request.url}new.uht-herisau/${page.path}`;
+      acc[page.path] = `${request.url}uht-herisau/${page.path}`;
       return acc;
     }, {});
 
     return {
       '911rs': { ...rs911links, sitemap: `${request.url}911rs/sitemap.xml` },
-      'uht-herisau': { ...uhtlinks, sitemap: `${request.url}new.uht-herisau/sitemap.xml` },
+      'uht-herisau': { ...uhtlinks, sitemap: `${request.url}uht-herisau/sitemap.xml` },
     };
   }
 };

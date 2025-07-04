@@ -64,9 +64,9 @@ export const Navbar = ({ navbarEntries: entriesRaw }: NavbarProps) => {
             const title = isDropdown ? key.charAt(0).toUpperCase() + key.slice(1) : navbarEntriesGrouped[key]![0]?.title;
 
             return isDropdown ? (
-              <div key={key} className='relative mb-6 ml-12 mt-auto'>
+              <div key={key} className='relative ml-12'>
                 <button
-                  className='hover:cursor-pointer'
+                  className='hover:cursor-pointer h-full flex items-center'
                   onMouseEnter={() => setShowDropdown({ ...showDropdown, [key]: true })}
                   onMouseLeave={handleMouseLeave}
                   onFocus={() => setShowDropdown({ ...showDropdown, [key]: true })}
@@ -93,11 +93,11 @@ export const Navbar = ({ navbarEntries: entriesRaw }: NavbarProps) => {
                 </button>
               </div>
             ) : (
-              <NavLink key={key} className='mb-6 ml-12 mt-auto' to={`./${navbarEntriesGrouped[key]![0]?.path}`}>
+              <NavLink key={key} className='ml-12' to={`./${navbarEntriesGrouped[key]![0]?.path}`}>
                 {({ isActive }) => (
-                  <p className={clsx('typo-xs font-semibold transition-all duration-150 ease-in hover:scale-105', isActive && 'underline')}>
-                    {title}
-                  </p>
+                  <div className={clsx('flex items-center h-full', isActive && 'border-b-2 border-primary')}>
+                    <p className='typo-xs font-semibold transition-all duration-150 ease-in hover:scale-105'>{title}</p>
+                  </div>
                 )}
               </NavLink>
             );
