@@ -1,6 +1,12 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
+# Redirect ALL www.911rs.ch requests to non-www, preserving path and query string
+RewriteCond %{HTTP_HOST} ^www\.911rs\.ch$ [NC]
+RewriteRule ^(.*)$ https://911rs.ch/$1 [R=301,L]
+</IfModule>
 
+<IfModule mod_rewrite.c>
+RewriteEngine On
 # --- REDIRECT ROOT "/" TO "/start" (permanent) ---
 RewriteCond %{HTTP_HOST} ^(www\.)?911rs\.ch$ [NC]
 RewriteCond %{REQUEST_URI} ^/?$  # only match root path
@@ -9,30 +15,25 @@ RewriteRule ^$ https://911rs.ch/start [R=301,L]
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-
 # Match only the 911rs.ch subdomain
 RewriteCond %{HTTP_HOST} ^911rs\.ch$ [NC]
-
 # Exclude paths starting with /node/v1 from rewriting
 RewriteCond %{REQUEST_URI} !^/node/v1 [NC]
-
 # Rewrite and proxy remaining paths (prefix tenant name)
 RewriteRule ^(.*)$ https://yveswetter-remix-production.up.railway.app/911rs/$1 [P,L]
 </IfModule>
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-
 # Match again for 911rs.ch
 RewriteCond %{HTTP_HOST} ^911rs\.ch$ [NC]
-
 # Only match requests starting with /node/v1
 RewriteCond %{REQUEST_URI} ^/node/v1 [NC,OR]
-
 # Proxy these paths as-is without rewriting
 RewriteRule ^(.*)$ https://yveswetter-remix-production.up.railway.app/$1 [P,L]
 </IfModule>
 
 <IfModule mod_headers.c>
-    RequestHeader set X-Tenant "911rs"
+# Set custom header for Remix app context
+RequestHeader set X-Tenant "911rs"
 </IfModule>
