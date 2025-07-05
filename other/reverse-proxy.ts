@@ -5,7 +5,7 @@ import httpProxy from 'http-proxy';
 
 dotenv.config(); // Load environment variables from .env file into process.env
 
-const setupPlayProxy = (proxyPort: number, tenant: string) => {
+const setupPlayProxy = (proxyPort: number, tenant: string, entry: string) => {
   const targetPort = 3000;
   const proxy = httpProxy.createProxyServer();
 
@@ -30,9 +30,10 @@ const setupPlayProxy = (proxyPort: number, tenant: string) => {
   });
 
   server.listen(proxyPort, () => {
-    console.log(`${chalk.bold(tenant.toUpperCase())}:    ${chalk.cyan(`http://localhost:${proxyPort}/start`)}`);
+    console.log(`${chalk.bold(tenant.toUpperCase())}:    ${chalk.cyan(`http://localhost:${proxyPort}${entry}`)}`);
   });
 };
 
-setupPlayProxy(8080, process.env.RS911_PROXY ?? '911rs');
-setupPlayProxy(8081, process.env.UHT_PROXY ?? 'uht-herisau');
+setupPlayProxy(8080, process.env.RS911_PROXY ?? '911rs', '/start');
+setupPlayProxy(8081, process.env.UHT_PROXY ?? 'uht-herisau', '/start');
+setupPlayProxy(8082, process.env.SHEDULER_PROXY ?? 'on-call-sheduler.yveswetter', '/home');

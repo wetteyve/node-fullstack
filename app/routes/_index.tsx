@@ -18,6 +18,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     return {
       '911rs': { ...rs911links, sitemap: `${request.url}911rs/sitemap.xml` },
       'uht-herisau': { ...uhtlinks, sitemap: `${request.url}uht-herisau/sitemap.xml` },
+      'on-call-sheduler': {
+        home: `${request.url}on-call-sheduler.yveswetter/home`,
+      },
     };
   }
 };

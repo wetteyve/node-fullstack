@@ -62,11 +62,34 @@ if (viteDevServer) {
   app.use(viteDevServer.middlewares);
 } else {
   // Remix fingerprints its assets so we can cache forever.
-  app.use('/node/v1/assets', express.static('build/client/assets', { immutable: true, maxAge: '1y' }));
+  app.use(
+    '/node/v1/assets',
+    express.static('build/client/assets', {
+      immutable: true,
+      maxAge: '1y',
+      // We need to set the correct content type for wasm files
+      setHeaders(res, filePath) {
+        if (filePath.endsWith('.wasm')) {
+          res.setHeader('Content-Type', 'application/wasm');
+        }
+      },
+    })
+  );
 
   // Everything else (like favicon.ico) is cached for an hour. You may want to be
   // more aggressive with this caching.
-  app.use('/node/v1', express.static('build/client', { maxAge: '1h' }));
+  app.use(
+    '/node/v1',
+    express.static('build/client', {
+      maxAge: '1h',
+      // We need to set the correct content type for wasm files
+      setHeaders(res, filePath) {
+        if (filePath.endsWith('.wasm')) {
+          res.setHeader('Content-Type', 'application/wasm');
+        }
+      },
+    })
+  );
 }
 
 async function getBuild() {
