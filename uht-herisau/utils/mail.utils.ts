@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { format } from 'date-fns';
-import { resourceBasePath } from '#app/utils/path';
+import { imagesBasePath } from '#app/utils/path';
 import { createTransporter } from '#app/utils/server/mail.server';
 import { getReqConfig } from '#uht-herisau/utils/api.utils';
 import { fetchStrapiCategories, fetchStrapiContentById } from '#uht-herisau/utils/page.utils';
 import { type Registration } from '#uht-herisau/utils/registration.utils';
 import { type Price, type RegistrationContent } from './strapi.utils';
+
+const qrImagePath =
+  ENV.MODE === 'production' ? `https://uht-herisau.ch${imagesBasePath}/qr-konto.png` : 'http://localhost:3000/images/qr-konto.png';
 
 const fetchStrapiEmailData = async () => {
   const config = getReqConfig('email');
@@ -60,7 +63,7 @@ export const createMailToUhtRegistrar = (
     attachments: [
       {
         filename: 'qr-konto.png',
-        path: `http://localhost:3000${ENV.MODE !== 'development' ? resourceBasePath : ''}/images/qr-konto.png`,
+        path: qrImagePath,
         cid: 'qr-in-mail',
       },
     ],
