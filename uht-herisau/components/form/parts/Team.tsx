@@ -1,6 +1,6 @@
 import { useFieldArray } from 'react-hook-form';
 import { PiMinus, PiPlus } from 'react-icons/pi';
-import { Button } from '#uht-herisau/components/ui/button';
+import { Button } from '#uht-herisau/components/shadcn/button';
 import { EMPTY_PLAYER } from '#uht-herisau/utils/registration.utils';
 import CustomFormItem from '../CustomFormItem';
 import { type FormSelectProps } from './Survey';

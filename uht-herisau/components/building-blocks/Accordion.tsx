@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '#uht-herisau/components/ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '#uht-herisau/components/shadcn/accordion';
 
 type Props = {
   items: { title: string; children: ReactNode }[];

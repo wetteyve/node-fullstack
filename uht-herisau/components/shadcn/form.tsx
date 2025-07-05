@@ -3,8 +3,8 @@ import { Slot } from '@radix-ui/react-slot';
 import * as React from 'react';
 import { Controller, type ControllerProps, type FieldPath, type FieldValues, FormProvider, useFormContext } from 'react-hook-form';
 
-import { Label } from '#uht-herisau/components/ui/label';
-import { cn } from '#uht-herisau/lib/utils';
+import { Label } from '#uht-herisau/components/shadcn/label';
+import { cn } from '#uht-herisau/utils/shadcn.utils';
 
 const Form = FormProvider;
 

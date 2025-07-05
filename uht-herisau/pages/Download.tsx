@@ -1,9 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { type DownloadBody, DownloadSchema } from '#app/routes/node.v1.api+/uht-registration+/download-registrations';
-import { Button } from '#uht-herisau/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '#uht-herisau/components/ui/form';
-import { Input } from '#uht-herisau/components/ui/input';
+import { Button } from '#uht-herisau/components/shadcn/button';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '#uht-herisau/components/shadcn/form';
+import { Input } from '#uht-herisau/components/shadcn/input';
 import { RegistrationService } from '#uht-herisau/services/registration-service';
 
 // Function to download data to a file

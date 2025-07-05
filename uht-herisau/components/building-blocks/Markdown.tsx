@@ -1,7 +1,7 @@
 import { type ClassValue } from 'clsx';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { cn } from '#uht-herisau/lib/utils';
+import { cn } from '#uht-herisau/utils/shadcn.utils';
 
 type Props = {
   markdown?: string;

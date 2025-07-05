@@ -1,9 +1,9 @@
 import { type Registration } from '#uht-herisau/utils/registration.utils';
 import StyledMarkdown from '../building-blocks/Markdown';
-import { Checkbox } from '../ui/checkbox';
-import { FormControl, FormField, FormItem, FormMessage } from '../ui/form';
-import { Input } from '../ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Checkbox } from '../shadcn/checkbox';
+import { FormControl, FormField, FormItem, FormMessage } from '../shadcn/form';
+import { Input } from '../shadcn/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../shadcn/select';
 import { type FormPartProps } from './parts/Persona';
 
 type CustomItemProps = {

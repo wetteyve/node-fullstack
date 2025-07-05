@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { cn } from '#uht-herisau/lib/utils';
+import { cn } from '#uht-herisau/utils/shadcn.utils';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
