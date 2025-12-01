@@ -83,7 +83,6 @@ To add a new domain:
    ```
 
 2. Update your proxy configuration to:
-
    - Match `my-new-tenant.com`
    - Rewrite requests to `/<tenant-name>/...`
    - Set the `X-Tenant` header accordingly
