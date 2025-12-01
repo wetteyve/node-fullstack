@@ -13,6 +13,7 @@ export default defineConfig(() => ({
   build: {
     rtarget: 'es2022',
     cssMinify: isProd,
+    chunkSizeWarningLimit: 1024, // 1 MB
 
     rollupOptions: {
       external: [/node:.*/, 'fsevents'],
