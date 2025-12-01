@@ -8,6 +8,7 @@ import { Kontakt } from '#rs911/pages/Kontakt';
 import { Leistungen } from '#rs911/pages/Leistungen';
 import { Links } from '#rs911/pages/Links';
 import { Start } from '#rs911/pages/Start';
+import { getCachedData } from './cache.utils';
 import {
   type LinksContent,
   type AboutContent,
@@ -44,46 +45,50 @@ export type Page<Representation = PageContent> = {
 };
 
 export const fetchStrapiPages = async (): Promise<{ [key: string]: Page<PageContent> }> => {
-  const config = {
-    method: 'get',
-    maxBodyLength: Infinity,
-    url: `${ENV.RS911_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_settings][populate]=*`,
-    headers: {
-      Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
-    },
-  };
+  return getCachedData('strapi-pages', 'all', async () => {
+    const config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `${ENV.RS911_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_settings][populate]=*`,
+      headers: {
+        Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
+      },
+    };
 
-  return axios.request(config).then(async (response: { data: { data: any } }) => {
-    //transform the data to the format we need
-    return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-      const pageObject: Page = { ...page.attributes };
-      acc[page.attributes.slug] = pageObject;
-      return acc;
-    }, {});
+    return axios.request(config).then(async (response: { data: { data: any } }) => {
+      //transform the data to the format we need
+      return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
+        const pageObject: Page = { ...page.attributes };
+        acc[page.attributes.slug] = pageObject;
+        return acc;
+      }, {});
+    });
   });
 };
 
 export const fetchStrapiContent = async (path: string) => {
-  const config = {
-    method: 'get',
-    maxBodyLength: Infinity,
-    url: `${ENV.RS911_CMS_API}/pages?filters[slug][$eq]=${path}&populate=deep,5`,
-    headers: {
-      Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
-    },
-  };
+  return getCachedData(`strapi-content`, path, async () => {
+    const config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `${ENV.RS911_CMS_API}/pages?filters[slug][$eq]=${path}&populate=deep,5`,
+      headers: {
+        Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
+      },
+    };
 
-  return axios.request(config).then(async (response: { data: { data: any } }) => {
-    //transform the data to the format we need
-    return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-      const pageObject: Page = {
-        ...page.attributes,
-        content: (page.attributes.content[0] as unknown as PageContent) || {},
-      };
+    return axios.request(config).then(async (response: { data: { data: any } }) => {
+      //transform the data to the format we need
+      return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
+        const pageObject: Page = {
+          ...page.attributes,
+          content: (page.attributes.content[0] as unknown as PageContent) || {},
+        };
 
-      acc[page.attributes.slug] = pageObject;
-      return acc;
-    }, {});
+        acc[page.attributes.slug] = pageObject;
+        return acc;
+      }, {});
+    });
   });
 };
 
