@@ -424,6 +424,11 @@
     tslib "^2.8.1"
     typescript-eslint "^8.38.0"
 
+"@epic-web/invariant@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@epic-web/invariant/-/invariant-1.0.0.tgz#1073e5dee6dd540410784990eb73e4acd25c9813"
+  integrity sha512-lrTPqgvfFQtR/eY/qkIzp98OGdNJu0m5ji3q/nJI8v3SXkRKEnWiOxMmbvcSoAIzv/cGiuvRy57k4suKQSAdwA==
+
 "@esbuild/aix-ppc64@0.25.4":
   version "0.25.4"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.25.4.tgz#830d6476cbbca0c005136af07303646b419f1162"
@@ -1928,12 +1933,12 @@
   dependencies:
     undici-types "~6.21.0"
 
-"@types/node@22.10.5":
-  version "22.10.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.10.5.tgz#95af89a3fb74a2bb41ef9927f206e6472026e48b"
-  integrity sha512-F8Q+SeGimwOo86fiovQh8qiXfFEh2/ocYv7tU5pJ3EXMSSxk1Joj5wefpFK2fHTf/N6HKGSxIDBT9f3gCxXPkQ==
+"@types/node@24.10.1":
+  version "24.10.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.10.1.tgz#91e92182c93db8bd6224fca031e2370cef9a8f01"
+  integrity sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==
   dependencies:
-    undici-types "~6.20.0"
+    undici-types "~7.16.0"
 
 "@types/nodemailer@6.4.17":
   version "6.4.17"
@@ -2740,14 +2745,15 @@ cookie@^1.0.1:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-1.0.2.tgz#27360701532116bd3f1f9416929d176afe1e4610"
   integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
 
-cross-env@7.0.3:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
-  integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+cross-env@10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-10.1.0.tgz#cfd2a6200df9ed75bfb9cb3d7ce609c13ea21783"
+  integrity sha512-GsYosgnACZTADcmEyJctkJIoqAhHjttw7RsFrVoJNXbsWWqaq6Ym+7kZjq6mS45O0jij6vtiReppKQEtqWy6Dw==
   dependencies:
-    cross-spawn "^7.0.1"
+    "@epic-web/invariant" "^1.0.0"
+    cross-spawn "^7.0.6"
 
-cross-spawn@^7.0.1, cross-spawn@^7.0.6:
+cross-spawn@^7.0.6:
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.6.tgz#8a58fe78f00dcd70c370451759dfbfaf03e8ee9f"
   integrity sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==
@@ -4501,10 +4507,10 @@ lru-cache@^7.4.4, lru-cache@^7.5.1:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.18.3.tgz#f793896e0fd0e954a59dfdd82f0773808df6aa89"
   integrity sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==
 
-lucide-react@0.424.0:
-  version "0.424.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.424.0.tgz#e9dd89a16cbb58f6731ac1cc6e1411d1f7403ca9"
-  integrity sha512-x2Nj2aytk1iOyHqt4hKenfVlySq0rYxNeEf8hE0o+Yh0iE36Rqz0rkngVdv2uQtjZ70LAE73eeplhhptYt9x4Q==
+lucide-react@0.555.0:
+  version "0.555.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.555.0.tgz#8db4322b784e0d14a415d67ee0e8ca219a1714ca"
+  integrity sha512-D8FvHUGbxWBRQM90NZeIyhAvkFfsh3u9ekrMvJ30Z6gnpBHS6HC6ldLg7tL45hwiIz/u66eKDtdA23gwwGsAHA==
 
 magic-string@^0.30.21:
   version "0.30.21"
@@ -6523,15 +6529,15 @@ unbox-primitive@^1.1.0:
     has-symbols "^1.1.0"
     which-boxed-primitive "^1.1.1"
 
-undici-types@~6.20.0:
-  version "6.20.0"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.20.0.tgz#8171bf22c1f588d1554d55bf204bc624af388433"
-  integrity sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==
-
 undici-types@~6.21.0:
   version "6.21.0"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.21.0.tgz#691d00af3909be93a7faa13be61b3a5b50ef12cb"
   integrity sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==
+
+undici-types@~7.16.0:
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.16.0.tgz#ffccdff36aea4884cbfce9a750a0580224f58a46"
+  integrity sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==
 
 unicorn-magic@^0.3.0:
   version "0.3.0"
