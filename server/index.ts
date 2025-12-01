@@ -43,7 +43,7 @@ const app = express();
 
 // no ending slashes for SEO reasons
 // https://github.com/epicweb-dev/epic-stack/discussions/108
-app.get('*', (req, res, next) => {
+app.get('{/*splat}', (req, res, next) => {
   if (req.path.endsWith('/') && req.path.length > 1) {
     const query = req.url.slice(req.path.length);
     const safepath = req.path.slice(0, -1).replace(/\/+/g, '/');
@@ -121,7 +121,7 @@ app.get('/.well-known/appspecific/com.chrome.devtools.json', (_req, res) => {
 });
 
 app.all(
-  '*',
+  '{/*splat}',
   createRequestHandler({
     getLoadContext: (req) => ({
       serverBuild: getBuild(),
