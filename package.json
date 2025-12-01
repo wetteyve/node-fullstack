@@ -21,12 +21,12 @@
     "/server-build"
   ],
   "dependencies": {
-    "@hookform/resolvers": "^3.9.0",
-    "@radix-ui/react-accordion": "^1.2.0",
-    "@radix-ui/react-checkbox": "^1.1.1",
-    "@radix-ui/react-label": "^2.1.0",
-    "@radix-ui/react-select": "^2.1.1",
-    "@radix-ui/react-slot": "^1.1.0",
+    "@hookform/resolvers": "3.9.0",
+    "@radix-ui/react-accordion": "1.2.0",
+    "@radix-ui/react-checkbox": "1.1.1",
+    "@radix-ui/react-label": "2.1.0",
+    "@radix-ui/react-select": "2.1.1",
+    "@radix-ui/react-slot": "1.2.2",
     "@react-router/express": "7.6.0",
     "@react-router/node": "7.6.0",
     "@types/nodemailer": "6.4.17",
@@ -89,11 +89,14 @@
     "tsx": "4.17.0",
     "typescript": "5.8.3",
     "vite": "6.3.3",
-    "vite-plugin-top-level-await": "^1.5.0",
-    "vite-plugin-wasm": "^3.4.1",
+    "vite-plugin-top-level-await": "1.5.0",
+    "vite-plugin-wasm": "3.4.1",
     "vite-tsconfig-paths": "5.1.4"
   },
   "engines": {
     "node": "22"
+  },
+  "resolutions": {
+    "canvas": "npm:empty-npm-package@1.0.0"
   }
 }
