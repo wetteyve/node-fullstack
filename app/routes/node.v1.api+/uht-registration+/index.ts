@@ -14,7 +14,6 @@ export const action = async ({ request }: Route.ActionArgs) => {
   if (!success) {
     throw new Response(error.message, { status: 400 });
   }
-  console.log('Received registration:', registration);
   const config: AxiosRequestConfig = {
     method: 'POST',
     maxBodyLength: Infinity,

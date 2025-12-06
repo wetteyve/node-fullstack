@@ -25,8 +25,6 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
     throw new Response('Not Found', { status: 404 });
   }
 
-  console.log('Loading content for path:', { path, pageData });
-
   return { content: { ...pageData.content, sponsors: shuffle(sponsors), categories } };
 };
 

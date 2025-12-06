@@ -12,7 +12,6 @@ export class RegistrationService extends AxiosBaseService {
   }
 
   public async downloadRegistrations({ downloadKey }: DownloadBody): Promise<{ id: number; attributes: Registration }[]> {
-    console.log('Download key:', downloadKey);
     return await this.instance.post('/download-registrations', { downloadKey }).then(this.responseBody).catch(this.errorHandling);
   }
 
