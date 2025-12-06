@@ -14,17 +14,16 @@ export const VOTING_OPTIONS = [
 const VotingOptionSchema = z.enum(VOTING_OPTIONS);
 const phoneRegex = new RegExp(/^(\+\d{1,3}\s?)?((\(\d{1,4}\))|\d{1,4})[\s-/]?\d{1,5}[\s-/]?\d{1,5}[\s-/]?\d{1,5}$/);
 const REQUIRED_MESSAGE = 'Wird benötigt';
-const zStringBoolean = z.preprocess((val) => (val === 'true' ? true : val === 'false' ? false : val), z.boolean());
 
 // Teammate
 const TeammateSchema = z.object({
   firstname: z.string().min(1, { message: REQUIRED_MESSAGE }),
   lastname: z.string().min(1, { message: REQUIRED_MESSAGE }),
-  year_of_birth: z.coerce
+  year_of_birth: z
     .number()
     .min(new Date().getFullYear() - 100, { message: 'Gültigen Jahrgang verwenden' })
     .max(new Date().getFullYear(), { message: 'Gültigen Jahrgang verwenden' }),
-  is_licenced: z.boolean().default(false),
+  is_licenced: z.boolean(),
 });
 // Captain
 const CaptainSchema = z.object({
@@ -36,15 +35,15 @@ const CaptainSchema = z.object({
   email: z.string().email({ message: 'Email verwenden' }),
 });
 
-const zTrueOnly = z.preprocess((val) => (val === 'true' || val === 1 ? true : val), z.literal(true, { message: REQUIRED_MESSAGE }));
+const zTrueOnly = z.literal(true, { message: REQUIRED_MESSAGE });
 // Registration
 export const RegistrationSchema = z.object({
   team_name: z.string().min(1, { message: REQUIRED_MESSAGE }),
   category: z.string().min(1, { message: REQUIRED_MESSAGE }),
   captain: CaptainSchema,
   teammates: TeammateSchema.array().min(4).max(7),
-  erinnerungspreis: zStringBoolean.default(false),
-  faesslicup: zStringBoolean.default(false),
+  erinnerungspreis: z.boolean(),
+  faesslicup: z.boolean(),
   termsAcceptance: z.array(zTrueOnly).min(1, {
     message: REQUIRED_MESSAGE,
   }),
@@ -73,9 +72,9 @@ export const getDefaultFormValues = (termsLength: number): Registration => ({
   votingOption: VOTING_OPTIONS[VOTING_OPTIONS.length - 1]!, // Default to last option
 });
 
-export const EMPTY_PLAYER: Teammate = {
+export const EMPTY_PLAYER = {
   firstname: '',
   lastname: '',
-  year_of_birth: '' as unknown as number, // Coerce to number later
+  year_of_birth: '' as unknown as number,
   is_licenced: false,
 };

@@ -74,7 +74,16 @@ const CustomFormItem = ({ control, name, placeholder = 'Enter Response', type = 
       default:
         return (
           <FormControl>
-            <Input type={type} placeholder={placeholder} {...field} />
+            <Input
+              type={type}
+              placeholder={placeholder}
+              {...field}
+              onChange={(e) => {
+                // Convert to number for number inputs
+                const value = type === 'number' && e.target.value !== '' ? Number(e.target.value) : e.target.value;
+                field.onChange(value);
+              }}
+            />
           </FormControl>
         );
     }
