@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { format } from 'date-fns';
 import { imagesBasePath } from '#app/utils/path';
-import { createTransporter } from '#app/utils/server/mail.server';
+import { createResend } from '#app/utils/server/mail.server';
 import { getReqConfig } from '#uht-herisau/utils/api.utils';
 import { fetchStrapiCategories, fetchStrapiContentById } from '#uht-herisau/utils/page.utils';
 import { type Registration } from '#uht-herisau/utils/registration.utils';
 import { type Price, type RegistrationContent } from './strapi.utils';
 
-const qrImagePath =
-  ENV.MODE === 'production' ? `https://uht-herisau.ch${imagesBasePath}/qr-konto.png` : 'http://localhost:3000/images/qr-konto.png';
+const qrImagePath = `https://uht-herisau.ch${imagesBasePath}/qr-konto.png`;
 
 const fetchStrapiEmailData = async () => {
   const config = getReqConfig('email');
@@ -58,7 +57,7 @@ export const createMailToUhtRegistrar = (
 
   return {
     from: '"UHT-Herisau" <info@uht-herisau.ch>',
-    to: registrationObject.captain.email,
+    to: [registrationObject.captain.email],
     subject: 'Neue Anmeldung für das Unihockeyturnier Herisau',
     attachments: [
       {
@@ -105,6 +104,13 @@ export const sendEmailToRegistrar = async (registration: Registration) => {
     fetchStrapiContentById(10),
   ]);
   const { price } = registrationPage.content as RegistrationContent;
-  const transporter = createTransporter('uht');
-  await transporter.sendMail(createMailToUhtRegistrar(registration, emailData, categories, price));
+  //const transporter = createTransporter('uht');
+  const resend = createResend('uht');
+  const { error } = await resend.emails.send(createMailToUhtRegistrar(registration, emailData, categories, price));
+  if (error) {
+    console.error('Error sending email to registrar:', error);
+    throw new Error('Failed to send email to registrar');
+  }
+
+  // await transporter.sendMail(createMailToUhtRegistrar(registration, emailData, categories, price));
 };

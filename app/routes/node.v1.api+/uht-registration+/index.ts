@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from 'axios';
 import { sendEmailToRegistrar } from '#uht-herisau/utils/mail.utils';
-import { RegistrationSchema } from '#uht-herisau/utils/registration.utils';
+import { type Registration, RegistrationSchema } from '#uht-herisau/utils/registration.utils';
 import { type Route } from './+types';
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -14,21 +14,45 @@ export const action = async ({ request }: Route.ActionArgs) => {
   if (!success) {
     throw new Response(error.message, { status: 400 });
   }
+
+  // Create the registration in Strapi
+  const {
+    data: {
+      data: { id },
+    },
+  } = await axios.request(reqConfig({ method: 'POST', registration })).catch((e: Error) => {
+    console.error(e.message, e.stack);
+    throw new Response('Strapi registration failed', { status: 500 });
+  });
+
+  // Send email to registrar
+  await sendEmailToRegistrar(registration).catch(async () => {
+    // Revert registration in Strapi if email sending fails
+    await axios.request(reqConfig({ method: 'DELETE', registrationId: id })).catch((e: Error) => {
+      console.error('Failed to revert registration in Strapi after email failure:', e.message, e.stack);
+    });
+    throw new Response('Failed to send registration email', { status: 500 });
+  });
+  console.log('Registration email sent for ID:', id);
+  return new Response('Registration successful', { status: 200 });
+};
+
+type ConfigSignature = { method: 'POST'; registration: Registration } | { method: 'DELETE'; registrationId: string };
+const reqConfig = (props: ConfigSignature): AxiosRequestConfig => {
+  const { method } = props;
   const config: AxiosRequestConfig = {
-    method: 'POST',
+    method,
     maxBodyLength: Infinity,
-    url: `${ENV.UHT_CMS_API}/registrations`,
     headers: {
       Authorization: `Bearer ${ENV.UHT_CMS_SERVER_KEY}`,
       'Content-Type': 'application/json',
     },
-    data: { data: registration },
   };
-
-  await axios.request(config).catch((e: Error) => {
-    console.error(e.message, e.stack);
-    throw new Response('strapi registration failed', { status: 500 });
-  });
-  await sendEmailToRegistrar(registration);
-  return new Response('Registration successful', { status: 200 });
+  if (method === 'POST') {
+    config.url = `${ENV.UHT_CMS_API}/registrations`;
+    config.data = { data: props.registration };
+  } else if (method === 'DELETE') {
+    config.url = `${ENV.UHT_CMS_API}/registrations/${props.registrationId}`;
+  }
+  return config;
 };

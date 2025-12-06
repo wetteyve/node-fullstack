@@ -5,16 +5,13 @@ export type ServerMode = (typeof serverModes)[number];
 
 const schema = z.object({
   NODE_ENV: z.enum(serverModes).default('development'),
-  RS911_CMS_API: z.string().url(),
+  RS911_CMS_API: z.url(),
   RS911_CMS_KEY: z.string().min(1),
-  UHT_CMS_API: z.string().url(),
+  UHT_CMS_API: z.url(),
   UHT_CMS_KEY: z.string().min(1),
   UHT_CMS_SERVER_KEY: z.string().min(1),
   UHT_DOWNLOAD_REGISTRATIONS_KEY: z.string().min(1),
-  EMAIL_UHT: z.string().email(),
-  EMAIL_UHT_KEY: z.string().min(1),
-  EMAIL_YVES: z.string().email(),
-  EMAIL_YVES_KEY: z.string().min(1),
+  RESEND_UHT: z.string().min(1),
 });
 
 declare global {
