@@ -6,7 +6,7 @@ export type FormSelectProps = FormPartProps & {
 };
 
 const Survey = ({ control, selectOtions }: FormSelectProps) => (
-  <section className='flex flex-col gap-y-2 border-b-[1px] py-4'>
+  <section className='flex flex-col gap-y-2 border-b py-4'>
     <h3>Wie hast du vom UHT Herisau erfahren?</h3>
     <div className='flex gap-x-4'>
       <CustomFormItem name='votingOption' control={control} placeholder='Bitte auswählen' type='select' options={selectOtions} />

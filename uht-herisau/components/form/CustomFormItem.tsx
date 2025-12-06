@@ -3,7 +3,6 @@ import StyledMarkdown from '../building-blocks/Markdown';
 import { Checkbox } from '../shadcn/checkbox';
 import { FormControl, FormField, FormItem, FormMessage } from '../shadcn/form';
 import { Input } from '../shadcn/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../shadcn/select';
 import { type FormPartProps } from './parts/Persona';
 
 type CustomItemProps = {
@@ -38,9 +37,9 @@ const CustomFormItem = ({ control, name, placeholder = 'Enter Response', type = 
                    `,
               }}
             >
-              <Checkbox className='size-5 mt-[10px]' style={{ gridArea: 'check' }} id={name} {...field} />
+              <Checkbox className='size-5 mt-2.5' style={{ gridArea: 'check' }} id={name} {...field} />
               <label
-                className='font-semibold typo-xs h-[1.25rem] md:h-[1.4375rem] mt-[10px] md:mt-[calc((40px-1.4375rem)/2)]'
+                className='font-semibold typo-xs h-5 md:h-5.75 mt-2.5 md:mt-[calc((40px-1.4375rem)/2)]'
                 style={{ gridArea: 'label' }}
                 htmlFor={name}
               >
@@ -56,20 +55,21 @@ const CustomFormItem = ({ control, name, placeholder = 'Enter Response', type = 
         );
       case 'select':
         return (
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
-            <FormControl>
-              <SelectTrigger>
-                <SelectValue placeholder={placeholder} />
-              </SelectTrigger>
-            </FormControl>
-            <SelectContent>
+          <FormControl>
+            <select
+              {...field}
+              className='flex h-10 w-full items-center justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+            >
+              <option value='' disabled>
+                {placeholder}
+              </option>
               {options.map(({ label, value }) => (
-                <SelectItem key={value} value={value}>
+                <option key={value} value={value}>
                   {label}
-                </SelectItem>
+                </option>
               ))}
-            </SelectContent>
-          </Select>
+            </select>
+          </FormControl>
         );
       default:
         return (

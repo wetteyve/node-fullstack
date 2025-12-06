@@ -7,7 +7,7 @@ export type FormPartProps = {
 };
 
 const Persona = ({ control }: FormPartProps) => (
-  <section className='flex flex-col gap-y-2 border-b-[1px] py-4'>
+  <section className='flex flex-col gap-y-2 border-b py-4'>
     <h3 className='font-semibold'>Angaben Spielführer:in</h3>
     <div className='flex gap-x-4 flex-wrap'>
       <CustomFormItem name='captain.firstname' control={control} placeholder='Vorname *' />

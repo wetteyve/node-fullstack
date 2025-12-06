@@ -18,7 +18,7 @@ export const Lead = ({ lead, className = '', titleStyles, linkColor = true, smal
       {lead.title && <h2 className={clsx('typo-headline-lg', titleStyles)}>{lead.title.toUpperCase()}</h2>}
       <div
         className={clsx(
-          'pt-4 max-w-[950px] typo-display-md [&>*>a]:touch:!underline mouse:style-link',
+          'pt-4 max-w-[950px] typo-display-md [&>*>a]:touch:underline! mouse:style-link',
           linkColor ? '[&>*>a]:text-primary' : '',
           smallBreaks ? '' : 'whitespace-pre-wrap'
         )}

@@ -11,7 +11,7 @@ type FormCheckProps = FormPartProps & {
 
 const SingleCheck = ({ control, placeholder, description, title, name }: FormCheckProps) => {
   return (
-    <section className='flex flex-col gap-y-2 border-b-[1px] py-4'>
+    <section className='flex flex-col gap-y-2 border-b py-4'>
       <h3>{title}</h3>
       <div className='flex gap-x-4'>
         <CustomFormItem name={name} control={control} type='checkbox' placeholder={placeholder} description={description} />

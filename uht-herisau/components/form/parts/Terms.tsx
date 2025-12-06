@@ -6,7 +6,7 @@ type FormTermsProps = FormPartProps & { termsArray: RegistrationContent['checks'
 
 const Terms = ({ control, termsArray }: FormTermsProps) => {
   return (
-    <section className='flex flex-col gap-y-2 border-b-[1px] py-4'>
+    <section className='flex flex-col gap-y-2 border-b py-4'>
       <h3>UHT Bestimmungen</h3>
       {termsArray.map((term, index) => (
         <div key={term.id} className='flex gap-x-4'>

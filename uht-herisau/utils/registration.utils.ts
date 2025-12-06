@@ -36,18 +36,15 @@ const CaptainSchema = z.object({
   email: z.string().email({ message: 'Email verwenden' }),
 });
 
-const zTrueOnly = z.preprocess(
-  (val) => (val === 'true' || val === 1 ? true : val),
-  z.literal(true, { errorMap: () => ({ message: REQUIRED_MESSAGE }) })
-);
+const zTrueOnly = z.preprocess((val) => (val === 'true' || val === 1 ? true : val), z.literal(true, { message: REQUIRED_MESSAGE }));
 // Registration
 export const RegistrationSchema = z.object({
   team_name: z.string().min(1, { message: REQUIRED_MESSAGE }),
   category: z.string().min(1, { message: REQUIRED_MESSAGE }),
   captain: CaptainSchema,
   teammates: TeammateSchema.array().min(4).max(7),
-  erinnerungspreis: zStringBoolean.default('false'),
-  faesslicup: zStringBoolean.default('false'),
+  erinnerungspreis: zStringBoolean.default(false),
+  faesslicup: zStringBoolean.default(false),
   termsAcceptance: z.array(zTrueOnly).min(1, {
     message: REQUIRED_MESSAGE,
   }),

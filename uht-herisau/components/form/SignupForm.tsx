@@ -60,6 +60,8 @@ const SignupForm = ({ terms, categoryOptions, price, isFaesslicupAvailable, faes
       });
   };
 
+  console.log('Form rendering', { surveyOptions, categoryOptions });
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='px-4 pb-4 overflow-hidden'>

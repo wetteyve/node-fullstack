@@ -9,7 +9,7 @@ const Team = ({ control, selectOtions }: FormSelectProps) => {
   const { fields: teammates, append, remove } = useFieldArray({ control, name: 'teammates' });
 
   return (
-    <section className='flex flex-col gap-y-2 border-b-[1px] py-4'>
+    <section className='flex flex-col gap-y-2 border-b py-4'>
       <h3>Angaben zum Team</h3>
       <div className='flex gap-x-4 flex-wrap'>
         <CustomFormItem name='team_name' control={control} placeholder='Teamname' />
@@ -33,7 +33,7 @@ const Team = ({ control, selectOtions }: FormSelectProps) => {
           </div>
         ))}
         {teammates.length < 7 && (
-          <Button variant='secondary' type='button' className='!w-[232px]' onClick={() => append(EMPTY_PLAYER)}>
+          <Button variant='secondary' type='button' className='w-[232px]!' onClick={() => append(EMPTY_PLAYER)}>
             <PiPlus />
             Mitspieler:in hinzufügen
           </Button>
