@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { type DownloadBody, DownloadSchema } from '#app/routes/node.v1.api+/uht-registration+/download-registrations';
+import { type DownloadBody, DownloadSchema } from '#app/routes/node.v1.api/uht-registration/download-registrations';
 import { Button } from '#uht-herisau/components/shadcn/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '#uht-herisau/components/shadcn/form';
 import { Input } from '#uht-herisau/components/shadcn/input';

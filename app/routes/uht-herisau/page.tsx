@@ -7,7 +7,7 @@ import {
   handleError,
   type Page,
 } from '#uht-herisau/utils/page.utils';
-import { type Route } from './+types';
+import { type Route } from './+types/page';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const { level1, level2 } = params;

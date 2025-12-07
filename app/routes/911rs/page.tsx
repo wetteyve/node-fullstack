@@ -1,6 +1,6 @@
 import { fetchStrapiContent, getRouteElement, handleError, type Page } from '#rs911/utils/page.utils';
 import { groupEventsByYearAndMonth } from '#rs911/utils/strapi.utils';
-import { type Route } from './+types';
+import { type Route } from './+types/page';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const { page } = params;

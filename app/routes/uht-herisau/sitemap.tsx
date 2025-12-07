@@ -1,5 +1,5 @@
 import { fetchStrapiPages } from '#uht-herisau/utils/page.utils';
-import { type Route } from '../+types';
+import { type Route } from './+types/sitemap';
 
 export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs) => {
   const pages = await fetchStrapiPages();

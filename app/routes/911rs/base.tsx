@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
+import { resourceBase } from '#app/utils/app-paths';
 import { splitArrayByKey } from '#app/utils/array.utils';
 import { getImage } from '#app/utils/get-strapi-image.utils';
-import { resourceBasePath } from '#app/utils/path';
 import { useScreenStore } from '#app/utils/store/screen.store';
 import Footer from '#rs911/components/footer/footer';
 import { LoadingBar } from '#rs911/components/loadingbar/Loadingbar';
 import Navbar from '#rs911/components/navbar/navbar';
 import { fetchStrapiPages, type Page } from '#rs911/utils/page.utils';
-import { type Route } from './+types';
+import { type Route } from './+types/base';
 import '#rs911/styles/app.css';
 
 export const links: Route.LinksFunction = () => [
@@ -28,7 +28,7 @@ export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs)
   const pages = await fetchStrapiPages();
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);
-  const faviconUrl = `${ENV.MODE !== 'development' ? resourceBasePath : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
+  const faviconUrl = `${ENV.MODE !== 'development' ? resourceBase : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
   return { navbarEntries, footerEntries, faviconUrl, publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}` };
 };
 

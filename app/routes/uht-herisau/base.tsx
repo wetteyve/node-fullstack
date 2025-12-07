@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import '#uht-herisau/styles/app.css';
+import { resourceBase } from '#app/utils/app-paths';
 import { splitArrayByKey } from '#app/utils/array.utils';
 import { getImage } from '#app/utils/get-strapi-image.utils';
-import { resourceBasePath } from '#app/utils/path';
 import { useScreenStore } from '#app/utils/store/screen.store';
 import Footer from '#uht-herisau/components/footer/footer';
 import { Navbar } from '#uht-herisau/components/navbar/navbar';
 import { fetchStrapiPages, type Page } from '#uht-herisau/utils/page.utils';
-import { type Route } from './+types';
+import { type Route } from './+types/base';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -28,7 +28,7 @@ export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs)
   const navigationExtensions = Object.values(pages).find((page) => page.navigation_extensions)?.navigation_extensions;
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);
-  const faviconUrl = `${ENV.MODE !== 'development' ? resourceBasePath : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
+  const faviconUrl = `${ENV.MODE !== 'development' ? resourceBase : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
   return {
     navbarEntries,
     footerEntries,

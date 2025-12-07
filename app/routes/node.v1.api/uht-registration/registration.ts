@@ -1,7 +1,7 @@
 import axios, { type AxiosRequestConfig } from 'axios';
 import { sendEmailToRegistrar } from '#uht-herisau/utils/mail.utils';
 import { type Registration, RegistrationSchema } from '#uht-herisau/utils/registration.utils';
-import { type Route } from './+types';
+import { type Route } from './+types/registration';
 
 export const action = async ({ request }: Route.ActionArgs) => {
   // Throw an error if the request method is not POST

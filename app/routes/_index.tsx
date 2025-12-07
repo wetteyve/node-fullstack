@@ -23,4 +23,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
     };
   }
+
+  throw new Response('Not Found', { status: 404 });
 };

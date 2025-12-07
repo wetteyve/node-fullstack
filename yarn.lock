@@ -1139,11 +1139,6 @@
   dependencies:
     "@mjackson/node-fetch-server" "^0.2.0"
 
-"@react-router/remix-routes-option-adapter@7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@react-router/remix-routes-option-adapter/-/remix-routes-option-adapter-7.10.1.tgz#032e392033e4c9435551a05d9729601f3e38e4d2"
-  integrity sha512-bIl8callRinFaEZQFlLSBQbVQk5F9naSWmjNbL45ms8XzuT6GXILpHUoDgUKiQE5tZ+8G7JKRcAQTCUeL+ee6Q==
-
 "@remix-run/node-fetch-server@^0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@remix-run/node-fetch-server/-/node-fetch-server-0.9.0.tgz#4f881ad0c9019a37471e98fd25815c2d7f4b12fb"
@@ -3445,7 +3440,7 @@ fresh@^2.0.0:
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-2.0.0.tgz#8dd7df6a1b3a1b3a5cf186c05a5dd267622635a4"
   integrity sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==
 
-fs-extra@11.3.2, fs-extra@^11.2.0:
+fs-extra@11.3.2:
   version "11.3.2"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.3.2.tgz#c838aeddc6f4a8c74dd15f85e11fe5511bfe02a4"
   integrity sha512-Xr9F6z6up6Ws+NjzMCZc6WXg2YFRlrLP9NQDO3VQrWrfiojdhS56TzueT88ze0uBdCTwEIhQ3ptnmKeWGFAe0A==
@@ -4775,7 +4770,7 @@ mime-types@^3.0.0, mime-types@^3.0.1:
   dependencies:
     mime-db "^1.54.0"
 
-minimatch@^10.0.1, minimatch@^10.1.1:
+minimatch@^10.1.1:
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-10.1.1.tgz#e6e61b9b0c1dcab116b5a7d1458e8b6ae9e73a55"
   integrity sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==
@@ -5460,14 +5455,6 @@ remark-stringify@^11.0.0:
     "@types/mdast" "^4.0.0"
     mdast-util-to-markdown "^2.0.0"
     unified "^11.0.0"
-
-remix-flat-routes@0.8.5:
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/remix-flat-routes/-/remix-flat-routes-0.8.5.tgz#31d40c8044b11d85a587a7f0f63be46200223e1d"
-  integrity sha512-30GcEpvwqFXCyTKiCTeqI3QSNyTg+f0qLGeIc95y6o3gaOEIhbC37qWpe8HrVEkdnj48xUyaUK03jm1zYFkhfA==
-  dependencies:
-    fs-extra "^11.2.0"
-    minimatch "^10.0.1"
 
 requireindex@^1.2.0:
   version "1.2.0"
