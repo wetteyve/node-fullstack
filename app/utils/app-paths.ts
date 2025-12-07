@@ -29,7 +29,8 @@ export const uhtHerisau = {
 
 // Define On-Call Sheduler Yves Wetter app paths here
 export const onCallSheduler = {
-  home: '/on-call-sheduler.yveswetter/home',
+  base: '/sheduler.yveswetter',
+  home: 'home',
 } as const;
 
 // Add more app paths as needed down the line

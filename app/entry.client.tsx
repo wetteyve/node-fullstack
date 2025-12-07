@@ -13,15 +13,17 @@ startTransition(() => {
     // on /home instead of /911rs/home for example.
     let tenantRoutes: any = {};
     for (const route in __reactRouterManifest.routes) {
-      console.log(route);
       if (route === 'root') {
         tenantRoutes[route] = __reactRouterManifest.routes[route];
       }
+
       // Check if the route includes the tenant identifier
       if (route.includes(tenant)) {
+        console.log(`Adjusting route`, __reactRouterManifest.routes[route]);
         // Remove the tenant identifier from the base route path
         if (__reactRouterManifest.routes[route].parentId === 'root') {
-          tenantRoutes[route] = { ...__reactRouterManifest.routes[route], path: '/' };
+          const path = __reactRouterManifest.routes[route].path.replace(`/${tenant}`, '') || '/';
+          tenantRoutes[route] = { ...__reactRouterManifest.routes[route], path };
           continue;
         } else {
           // Keep child routes as is

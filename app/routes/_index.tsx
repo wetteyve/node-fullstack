@@ -1,4 +1,5 @@
 import { type LoaderFunctionArgs } from 'react-router';
+import { onCallSheduler } from '#app/utils/app-paths';
 import { fetchStrapiPages as fetch911rsPages } from '#rs911/utils/page.utils';
 import { fetchStrapiPages as fetchUhtPages } from '#uht-herisau/utils/page.utils';
 
@@ -18,8 +19,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     return {
       '911rs': { ...rs911links, sitemap: `${request.url}911rs/sitemap.xml` },
       'uht-herisau': { ...uhtlinks, sitemap: `${request.url}uht-herisau/sitemap.xml` },
-      'on-call-sheduler': {
-        home: `${request.url}on-call-sheduler.yveswetter/home`,
+      sheduler: {
+        home: `${request.url}${onCallSheduler.base.replace(/\//g, '')}/${onCallSheduler.home}`,
       },
     };
   }

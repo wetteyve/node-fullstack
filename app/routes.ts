@@ -30,5 +30,5 @@ export default [
   ]),
 
   // On Call Sheduler routes
-  route(onCallSheduler.home, 'routes/on-call-sheduler/home.tsx'),
+  ...prefix(onCallSheduler.base, [route(onCallSheduler.home, 'routes/sheduler.yveswetter/home.tsx')]),
 ] satisfies RouteConfig;
