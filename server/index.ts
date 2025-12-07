@@ -5,14 +5,7 @@ import closeWithGrace from 'close-with-grace';
 import compression from 'compression';
 import express from 'express';
 import getPort, { portNumbers } from 'get-port';
-import { type ServerBuild } from 'react-router';
-
-declare module 'react-router' {
-  interface AppLoadContext {
-    serverBuild: Promise<any>;
-    tenant: string;
-  }
-}
+import { RouterContextProvider, type ServerBuild } from 'react-router';
 
 declare global {
   var __TENANT__: { tenant: string };
@@ -123,10 +116,11 @@ app.get('/.well-known/appspecific/com.chrome.devtools.json', (_req, res) => {
 app.all(
   '{/*splat}',
   createRequestHandler({
-    getLoadContext: (req) => ({
-      serverBuild: getBuild(),
-      tenant: req.headers['x-tenant'] as string, //subdomain or tenant
-    }),
+    getLoadContext: (req) => {
+      const context = new RouterContextProvider();
+      (context as any).tenant = req.headers['x-tenant'] as string | undefined;
+      return context;
+    },
     mode: MODE,
     build: async () => {
       const { error, build } = await getBuild();

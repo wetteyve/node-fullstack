@@ -1,10 +1,13 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
 import { type Route } from './+types/root';
+import { appLoadContext, getTenantHack } from './utils/middlewares/app-load.context';
 
-export const loader = ({ context: { tenant } }: Route.LoaderArgs) => ({
-  tenant,
-});
+export const loader = ({ context }: Route.LoaderArgs) => {
+  const tenant = getTenantHack(context);
+  context.set(appLoadContext, { tenant });
+  return { tenant };
+};
 
 export default function App({ loaderData: { tenant } }: Route.ComponentProps) {
   return (

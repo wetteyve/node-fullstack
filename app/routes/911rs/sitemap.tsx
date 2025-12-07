@@ -1,7 +1,9 @@
+import { getTenant } from '#app/utils/middlewares/app-load.context';
 import { fetchStrapiPages } from '#rs911/utils/page.utils';
 import { type Route } from './+types/sitemap';
 
-export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs) => {
+export const loader = async ({ request, context }: Route.LoaderArgs) => {
+  const tenant = getTenant(context);
   const pages = await fetchStrapiPages();
   const { pathname, host } = new URL(request.url);
   const cleanPathname = tenant ? pathname.replace(`/${tenant}`, '') : pathname;

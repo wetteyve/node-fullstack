@@ -10,6 +10,7 @@
 ## 🏗️ Architecture
 
 - [Routing](routing.md)
+- [Middlewares](route-middleware.md)
 - [In memory cache](in-memory-caching.md)
 - [Multi tenancy](multi-tenancy.md)
 - [Styles](styles.md)

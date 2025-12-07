@@ -88,6 +88,27 @@ Import tenant styles in base route: `import '#rs911/styles/app.css'`
 
 When adding a new tenant, update `.vscode/settings.json` with the new tenant's CSS file path and file patterns for IntelliSense.
 
+### React Router Middleware & Context
+
+The app uses React Router 7's middleware mode to pass tenant information from server to routes:
+
+**Server Setup** (`server/index.ts`):
+
+- `getLoadContext` attaches tenant from `X-Tenant` header to `RouterContextProvider` instance
+- Pattern: `(context as any).tenant = req.headers['x-tenant']`
+
+**Root Loader Bridge** (`app/root.tsx`):
+
+- Extracts tenant from raw context using `getTenantHack(context)`
+- Sets it in typed `appLoadContext` for child routes: `context.set(appLoadContext, { tenant })`
+
+**Child Route Access**:
+
+- Import: `import { getTenant } from '#app/utils/middlewares/app-load.context'`
+- Use: `const tenant = getTenant(context)` in any loader
+
+This pattern allows extending context with additional values beyond tenant. See `docs/route-middleware.md` for details.
+
 ## Development Workflow
 
 ### Commands

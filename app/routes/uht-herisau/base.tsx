@@ -4,6 +4,7 @@ import '#uht-herisau/styles/app.css';
 import { resourceBase } from '#app/utils/app-paths';
 import { splitArrayByKey } from '#app/utils/array.utils';
 import { getImage } from '#app/utils/get-strapi-image.utils';
+import { getTenant } from '#app/utils/middlewares/app-load.context';
 import { useScreenStore } from '#app/utils/store/screen.store';
 import Footer from '#uht-herisau/components/footer/footer';
 import { Navbar } from '#uht-herisau/components/navbar/navbar';
@@ -23,7 +24,8 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-export const loader = async ({ request, context: { tenant } }: Route.LoaderArgs) => {
+export const loader = async ({ request, context }: Route.LoaderArgs) => {
+  const tenant = getTenant(context);
   const pages = await fetchStrapiPages();
   const navigationExtensions = Object.values(pages).find((page) => page.navigation_extensions)?.navigation_extensions;
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
