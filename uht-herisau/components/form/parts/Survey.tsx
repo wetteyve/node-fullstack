@@ -1,5 +1,5 @@
-import CustomFormItem from '../CustomFormItem';
-import { type FormPartProps } from './Persona';
+import CustomFormItem from '#uht-herisau/components/form/CustomFormItem';
+import { type FormPartProps } from '#uht-herisau/components/form/parts/Persona';
 
 export type FormSelectProps = FormPartProps & {
   selectOtions?: { label: string; value: string }[];

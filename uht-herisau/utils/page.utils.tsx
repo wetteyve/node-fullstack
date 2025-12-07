@@ -9,6 +9,8 @@ import OrganisationRepresentation from '#uht-herisau/pages/Organisation';
 import { RankingRepresentation } from '#uht-herisau/pages/Ranking';
 import RegistrationRepresentation from '#uht-herisau/pages/Registration';
 import SponsorsRepresentation from '#uht-herisau/pages/Sponsors';
+import { getReqConfig } from '#uht-herisau/utils/api.utils';
+import { getCachedData } from '#uht-herisau/utils/cache.utils';
 import {
   type LandingContent,
   type MakrdownContent,
@@ -23,8 +25,6 @@ import {
   type Category,
   type DownloadContent,
 } from '#uht-herisau/utils/strapi.utils';
-import { getReqConfig } from './api.utils';
-import { getCachedData } from './cache.utils';
 
 export type SeoDataItem = {
   allow_indexing: boolean;

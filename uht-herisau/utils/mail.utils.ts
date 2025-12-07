@@ -5,7 +5,7 @@ import { createResend } from '#app/utils/server/mail.server';
 import { getReqConfig } from '#uht-herisau/utils/api.utils';
 import { fetchStrapiCategories, fetchStrapiContentById } from '#uht-herisau/utils/page.utils';
 import { type Registration } from '#uht-herisau/utils/registration.utils';
-import { type Price, type RegistrationContent } from './strapi.utils';
+import { type Price, type RegistrationContent } from '#uht-herisau/utils/strapi.utils';
 
 const qrImagePath = `https://uht-herisau.ch${resource.images}/qr-konto.png`;
 

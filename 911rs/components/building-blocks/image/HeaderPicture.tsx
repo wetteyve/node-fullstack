@@ -1,4 +1,4 @@
-import { Image } from './Image';
+import { Image } from '#rs911/components/building-blocks/image/Image';
 
 type Props = {
   file: any;

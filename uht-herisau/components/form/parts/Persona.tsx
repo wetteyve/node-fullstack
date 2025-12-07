@@ -1,6 +1,6 @@
 import { type Control } from 'react-hook-form';
+import CustomFormItem from '#uht-herisau/components/form/CustomFormItem';
 import { type Registration } from '#uht-herisau/utils/registration.utils';
-import CustomFormItem from '../CustomFormItem';
 
 export type FormPartProps = {
   control: Control<Registration, unknown>;

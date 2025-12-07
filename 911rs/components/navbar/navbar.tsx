@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router';
-import MobileNavbar from './mobile-navbar';
+import MobileNavbar from '#rs911/components/navbar/mobile-navbar';
 
 type NavbarProps = {
   navbarEntries: any;

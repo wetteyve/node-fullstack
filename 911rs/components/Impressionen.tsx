@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type Ref } from 'react';
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from 'react-icons/io';
-import { CarouselImage, Image } from './building-blocks/image/Image';
+import { CarouselImage, Image } from '#rs911/components/building-blocks/image/Image';
 
 export const Impressionen = ({ impressionen }: { impressionen: { data: any[] } }) => {
   const [activeIndex, setActiveIndex] = useState(0);

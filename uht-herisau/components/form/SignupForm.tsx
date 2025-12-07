@@ -1,15 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import Persona from '#uht-herisau/components/form/parts/Persona';
+import SingleCheck from '#uht-herisau/components/form/parts/SingleCheck';
+import Survey from '#uht-herisau/components/form/parts/Survey';
+import Team from '#uht-herisau/components/form/parts/Team';
+import Terms from '#uht-herisau/components/form/parts/Terms';
+import { Button } from '#uht-herisau/components/shadcn/button';
+import { Form } from '#uht-herisau/components/shadcn/form';
 import { RegistrationService } from '#uht-herisau/services/registration-service';
 import { RegistrationSchema, type Registration, getDefaultFormValues } from '#uht-herisau/utils/registration.utils';
 import { type Price, type RegistrationContent } from '#uht-herisau/utils/strapi.utils';
-import { Button } from '../shadcn/button';
-import { Form } from '../shadcn/form';
-import Persona from './parts/Persona';
-import SingleCheck from './parts/SingleCheck';
-import Survey from './parts/Survey';
-import Team from './parts/Team';
-import Terms from './parts/Terms';
 
 type FormProps = {
   isFaesslicupAvailable: boolean;

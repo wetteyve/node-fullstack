@@ -23,7 +23,7 @@
 
 ## 💡 Credits
 
-This setup is heavily inspired by the [Epic Stack](https://github.com/epicweb-dev/epic-stack) from Epic Web Dev, especially regarding dev & build processes, tooling configuration, and development workflow patterns.
+This setup is heavily inspired by the [Epic Stack](https://github.com/epicweb-dev/epic-stack) 🚀
 
 ## 📄 License
 

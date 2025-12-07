@@ -1,8 +1,8 @@
 import { type ReactNode } from 'react';
 import { IoLogoInstagram, IoLogoFacebook } from 'react-icons/io';
 import { NavLink } from 'react-router';
+import { Image } from '#uht-herisau/components/building-blocks/Image';
 import { type Page } from '#uht-herisau/utils/page.utils';
-import { Image } from '../building-blocks/Image';
 
 const Footer = ({
   footerEntries,

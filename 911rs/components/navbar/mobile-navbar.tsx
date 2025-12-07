@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { TfiClose } from 'react-icons/tfi';
 import { VscMenu } from 'react-icons/vsc';
 import { useLocation } from 'react-router';
-import MobileNavbarItem from './mobile-navbar-item';
+import MobileNavbarItem from '#rs911/components/navbar/mobile-navbar-item';
 
 type NavbarProps = {
   navbarEntries: any;

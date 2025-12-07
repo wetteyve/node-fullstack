@@ -9,7 +9,7 @@ import { Kontakt } from '#rs911/pages/Kontakt';
 import { Leistungen } from '#rs911/pages/Leistungen';
 import { Links } from '#rs911/pages/Links';
 import { Start } from '#rs911/pages/Start';
-import { getCachedData } from './cache.utils';
+import { getCachedData } from '#rs911/utils/cache.utils';
 import {
   type LinksContent,
   type AboutContent,
@@ -19,7 +19,7 @@ import {
   type KontaktContent,
   type ImpressumContent,
   type DatenschutzContent,
-} from './strapi.utils';
+} from '#rs911/utils/strapi.utils';
 
 type PageContent =
   | HomeContent

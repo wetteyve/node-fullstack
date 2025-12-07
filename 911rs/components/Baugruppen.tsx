@@ -1,7 +1,7 @@
 import clsx, { type ClassValue } from 'clsx';
 import { useLinkClickHandler, useLocation } from 'react-router';
-import { Image } from './building-blocks/image/Image';
-import { Lead } from './building-blocks/Lead';
+import { Lead } from '#rs911/components//building-blocks/Lead';
+import { Image } from '#rs911/components/building-blocks/image/Image';
 
 export const Baugruppen = ({ content }: { content: any }) => {
   const { pathname } = useLocation();
@@ -23,7 +23,7 @@ export const Baugruppen = ({ content }: { content: any }) => {
 
   return (
     <div className={clsx('w-full relative')}>
-      <div className=' w-screen h-full bg-secondary/[0.08] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-1' />
+      <div className=' w-screen h-full bg-secondary/8 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-1' />
       <Lead lead={content.baugruppen_lead} className='pt-10' />
       {GridLayout}
     </div>

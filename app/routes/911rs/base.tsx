@@ -9,8 +9,9 @@ import Footer from '#rs911/components/footer/footer';
 import { LoadingBar } from '#rs911/components/loadingbar/Loadingbar';
 import Navbar from '#rs911/components/navbar/navbar';
 import { fetchStrapiPages, generateMetaTags } from '#rs911/utils/page.utils';
-import { type Route } from './+types/base';
 import '#rs911/styles/app.css';
+
+import { type Route } from './+types/base';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

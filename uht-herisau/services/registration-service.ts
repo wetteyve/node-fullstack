@@ -1,6 +1,6 @@
 import { type DownloadBody } from '#app/routes/node.v1.api/uht-registration/download-registrations';
+import { AxiosBaseService } from '#uht-herisau/services/axios-base.service';
 import { type Registration } from '#uht-herisau/utils/registration.utils';
-import { AxiosBaseService } from './axios-base.service';
 
 export class RegistrationService extends AxiosBaseService {
   constructor() {

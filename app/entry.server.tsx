@@ -4,7 +4,7 @@ import { createReadableStreamFromReadable } from '@react-router/node';
 import { isbot } from 'isbot';
 import { type RenderToPipeableStreamOptions, renderToPipeableStream } from 'react-dom/server';
 import { ServerRouter, type EntryContext } from 'react-router';
-import { checkEnvironment, getEnv } from './utils/server/env.server';
+import { checkEnvironment, getEnv } from '#app/utils/server/env.server';
 
 export const streamTimeout = 5_000;
 

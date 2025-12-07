@@ -1,6 +1,6 @@
+import CustomFormItem from '#uht-herisau/components/form/CustomFormItem';
+import { type FormPartProps } from '#uht-herisau/components/form/parts/Persona';
 import { type RegistrationContent } from '#uht-herisau/utils/strapi.utils';
-import CustomFormItem from '../CustomFormItem';
-import { type FormPartProps } from './Persona';
 
 type FormTermsProps = FormPartProps & { termsArray: RegistrationContent['checks'] };
 
