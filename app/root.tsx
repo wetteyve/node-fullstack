@@ -1,19 +1,15 @@
 import { isRouteErrorResponse, Links, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
 import { findMetaInMatches, MetaTags } from '#app/utils/meta.utils';
-import { appLoadContext, getTenantHack } from '#app/utils/middlewares/app-load.context';
+import { appLoadMiddleware, getTenant } from '#app/utils/middlewares/app-load.context';
 import { timingsMiddleware } from '#app/utils/middlewares/timings.context';
 import { type Route } from './+types/root';
 
 export const shouldRevalidate = () => false;
 
-export const middleware: Route.MiddlewareFunction[] = [timingsMiddleware];
+export const middleware: Route.MiddlewareFunction[] = [timingsMiddleware, appLoadMiddleware];
 
-export const loader = ({ context }: Route.LoaderArgs) => {
-  const tenant = getTenantHack(context);
-  context.set(appLoadContext, { tenant });
-  return { tenant };
-};
+export const loader = ({ context }: Route.LoaderArgs) => ({ tenant: getTenant(context) });
 
 export default function App({ loaderData: { tenant }, matches }: Route.ComponentProps) {
   const metaDescriptors = findMetaInMatches(matches.filter((match): match is NonNullable<typeof match> => match !== undefined));

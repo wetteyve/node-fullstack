@@ -107,22 +107,25 @@ When adding a new tenant, update `.vscode/settings.json` with the new tenant's C
 
 The app uses React Router 7's middleware mode to pass tenant information from server to routes:
 
-**Server Setup** (`server/index.ts`):
+**Middleware Setup** (`app/root.tsx`):
 
-- `getLoadContext` attaches tenant from `X-Tenant` header to `RouterContextProvider` instance
-- Pattern: `(context as any).tenant = req.headers['x-tenant']`
+- `appLoadMiddleware` extracts tenant from `X-Tenant` header (set by reverse proxy)
+- Registered in middleware array alongside `timingsMiddleware`
 
-**Root Loader Bridge** (`app/root.tsx`):
+**Implementation** (`app/utils/middlewares/app-load.context.ts`):
 
-- Extracts tenant from raw context using `getTenantHack(context)`
-- Sets it in typed `appLoadContext` for child routes: `context.set(appLoadContext, { tenant })`
+```typescript
+export const appLoadMiddleware: Route.MiddlewareFunction = async ({ context, request }) => {
+  context.set(appLoadContext, { tenant: request.headers.get('x-tenant') });
+};
+```
 
 **Child Route Access**:
 
 - Import: `import { getTenant } from '#app/utils/middlewares/app-load.context'`
 - Use: `const tenant = getTenant(context)` in any loader
 
-This pattern allows extending context with additional values beyond tenant. See `docs/route-middleware.md` for details.
+This pattern is clean, type-safe, and avoids server-side context manipulation. See `docs/route-middleware.md` for details.
 
 ### Server Timing & Performance Monitoring
 

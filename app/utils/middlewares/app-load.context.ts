@@ -1,15 +1,14 @@
 import { createContext, type RouterContextProvider } from 'react-router';
 
+import { type Route } from '../../+types/root';
+
 type AppLoadContext = {
-  tenant?: string;
+  tenant: string | null;
 };
 
-export const appLoadContext = createContext<AppLoadContext>({});
+export const appLoadContext = createContext<AppLoadContext>({ tenant: null });
 export const getTenant = (context: Readonly<RouterContextProvider>) => context.get(appLoadContext).tenant;
-
-// Utility function to extract tenant from the request handler context. This is only intended to be used in the root loader!
-export const getTenantHack = (context: Readonly<RouterContextProvider>) => {
-  const untypedContext = context as any;
-  const tenant = untypedContext.tenant && typeof untypedContext.tenant === 'string' ? (untypedContext.tenant as string) : undefined;
-  return tenant;
+export const appLoadMiddleware: Route.MiddlewareFunction = async ({ context, request }) => {
+  // Initialize app load context
+  context.set(appLoadContext, { tenant: request.headers.get('x-tenant') });
 };
