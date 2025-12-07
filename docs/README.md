@@ -6,6 +6,7 @@
 
 - [Development Environment](dev-env-setup.md)
 - [Environment Variables](environment-variables.md)
+- [Project Structure](project-structure.md) - Overview of the codebase organization
 
 ## 🏗️ Architecture
 
