@@ -3,12 +3,11 @@ import { Outlet } from 'react-router';
 import '#uht-herisau/styles/app.css';
 import { resourceBase } from '#app/utils/app-paths';
 import { splitArrayByKey } from '#app/utils/array.utils';
-import { getImage } from '#app/utils/get-strapi-image.utils';
 import { getTenant } from '#app/utils/middlewares/app-load.context';
 import { useScreenStore } from '#app/utils/store/screen.store';
 import Footer from '#uht-herisau/components/footer/footer';
 import { Navbar } from '#uht-herisau/components/navbar/navbar';
-import { fetchStrapiPages, type Page } from '#uht-herisau/utils/page.utils';
+import { fetchStrapiPages, generateMetaTags } from '#uht-herisau/utils/page.utils';
 import { type Route } from './+types/base';
 
 export const links: Route.LinksFunction = () => [
@@ -31,80 +30,19 @@ export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);
   const faviconUrl = `${ENV.MODE !== 'development' ? resourceBase : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
+  const publicUrl = `${url.origin}${url.pathname.replace(`/${tenant}`, '')}`;
+
+  // Generate meta tags
+  const meta = generateMetaTags({ navbarEntries, footerEntries, publicUrl, faviconUrl });
+
   return {
     navbarEntries,
     footerEntries,
     navigationExtensions,
     faviconUrl,
-    publicUrl: `${url.origin}${url.pathname.replace(`/${tenant}`, '')}`,
+    publicUrl,
+    meta,
   };
-};
-
-// todo: fallback UHT Herisau meta data
-export const meta = ({ data: { navbarEntries, footerEntries, publicUrl, faviconUrl } }: Route.MetaArgs): Route.MetaDescriptors => {
-  const { seo_data } =
-    [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.path}`)) || {};
-  const siteName = seo_data?.title || 'UHT Herisau';
-  const description = seo_data?.description || 'UHT Herisau';
-  const { url, width, height, alternativeText } = seo_data?.preview_image.data
-    ? getImage(seo_data?.preview_image, 'small')
-    : {
-        url: 'https://uhtherisauassets.blob.core.windows.net/uht-herisau-assets/prod/assets/small_unihocketurnier_herisau_1_c262ce38dd.jpg',
-        width: 800,
-        height: 533,
-        alternativeText: 'Unihockeyturnier Herisau',
-      };
-  const keywords =
-    seo_data?.keywords ||
-    'Unihockeyturnier, Herisau, Indoor-Sport, News, Ergebnisse, Spielpläne, Ostschweiz, Veranstaltung, Bilder, Impressionen';
-  const noIndex = !seo_data?.allow_indexing;
-
-  const metaData: Route.MetaDescriptors = [
-    { title: siteName },
-    // Open Graph Tags
-    { property: 'og:title', content: siteName },
-    { property: 'og:site_name', content: siteName },
-    { property: 'og:description', content: description },
-    { property: 'og:url', content: publicUrl },
-    { property: 'og:type', content: 'website' },
-    // Meta Tags
-    { name: 'description', content: description },
-    { name: 'keywords', content: keywords },
-    { name: 'robots', content: 'max-image-preview:large' },
-    {
-      tagName: 'link',
-      rel: 'icon',
-      href: faviconUrl,
-    },
-  ];
-  // If a preview image is set, add Open Graph image tags
-  if (url && width && height) {
-    metaData.push(
-      ...[
-        {
-          property: 'og:image',
-          content: url,
-        },
-        {
-          property: 'og:image:width',
-          content: width,
-        },
-        {
-          property: 'og:image:height',
-          content: height,
-        },
-        { property: 'og:image:type', content: 'image/png' },
-        {
-          property: 'og:image:secure_url',
-          content: url,
-        },
-        { property: 'og:image:alt', content: alternativeText || 'Unihockeyturnier Herisau' },
-      ]
-    );
-  }
-  // If noIndex is true, add noindex meta tag
-  if (noIndex) metaData.push({ name: 'robots', content: 'noindex, nofollow' });
-  return metaData;
 };
 
 const UhtLayout = ({ loaderData: { navbarEntries, footerEntries, navigationExtensions } }: Route.ComponentProps) => {

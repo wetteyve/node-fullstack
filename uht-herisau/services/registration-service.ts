@@ -1,4 +1,4 @@
-import { type DownloadBody } from '#app/routes/node.v1.api+/uht-registration+/download-registrations';
+import { type DownloadBody } from '#app/routes/node.v1.api/uht-registration/download-registrations';
 import { type Registration } from '#uht-herisau/utils/registration.utils';
 import { AxiosBaseService } from './axios-base.service';
 

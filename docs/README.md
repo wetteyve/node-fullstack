@@ -12,6 +12,7 @@
 
 - [Routing](routing.md)
 - [Middlewares](route-middleware.md)
+- [SEO & Meta Tags](seo-meta-tags.md)
 - [In memory cache](in-memory-caching.md)
 - [Multi tenancy](multi-tenancy.md)
 - [Styles](styles.md)

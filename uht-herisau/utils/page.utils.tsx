@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { isRouteErrorResponse } from 'react-router';
+import { type MetaDescriptor, isRouteErrorResponse } from 'react-router';
+import { getImage } from '#app/utils/get-strapi-image.utils';
 import { CategoryRepresentation } from '#uht-herisau/pages/Categories';
 import { DownloadRepresentation } from '#uht-herisau/pages/Download';
 import { LandingRepresentation } from '#uht-herisau/pages/Landing';
@@ -201,4 +202,80 @@ export const handleError = (error: unknown): 'NotFound' | 'NotImplemented' | 'Se
     return error.status === 404 ? 'NotFound' : error.status === 501 ? 'NotImplemented' : 'ServerError';
   }
   return 'ServerError';
+};
+
+export const generateMetaTags = ({
+  navbarEntries,
+  footerEntries,
+  publicUrl,
+  faviconUrl,
+}: {
+  navbarEntries: Page[] | undefined;
+  footerEntries: Page[] | undefined;
+  publicUrl: string;
+  faviconUrl: string;
+}): MetaDescriptor[] => {
+  const { seo_data } =
+    [...(navbarEntries || []), ...(footerEntries || [])].find((entry: Page) => publicUrl.endsWith(`/${entry.path}`)) || {};
+  const siteName = seo_data?.title || 'UHT Herisau';
+  const description = seo_data?.description || 'UHT Herisau';
+  const { url, width, height, alternativeText } = seo_data?.preview_image.data
+    ? getImage(seo_data?.preview_image, 'small')
+    : {
+        url: 'https://uhtherisauassets.blob.core.windows.net/uht-herisau-assets/prod/assets/small_unihocketurnier_herisau_1_c262ce38dd.jpg',
+        width: 800,
+        height: 533,
+        alternativeText: 'Unihockeyturnier Herisau',
+      };
+  const keywords =
+    seo_data?.keywords ||
+    'Unihockeyturnier, Herisau, Indoor-Sport, News, Ergebnisse, Spielpläne, Ostschweiz, Veranstaltung, Bilder, Impressionen';
+  const noIndex = !seo_data?.allow_indexing;
+
+  const metaData: MetaDescriptor[] = [
+    { title: siteName },
+    // Open Graph Tags
+    { property: 'og:title', content: siteName },
+    { property: 'og:site_name', content: siteName },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: publicUrl },
+    { property: 'og:type', content: 'website' },
+    // Meta Tags
+    { name: 'description', content: description },
+    { name: 'keywords', content: keywords },
+    { name: 'robots', content: 'max-image-preview:large' },
+    {
+      tagName: 'link',
+      rel: 'icon',
+      href: faviconUrl,
+    },
+  ];
+  // If a preview image is set, add Open Graph image tags
+  if (url && width && height) {
+    metaData.push(
+      ...[
+        {
+          property: 'og:image',
+          content: url,
+        },
+        {
+          property: 'og:image:width',
+          content: width,
+        },
+        {
+          property: 'og:image:height',
+          content: height,
+        },
+        { property: 'og:image:type', content: 'image/png' },
+        {
+          property: 'og:image:secure_url',
+          content: url,
+        },
+        { property: 'og:image:alt', content: alternativeText || 'Unihockeyturnier Herisau' },
+      ]
+    );
+  }
+  // If noIndex is true, add noindex meta tag
+  if (noIndex) metaData.push({ name: 'robots', content: 'noindex, nofollow' });
+  return metaData;
 };

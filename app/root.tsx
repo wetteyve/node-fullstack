@@ -1,7 +1,8 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import { isRouteErrorResponse, Links, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
+import { findMetaInMatches, MetaTags } from '#app/utils/meta.utils';
+import { appLoadContext, getTenantHack } from '#app/utils/middlewares/app-load.context';
 import { type Route } from './+types/root';
-import { appLoadContext, getTenantHack } from './utils/middlewares/app-load.context';
 
 export const loader = ({ context }: Route.LoaderArgs) => {
   const tenant = getTenantHack(context);
@@ -9,13 +10,15 @@ export const loader = ({ context }: Route.LoaderArgs) => {
   return { tenant };
 };
 
-export default function App({ loaderData: { tenant } }: Route.ComponentProps) {
+export default function App({ loaderData: { tenant }, matches }: Route.ComponentProps) {
+  const metaDescriptors = findMetaInMatches(matches.filter((match): match is NonNullable<typeof match> => match !== undefined));
+
   return (
     <html lang='en'>
       <head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
-        <Meta />
+        <MetaTags descriptors={metaDescriptors} />
         <Links />
         <script
           suppressHydrationWarning
