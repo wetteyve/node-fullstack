@@ -24,7 +24,3 @@
 ## 💡 Credits
 
 This setup is heavily inspired by the [Epic Stack](https://github.com/epicweb-dev/epic-stack) 🚀
-
-## 📄 License
-
-MIT — Use at your own risk.
