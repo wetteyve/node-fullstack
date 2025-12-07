@@ -4,6 +4,7 @@ import '#uht-herisau/styles/app.css';
 import { resourceBase } from '#app/utils/app-paths';
 import { splitArrayByKey } from '#app/utils/array.utils';
 import { getTenant } from '#app/utils/middlewares/app-load.context';
+import { measurePerformance } from '#app/utils/middlewares/timings.context';
 import { useScreenStore } from '#app/utils/store/screen.store';
 import Footer from '#uht-herisau/components/footer/footer';
 import { Navbar } from '#uht-herisau/components/navbar/navbar';
@@ -23,9 +24,11 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export const shouldRevalidate = () => false;
+
 export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const tenant = getTenant(context);
-  const pages = await fetchStrapiPages();
+  const pages = await measurePerformance({ context, promise: fetchStrapiPages() });
   const navigationExtensions = Object.values(pages).find((page) => page.navigation_extensions)?.navigation_extensions;
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);

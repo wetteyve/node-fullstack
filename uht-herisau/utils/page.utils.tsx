@@ -245,7 +245,7 @@ export const generateMetaTags = ({
     { name: 'keywords', content: keywords },
     { name: 'robots', content: 'max-image-preview:large' },
     {
-      tagName: 'link',
+      tagname: 'link',
       rel: 'icon',
       href: faviconUrl,
     },

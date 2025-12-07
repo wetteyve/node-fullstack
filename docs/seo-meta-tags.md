@@ -68,7 +68,7 @@ const generateMetaTags = ({ pages, publicUrl, faviconUrl }) => {
     { title: siteName },
     { property: 'og:title', content: siteName },
     { property: 'og:url', content: publicUrl },
-    { tagName: 'link', rel: 'icon', href: faviconUrl },
+    { tagname: 'link', rel: 'icon', href: faviconUrl },
     // ... more meta tags
   ];
 };

@@ -2,7 +2,12 @@ import { isRouteErrorResponse, Links, Outlet, Scripts, ScrollRestoration } from 
 
 import { findMetaInMatches, MetaTags } from '#app/utils/meta.utils';
 import { appLoadContext, getTenantHack } from '#app/utils/middlewares/app-load.context';
+import { timingsMiddleware } from '#app/utils/middlewares/timings.context';
 import { type Route } from './+types/root';
+
+export const shouldRevalidate = () => false;
+
+export const middleware: Route.MiddlewareFunction[] = [timingsMiddleware];
 
 export const loader = ({ context }: Route.LoaderArgs) => {
   const tenant = getTenantHack(context);

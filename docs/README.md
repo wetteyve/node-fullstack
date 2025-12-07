@@ -17,6 +17,10 @@
 - [Multi tenancy](multi-tenancy.md)
 - [Styles](styles.md)
 
+## 📚 Guides
+
+- [Measure Server Timing](server-timing.md)
+
 ## 💡 Credits
 
 This setup is heavily inspired by the [Epic Stack](https://github.com/epicweb-dev/epic-stack) from Epic Web Dev, especially regarding dev & build processes, tooling configuration, and development workflow patterns.

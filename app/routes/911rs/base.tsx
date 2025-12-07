@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import { resourceBase } from '#app/utils/app-paths';
 import { splitArrayByKey } from '#app/utils/array.utils';
-import { appLoadContext } from '#app/utils/middlewares/app-load.context';
+import { getTenant } from '#app/utils/middlewares/app-load.context';
+import { measurePerformance } from '#app/utils/middlewares/timings.context';
 import { useScreenStore } from '#app/utils/store/screen.store';
 import Footer from '#rs911/components/footer/footer';
 import { LoadingBar } from '#rs911/components/loadingbar/Loadingbar';
@@ -24,9 +25,11 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export const shouldRevalidate = () => false;
+
 export const loader = async ({ request, context }: Route.LoaderArgs) => {
-  const tenant = context.get(appLoadContext)?.tenant;
-  const pages = await fetchStrapiPages();
+  const tenant = getTenant(context);
+  const pages = await measurePerformance({ context, promise: fetchStrapiPages() });
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);
   const faviconUrl = `${ENV.MODE !== 'development' ? resourceBase : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
