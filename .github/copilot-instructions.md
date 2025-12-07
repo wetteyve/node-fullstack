@@ -38,6 +38,21 @@ Use TypeScript path aliases defined in `tsconfig.json`:
 
 **Always use these aliases** instead of relative imports for cross-directory references.
 
+**ESLint Enforcement:**
+
+Path alias usage is enforced via ESLint's `no-restricted-imports` rule:
+
+- **Blocked**: Relative imports (`./`, `../`) in `app/**`, `911rs/**`, `uht-herisau/**`
+- **Exception in routes**: `./+types/*` imports for React Router generated types are allowed in `app/routes/**`
+- **Exception for specific files**: `app/root.tsx` and `app/utils/middlewares/*.ts` can import from `+types` directories
+- **Fully exempted**: `server/**`, `other/**`, config files (`vite.config.ts`, `react-router.config.ts`, `app/routes.ts`)
+- Run `yarn lint` to catch violations
+
+When you see relative imports, replace them with path aliases:
+
+- `'./utils/something'` → `'#app/utils/something'`
+- `'../components/Button'` → `'#rs911/components/Button'`
+
 ### Route Configuration
 
 Routes use programmatic config in `app/routes.ts` with centralized path constants from `app/utils/app-paths.ts`. When adding routes:
@@ -109,6 +124,44 @@ The app uses React Router 7's middleware mode to pass tenant information from se
 
 This pattern allows extending context with additional values beyond tenant. See `docs/route-middleware.md` for details.
 
+### Server Timing & Performance Monitoring
+
+The app includes built-in server timing middleware that collects performance metrics via the `Server-Timing` HTTP header:
+
+**Middleware Setup** (`app/root.tsx`):
+
+- `timingsMiddleware` is registered in the middleware array
+- Automatically tracks total request duration
+- Collects timing entries from all loaders
+
+**Measuring Performance**:
+
+Use the `measurePerformance` helper function (recommended):
+
+```typescript
+import { measurePerformance } from '#app/utils/middlewares/timings.context';
+
+export const loader = async ({ context }: Route.LoaderArgs) => {
+  const pages = await measurePerformance({
+    context,
+    promise: fetchStrapiPages(),
+    name: 'fetch', // Optional, defaults to 'timing'
+    descriptor: 'strapi_pages', // Optional, defaults to 'promise'
+  });
+  return { pages };
+};
+```
+
+Benefits:
+
+- Generic type preservation
+- Automatic error handling (timings recorded even on failure)
+- Minimal boilerplate
+
+View timings in Chrome DevTools → Network tab → Select request → Timing tab → Server Timing section.
+
+See `docs/server-timing.md` for details.
+
 ## Development Workflow
 
 ### Commands
@@ -167,11 +220,29 @@ export const renderPage = (content: PageContent) => {
 
 ### SEO Metadata
 
-SEO handled in base routes (`app/routes/<tenant>/base.tsx`) using `meta` export:
+SEO handled using **React 19 native meta tags** (not React Router's `meta` export):
 
-- Reads from Strapi `seo_settings` field
+- Base routes return `meta` in loader data
+- `app/root.tsx` uses `findMetaInMatches()` to bubble meta from route hierarchy
+- Renders via `<MetaTags descriptors={metaDescriptors} />` component
+- Supports both sync and async meta for streaming
+
+**Pattern in base routes:**
+
+```typescript
+export const loader = async ({ context }: Route.LoaderArgs) => {
+  const meta = generateMetaTags({ navbarEntries, footerEntries, publicUrl, faviconUrl });
+  return { navbarEntries, footerEntries, meta };
+};
+```
+
+**Meta generation** is handled by tenant-specific `generateMetaTags()` functions in `<tenant>/utils/page.utils.tsx`:
+
+- Reads from Strapi `seo_settings` or `seo_data` field
 - Includes Open Graph tags, keywords, indexing rules
 - Dynamic favicon per tenant
+
+See `docs/seo-meta-tags.md` for implementation details.
 
 ### Static Assets
 
