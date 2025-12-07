@@ -18,8 +18,6 @@ The middleware sanitizes descriptor values to ensure they're valid for HTTP head
 
 ## Measuring Performance
 
-### Using the `measurePerformance` Helper (Recommended)
-
 The recommended approach is to use the `measurePerformance` helper function, which handles all timing boilerplate automatically:
 
 ```tsx
@@ -51,38 +49,6 @@ export const loader = async ({ context }: Route.LoaderArgs) => {
 - `promise`: The promise to measure
 - `name` (optional): The metric name (e.g., 'fetch', 'db', 'compute') - defaults to `'timing'`
 - `descriptor` (optional): A description of what's being measured - defaults to `'promise'`
-
-### Manual Timing (Advanced)
-
-For more control, you can manually access the `timingsContext`:
-
-```tsx
-import { timingsContext } from '#app/utils/middlewares/timings.context';
-import type { Route } from './+types/MyRoute';
-
-export const loader = async ({ context }: Route.LoaderArgs) => {
-  const timings = context.get(timingsContext);
-  const start = performance.now();
-
-  // Your operation
-  const result = await expensiveOperation();
-
-  timings.push({
-    name: 'custom',
-    descriptor: 'expensive_operation',
-    duration: performance.now() - start,
-  });
-  context.set(timingsContext, timings);
-
-  return { result };
-};
-```
-
-Each timing entry requires three properties:
-
-- `name`: The metric name (e.g., 'fetch', 'custom', 'db')
-- `descriptor`: A description of what was timed (special characters are automatically sanitized)
-- `duration`: The duration in milliseconds
 
 ## Viewing Timing Data
 
