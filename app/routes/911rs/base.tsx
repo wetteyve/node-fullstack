@@ -33,7 +33,9 @@ export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const pages = await measurePerformance({ context, promise: fetchStrapiPages() });
   const [navbarEntries, footerEntries] = splitArrayByKey(Object.values(pages), 'linkage');
   const url = new URL(request.url);
-  const faviconUrl = `${ENV.MODE !== 'development' ? resourceBase : ''}/${tenant ? `favicon-${tenant}` : 'favicon'}.ico`;
+  const resourceBasePath = ENV.MODE !== 'development' ? resourceBase : '';
+  const favicon = `favicon${tenant ? `-${tenant}` : ''}.ico`;
+  const faviconUrl = `${resourceBasePath}/${favicon}`;
   const publicUrl = `${url.origin}${url.pathname.replace(`/${tenant}`, '')}`;
 
   // Generate meta tags

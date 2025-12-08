@@ -55,6 +55,9 @@ export const Meta = ({ descriptors }: { descriptors: MetaDescriptor[] }) => (
       if (stringKey(descriptor, 'property')) {
         return <meta {...descriptor} key={descriptor.property} />;
       }
+      if (stringKey(descriptor, 'tagname') && descriptor.tagname === 'link') {
+        return <link {...descriptor} key={index} />;
+      }
       return <meta {...descriptor} key={index} />;
     })}
   </>
