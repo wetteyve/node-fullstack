@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
+
 import '#uht-herisau/styles/app.css';
 import { resourceBase } from '#app/utils/app-paths';
 import { splitArrayByKey } from '#app/utils/array.utils';
@@ -9,6 +10,7 @@ import { useScreenStore } from '#app/utils/store/screen.store';
 import Footer from '#uht-herisau/components/footer/footer';
 import { Navbar } from '#uht-herisau/components/navbar/navbar';
 import { fetchStrapiPages, generateMetaTags } from '#uht-herisau/utils/page.utils';
+
 import { type Route } from './+types/base';
 
 export const links: Route.LinksFunction = () => [
@@ -37,7 +39,6 @@ export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const faviconUrl = `${resourceBasePath}/${favicon}`;
   const publicUrl = `${url.origin}${url.pathname.replace(`/${tenant}`, '')}`;
 
-  // Generate meta tags
   const meta = generateMetaTags({ navbarEntries, footerEntries, publicUrl, faviconUrl });
 
   return {
@@ -54,7 +55,6 @@ const UhtLayout = ({ loaderData: { navbarEntries, footerEntries, navigationExten
   const updateScreenSize = useScreenStore.use.updateScreenSize();
 
   useEffect(() => {
-    // track screen size
     window.addEventListener('resize', updateScreenSize);
     return () => window.removeEventListener('resize', updateScreenSize);
   }, [updateScreenSize]);

@@ -58,5 +58,8 @@
     "node:stream/consumers",
     "node:test",
     "node:console"
-  ]
+  ],
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative"
+
 }

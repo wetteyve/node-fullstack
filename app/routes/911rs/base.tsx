@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
+
+import '#rs911/styles/app.css';
 import { resourceBase } from '#app/utils/app-paths';
 import { splitArrayByKey } from '#app/utils/array.utils';
 import { getTenant } from '#app/utils/middlewares/app-load.context';
@@ -9,7 +11,6 @@ import Footer from '#rs911/components/footer/footer';
 import { LoadingBar } from '#rs911/components/loadingbar/Loadingbar';
 import Navbar from '#rs911/components/navbar/navbar';
 import { fetchStrapiPages, generateMetaTags } from '#rs911/utils/page.utils';
-import '#rs911/styles/app.css';
 
 import { type Route } from './+types/base';
 
@@ -38,7 +39,6 @@ export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const faviconUrl = `${resourceBasePath}/${favicon}`;
   const publicUrl = `${url.origin}${url.pathname.replace(`/${tenant}`, '')}`;
 
-  // Generate meta tags
   const meta = generateMetaTags({ navbarEntries, footerEntries, publicUrl, faviconUrl });
 
   return { navbarEntries, footerEntries, faviconUrl, publicUrl, meta };
@@ -48,7 +48,6 @@ const Page = ({ loaderData: { navbarEntries, footerEntries } }: Route.ComponentP
   const updateScreenSize = useScreenStore.use.updateScreenSize();
 
   useEffect(() => {
-    // track screen size
     window.addEventListener('resize', updateScreenSize);
     return () => window.removeEventListener('resize', updateScreenSize);
   }, [updateScreenSize]);
