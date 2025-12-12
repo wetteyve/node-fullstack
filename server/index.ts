@@ -107,6 +107,13 @@ if (!ALLOW_INDEXING) {
   });
 }
 
+// enable SharedArrayBuffer for napi-rs WASM
+app.use((_, res, next) => {
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  next();
+});
+
 // Silence the chrome devtools request
 app.get('/.well-known/appspecific/com.chrome.devtools.json', (_req, res) => {
   res.status(404);

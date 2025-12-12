@@ -15,7 +15,7 @@ Instead of running multiple applications (one per tenant/domain), we run **a sin
 ```
 /911rs/*
 /uht-herisau/*
-/on-call-sheduler.yveswetter/*
+/on-call-scheduler.yveswetter/*
 ```
 
 Through reverse proxying (e.g., Apache + `.htaccess`), incoming requests from real domains (like `911rs.ch` or `uht-herisau.ch`) are rewritten to match the internal route structure.
@@ -217,7 +217,7 @@ This uses `other/reverse-proxy.ts` which creates local proxy servers on differen
 
 - `http://localhost:8080` → proxies to `/911rs/*` with `X-Tenant: 911rs`
 - `http://localhost:8081` → proxies to `/uht-herisau/*` with `X-Tenant: uht-herisau`
-- `http://localhost:8082` → proxies to `/on-call-sheduler.yveswetter/*` with `X-Tenant: on-call-sheduler.yveswetter`
+- `http://localhost:8082` → proxies to `/scheduler.yveswetter/*` with `X-Tenant: scheduler.yveswetter`
 
 The proxy setup:
 

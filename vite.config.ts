@@ -28,24 +28,5 @@ export default defineConfig(() => ({
       }
     },
   },
-  plugins: [
-    tailwindcss(),
-    reactRouterDevTools(),
-    reactRouter(),
-    tsconfigPaths(),
-    wasm(),
-    topLevelAwait(),
-    // enable SharedArrayBuffer for napi-rs WASM
-    {
-      name: 'configure-response-headers',
-      enforce: 'pre',
-      configureServer: (server) => {
-        server.middlewares.use((_req, res, next) => {
-          res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-          res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-          next();
-        });
-      },
-    },
-  ],
+  plugins: [tailwindcss(), reactRouterDevTools(), reactRouter(), tsconfigPaths(), wasm(), topLevelAwait()],
 }));

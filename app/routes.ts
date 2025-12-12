@@ -1,6 +1,6 @@
 import { type RouteConfig, route, prefix } from '@react-router/dev/routes';
 
-import { rs911, uhtHerisau, resource, onCallSheduler } from './utils/app-paths';
+import { rs911, uhtHerisau, resource, onCallScheduler } from './utils/app-paths';
 
 export default [
   // Root route
@@ -29,6 +29,6 @@ export default [
     route(uhtHerisau.legacyRedirect, 'routes/uht-herisau/legacy-redirect.tsx'),
   ]),
 
-  // On Call Sheduler routes
-  ...prefix(onCallSheduler.base, [route(onCallSheduler.home, 'routes/sheduler.yveswetter/home.tsx')]),
+  // On Call Scheduler routes
+  ...prefix(onCallScheduler.base, [route(onCallScheduler.home, 'routes/scheduler.yveswetter/home.tsx')]),
 ] satisfies RouteConfig;

@@ -36,4 +36,4 @@ const setupPlayProxy = (proxyPort: number, tenant: string, entry: string) => {
 
 setupPlayProxy(8080, process.env.RS911_PROXY ?? '911rs', '/start');
 setupPlayProxy(8081, process.env.UHT_PROXY ?? 'uht-herisau', '/start');
-setupPlayProxy(8082, process.env.SHEDULER_PROXY ?? 'sheduler.yveswetter', '/home');
+setupPlayProxy(8082, process.env.SCHEDULER_PROXY ?? 'scheduler.yveswetter', '/home');
