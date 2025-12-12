@@ -7,3 +7,13 @@
 /.react-router/
 /build/
 /server-build/
+
+# Yarn
+.yarn/*
+.yarn/cache/*-darwin-arm64-npm-*
+.yarn/cache/*-linux-x64-npm-*
+.yarn/cache/*-linux-x64-gnu-npm-*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions

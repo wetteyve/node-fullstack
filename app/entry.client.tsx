@@ -19,7 +19,6 @@ startTransition(() => {
 
       // Check if the route includes the tenant identifier
       if (route.includes(tenant)) {
-        console.log(`Adjusting route`, __reactRouterManifest.routes[route]);
         // Remove the tenant identifier from the base route path
         if (__reactRouterManifest.routes[route].parentId === 'root') {
           const path = __reactRouterManifest.routes[route].path.replace(`/${tenant}`, '') || '/';
