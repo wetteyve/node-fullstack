@@ -28,6 +28,7 @@
     "@radix-ui/react-slot": "1.2.4",
     "@react-router/express": "7.10.1",
     "@react-router/node": "7.10.1",
+    "@wetteyve/scheduler": "0.0.3-0",
     "address": "2.0.3",
     "axios": "1.13.2",
     "class-variance-authority": "0.7.1",

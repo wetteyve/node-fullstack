@@ -10,6 +10,9 @@ const isProd = process.env.NODE_ENV === 'production';
 export default defineConfig(() => ({
   // In production we serve our assets with the '/node/v1/' base path.
   base: isProd ? '/node/v1/' : '/',
+  optimizeDeps: {
+    exclude: ['@wetteyve/scheduler'],
+  },
   build: {
     rtarget: 'es2022',
     cssMinify: isProd,

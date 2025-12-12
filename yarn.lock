@@ -1831,6 +1831,98 @@
     "@typescript-eslint/scope-manager" "^8.46.1"
     "@typescript-eslint/utils" "^8.46.1"
 
+"@wetteyve/scheduler-android-arm-eabi@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-android-arm-eabi/-/scheduler-android-arm-eabi-0.0.3-0.tgz#94ea9bc26ae9c79d68dda3ea0d74ab33522dc2b4"
+  integrity sha512-9bqE7MDUZfP/nk5uh5/PdzpRwgPtXFFWJ1mToCK6GqP3D5vav1gXSw9RjWWXNaVaObb9O+9zL6AeUNMAuCsnJA==
+
+"@wetteyve/scheduler-android-arm64@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-android-arm64/-/scheduler-android-arm64-0.0.3-0.tgz#258212444cdc908be5cb31dcf11e739757840727"
+  integrity sha512-WhFc4u2KmwfwsNhrRii+G8zHIVtRKpJpk4DdjAugHYADkHOYNS0xBt1kx5gQxE7JEwsajZ8DpHyUHdnWDA423Q==
+
+"@wetteyve/scheduler-darwin-arm64@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-darwin-arm64/-/scheduler-darwin-arm64-0.0.3-0.tgz#0637b6fed65b1c65404bcbfb9b28bbaa57ac9a24"
+  integrity sha512-VRPRQPovZywT59TQ0WdSSjm0wOw3bFtAG0uMDSc7FjTES5xTXfPoRkrPLeUzXY941BYebCKUGkIGJSYCJzu1Kw==
+
+"@wetteyve/scheduler-darwin-x64@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-darwin-x64/-/scheduler-darwin-x64-0.0.3-0.tgz#5eb24e75bcb516f3782929e4778cf8e5f12187ed"
+  integrity sha512-a4ets+TDLY9F1WTMbi/TVvJmSayziBx0JPHH6EXkWeFG1YPc9Ry6gmcKkyjAOZBJwo22lX8rE4fhFZbrnIGPng==
+
+"@wetteyve/scheduler-freebsd-x64@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-freebsd-x64/-/scheduler-freebsd-x64-0.0.3-0.tgz#18f86582b242b85044bcad047740efd9002c6722"
+  integrity sha512-X4tij3nluJWCAH0aICv5ARsNrxzgz2jEYOlbtElCeBbY/apx8mjp8qqzhUlG4ZSMTxMNMNCLqrPp560/yW00Pw==
+
+"@wetteyve/scheduler-linux-arm-gnueabihf@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-linux-arm-gnueabihf/-/scheduler-linux-arm-gnueabihf-0.0.3-0.tgz#30b1882f68c41e57a34974b44650df38b2c9360c"
+  integrity sha512-gG4yhfPgyipvi2U+6fUhuzjfqe1NobWMK46G6xpdYyBeCHPF/u0stbd+RxSdPsfrGfaS7OFkGROUCf8G+eczKQ==
+
+"@wetteyve/scheduler-linux-arm64-gnu@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-linux-arm64-gnu/-/scheduler-linux-arm64-gnu-0.0.3-0.tgz#e3c15f666937411a0bc788be9d6fde24ce3044f2"
+  integrity sha512-Iv+Yb3TNd5zEQqle2UER5bBotkg+ClnYItq4dPXH/K2RIFdTKOH47oUtdSHNH8MCG94fm7HRRZOcRRaOXgwAxw==
+
+"@wetteyve/scheduler-linux-arm64-musl@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-linux-arm64-musl/-/scheduler-linux-arm64-musl-0.0.3-0.tgz#a2c6883b16605a95d643c560c756224e5683f761"
+  integrity sha512-a1v7xR2e6VB3rA32ULyZCYIMaUwuYUDdjMtLq2LettxNF4S+uB+Ns7Fby9yez4diHUjG4x49f3RneJF88YdT7Q==
+
+"@wetteyve/scheduler-linux-x64-gnu@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-linux-x64-gnu/-/scheduler-linux-x64-gnu-0.0.3-0.tgz#552e16ef10376c476da6a459add4999947835a20"
+  integrity sha512-Q5ld6NDp87gvhEpkErYuyU7MIV5BDsxBLtWrqmOWGs8/aZiDNJ3RA+FlIHTkeBDQ/AThwurGJzColNDrIE5D8A==
+
+"@wetteyve/scheduler-linux-x64-musl@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-linux-x64-musl/-/scheduler-linux-x64-musl-0.0.3-0.tgz#3bdaca6bc0dfc729c162c8687718913084eeb372"
+  integrity sha512-Plme0uSEhZcJty0V8xdUCvm7/hWheCla2IvpQBAR1Op1zsEMj46VqobYUKfL7v0VEfbt57CGOqq59Rys3QrDzg==
+
+"@wetteyve/scheduler-wasm32-wasi@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-wasm32-wasi/-/scheduler-wasm32-wasi-0.0.3-0.tgz#8303aae7d64d4ac935994b1e44722f8840e5c590"
+  integrity sha512-8iWQbQw7mF022tDIDeB06ixUn+ir71Z3AB3kryyDjUf1NcXLuH6E8dwpK+Zw6dUJEkDEqgPr6qc29EXwWP6hOg==
+  dependencies:
+    "@napi-rs/wasm-runtime" "^1.1.0"
+
+"@wetteyve/scheduler-win32-arm64-msvc@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-win32-arm64-msvc/-/scheduler-win32-arm64-msvc-0.0.3-0.tgz#61288258e342f682bbd45b0cddcc2bde66b4f6ac"
+  integrity sha512-0zF9MhNzTBT02G91ws8zIvSND4nhq54jQBnUPyfGF4A4xdeu7yTUar6CkoW8Q5v1IXIzv0AmSh7B/qmL0mSKJw==
+
+"@wetteyve/scheduler-win32-ia32-msvc@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-win32-ia32-msvc/-/scheduler-win32-ia32-msvc-0.0.3-0.tgz#5bea43a57412ee159274a7dc01b2b99b5da3f280"
+  integrity sha512-CqTk9v7Ttb/2/iUGFOyBmy4ioj+OfwareRwEMPjfGl6qu7UgXCyehU4c6HnvvjH0kcaudjomUs9qX6L+7MBWdw==
+
+"@wetteyve/scheduler-win32-x64-msvc@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler-win32-x64-msvc/-/scheduler-win32-x64-msvc-0.0.3-0.tgz#6c9f32f49d7d1dbdf842cd766fd814413d9a72fb"
+  integrity sha512-eE2XRzjstK9TQKZnOo6tJXmPRPduRAwOkyui43gR6GaMX//Qj5UUnVPH/sdYzU4jj68RkQJdwVzfH/cPXduneA==
+
+"@wetteyve/scheduler@0.0.3-0":
+  version "0.0.3-0"
+  resolved "https://registry.yarnpkg.com/@wetteyve/scheduler/-/scheduler-0.0.3-0.tgz#b07ba0939e27bfd8f020a9428757df9f0a7c90dd"
+  integrity sha512-+pKjhtCrIfv+WGEq0XaOp1b3jQqHw5XvET+UzgecFHhAYkB1cvD3iqz3Wd7cGo8geFW1MBWoP2z2eruj6O9HVA==
+  optionalDependencies:
+    "@wetteyve/scheduler-android-arm-eabi" "0.0.3-0"
+    "@wetteyve/scheduler-android-arm64" "0.0.3-0"
+    "@wetteyve/scheduler-darwin-arm64" "0.0.3-0"
+    "@wetteyve/scheduler-darwin-x64" "0.0.3-0"
+    "@wetteyve/scheduler-freebsd-x64" "0.0.3-0"
+    "@wetteyve/scheduler-linux-arm-gnueabihf" "0.0.3-0"
+    "@wetteyve/scheduler-linux-arm64-gnu" "0.0.3-0"
+    "@wetteyve/scheduler-linux-arm64-musl" "0.0.3-0"
+    "@wetteyve/scheduler-linux-x64-gnu" "0.0.3-0"
+    "@wetteyve/scheduler-linux-x64-musl" "0.0.3-0"
+    "@wetteyve/scheduler-wasm32-wasi" "0.0.3-0"
+    "@wetteyve/scheduler-win32-arm64-msvc" "0.0.3-0"
+    "@wetteyve/scheduler-win32-ia32-msvc" "0.0.3-0"
+    "@wetteyve/scheduler-win32-x64-msvc" "0.0.3-0"
+
 accepts@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-2.0.0.tgz#bbcf4ba5075467f3f2131eab3cffc73c2f5d7895"

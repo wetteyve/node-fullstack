@@ -1,22 +1,15 @@
-import type * as WASM from 'on-call-sheduler';
-import { useClientOnlyModule } from '#app/utils/client-only-module.utils';
+import { getArrayLength } from '@wetteyve/scheduler';
+import { type Route } from './+types/home';
 
-const App = () => {
-  const wasm = useClientOnlyModule<typeof WASM>(() => import('on-call-sheduler'));
+const arr = [{}, 1, 'hello', true];
 
-  const handleClick = () => {
-    if (wasm) {
-      wasm.greet("Rusty dev's");
-    } else {
-      console.log('WASM not yet loaded!');
-    }
-  };
+export const loader = () => ({ napi: getArrayLength(arr) });
 
+const App = ({ loaderData: { napi } }: Route.ComponentProps) => {
+  const handleClick = () => window.alert(`Hello from napi-rs: ${napi}`);
   return (
     <div>
-      <button onClick={handleClick} disabled={!wasm}>
-        {wasm ? 'PUSH FOR WASM!' : 'Loading WASM...'}
-      </button>
+      <button onClick={handleClick}>{'PUSH FOR RUST!'}</button>
     </div>
   );
 };
