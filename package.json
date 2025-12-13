@@ -33,7 +33,7 @@
     "@radix-ui/react-slot": "1.2.4",
     "@react-router/express": "7.10.1",
     "@react-router/node": "7.10.1",
-    "@wetteyve/scheduler": "0.0.3-0",
+    "@wetteyve/rusty": "0.0.5",
     "address": "2.0.3",
     "axios": "1.13.2",
     "class-variance-authority": "0.7.1",
@@ -92,8 +92,6 @@
     "tsx": "4.21.0",
     "typescript": "5.9.3",
     "vite": "7.2.7",
-    "vite-plugin-top-level-await": "1.6.0",
-    "vite-plugin-wasm": "3.5.0",
     "vite-tsconfig-paths": "5.1.4"
   }
 }

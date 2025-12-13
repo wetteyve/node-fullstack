@@ -22,7 +22,7 @@ export const loader = async () => {
 
 // Setup WASM in client browser
 export const clientLoader = async ({ serverLoader }: Route.ClientLoaderArgs) => {
-  const [serverData, wasm] = await Promise.all([serverLoader(), import('@wetteyve/scheduler')]);
+  const [serverData, wasm] = await Promise.all([serverLoader(), import('@wetteyve/rusty')]);
   return { ...serverData, wasm };
 };
 clientLoader.hydrate = true as const;
