@@ -1,8 +1,7 @@
 import { resourceBase } from '#app/utils/app-paths';
 import { getGlobalMetaTags } from '#app/utils/meta.utils';
 import { type Route } from './+types/home';
-
-const arr = [{}, 1, 'hello', true];
+import '#app/styles/tailwind.css';
 
 // SSR Metadata
 export const loader = async () => {
@@ -22,17 +21,24 @@ export const loader = async () => {
 
 // Setup WASM in client browser
 export const clientLoader = async ({ serverLoader }: Route.ClientLoaderArgs) => {
-  const [serverData, wasm] = await Promise.all([serverLoader(), import('@wetteyve/rusty')]);
-  return { ...serverData, wasm };
+  const [serverData, rusty] = await Promise.all([serverLoader(), import('@wetteyve/rusty')]);
+  return { ...serverData, rusty };
 };
 clientLoader.hydrate = true as const;
 
-const App = ({ loaderData: { wasm } }: Route.ComponentProps) => {
-  const handleClick = () => window.alert(`Hello from napi-rs: ${wasm.getArrayLength(arr)}`);
-
+const App = ({ loaderData: { rusty } }: Route.ComponentProps) => {
   return (
-    <div>
-      <button onClick={handleClick}>PUSH FOR WASM!</button>
+    <div className='flex flex-col gap-4 items-center'>
+      <p className='text-xl'>Check the console for WASM action</p>
+      <button className='bg-blue-500 rounded-sm cursor-pointer w-2xs' onClick={() => rusty.helloNapi()}>
+        Hello napi!
+      </button>
+      <button className='bg-blue-500 rounded-sm cursor-pointer w-2xs' onClick={() => rusty.helloNapi('rusty')}>
+        Hello rusty!
+      </button>
+      <button className='bg-blue-500 rounded-sm cursor-pointer w-2xs' onClick={() => rusty.guessingGame()}>
+        Guess the number!
+      </button>
     </div>
   );
 };

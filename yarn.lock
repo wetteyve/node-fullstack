@@ -833,10 +833,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.39.1":
-  version: 9.39.1
-  resolution: "@eslint/js@npm:9.39.1"
-  checksum: 10c0/6f7f26f8cdb7ad6327bbf9741973b6278eb946f18f70e35406e88194b0d5c522d0547a34a02f2a208eec95c5d1388cdf7ccb20039efd2e4cb6655615247a50f1
+"@eslint/js@npm:9.39.2":
+  version: 9.39.2
+  resolution: "@eslint/js@npm:9.39.2"
+  checksum: 10c0/00f51c52b04ac79faebfaa65a9652b2093b9c924e945479f1f3945473f78aee83cbc76c8d70bbffbf06f7024626575b16d97b66eab16182e1d0d39daff2f26f5
   languageName: node
   linkType: hard
 
@@ -2193,12 +2193,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:25.0.1":
-  version: 25.0.1
-  resolution: "@types/node@npm:25.0.1"
+"@types/node@npm:25.0.2":
+  version: 25.0.2
+  resolution: "@types/node@npm:25.0.2"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/1d5ca9f240d0cf8e43d5281c0e6ee96fb22d37dc2e5ef52c6ca71de47957a6128e124990cedf5b14c03d0250737bd78ad370d93bcf1729a75ca4e54384fdd51a
+  checksum: 10c0/12c4044bf2e46ba3d313ddf6256ee3c88e336a62d129fe788eeab8ff2631b3df51eb31ade4cdc04552fbe51e285f0663c49b60c78acd31da2b9f2c86a84347e3
   languageName: node
   linkType: hard
 
@@ -2572,124 +2572,124 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-android-arm-eabi@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-android-arm-eabi@npm:0.0.5"
+"@wetteyve/rusty-android-arm-eabi@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-android-arm-eabi@npm:0.0.6-2"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-android-arm64@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-android-arm64@npm:0.0.5"
+"@wetteyve/rusty-android-arm64@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-android-arm64@npm:0.0.6-2"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-darwin-arm64@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-darwin-arm64@npm:0.0.5"
+"@wetteyve/rusty-darwin-arm64@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-darwin-arm64@npm:0.0.6-2"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-darwin-x64@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-darwin-x64@npm:0.0.5"
+"@wetteyve/rusty-darwin-x64@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-darwin-x64@npm:0.0.6-2"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-freebsd-x64@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-freebsd-x64@npm:0.0.5"
+"@wetteyve/rusty-freebsd-x64@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-freebsd-x64@npm:0.0.6-2"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-linux-arm-gnueabihf@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-linux-arm-gnueabihf@npm:0.0.5"
+"@wetteyve/rusty-linux-arm-gnueabihf@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-linux-arm-gnueabihf@npm:0.0.6-2"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-linux-arm64-gnu@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-linux-arm64-gnu@npm:0.0.5"
+"@wetteyve/rusty-linux-arm64-gnu@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-linux-arm64-gnu@npm:0.0.6-2"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-linux-arm64-musl@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-linux-arm64-musl@npm:0.0.5"
+"@wetteyve/rusty-linux-arm64-musl@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-linux-arm64-musl@npm:0.0.6-2"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-linux-x64-gnu@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-linux-x64-gnu@npm:0.0.5"
+"@wetteyve/rusty-linux-x64-gnu@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-linux-x64-gnu@npm:0.0.6-2"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-linux-x64-musl@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-linux-x64-musl@npm:0.0.5"
+"@wetteyve/rusty-linux-x64-musl@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-linux-x64-musl@npm:0.0.6-2"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-wasm32-wasi@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-wasm32-wasi@npm:0.0.5"
+"@wetteyve/rusty-wasm32-wasi@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-wasm32-wasi@npm:0.0.6-2"
   dependencies:
     "@napi-rs/wasm-runtime": "npm:^1.1.0"
   conditions: cpu=wasm32
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-win32-arm64-msvc@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-win32-arm64-msvc@npm:0.0.5"
+"@wetteyve/rusty-win32-arm64-msvc@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-win32-arm64-msvc@npm:0.0.6-2"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-win32-ia32-msvc@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-win32-ia32-msvc@npm:0.0.5"
+"@wetteyve/rusty-win32-ia32-msvc@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-win32-ia32-msvc@npm:0.0.6-2"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty-win32-x64-msvc@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty-win32-x64-msvc@npm:0.0.5"
+"@wetteyve/rusty-win32-x64-msvc@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty-win32-x64-msvc@npm:0.0.6-2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@wetteyve/rusty@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wetteyve/rusty@npm:0.0.5"
+"@wetteyve/rusty@npm:0.0.6-2":
+  version: 0.0.6-2
+  resolution: "@wetteyve/rusty@npm:0.0.6-2"
   dependencies:
-    "@wetteyve/rusty-android-arm-eabi": "npm:0.0.5"
-    "@wetteyve/rusty-android-arm64": "npm:0.0.5"
-    "@wetteyve/rusty-darwin-arm64": "npm:0.0.5"
-    "@wetteyve/rusty-darwin-x64": "npm:0.0.5"
-    "@wetteyve/rusty-freebsd-x64": "npm:0.0.5"
-    "@wetteyve/rusty-linux-arm-gnueabihf": "npm:0.0.5"
-    "@wetteyve/rusty-linux-arm64-gnu": "npm:0.0.5"
-    "@wetteyve/rusty-linux-arm64-musl": "npm:0.0.5"
-    "@wetteyve/rusty-linux-x64-gnu": "npm:0.0.5"
-    "@wetteyve/rusty-linux-x64-musl": "npm:0.0.5"
-    "@wetteyve/rusty-wasm32-wasi": "npm:0.0.5"
-    "@wetteyve/rusty-win32-arm64-msvc": "npm:0.0.5"
-    "@wetteyve/rusty-win32-ia32-msvc": "npm:0.0.5"
-    "@wetteyve/rusty-win32-x64-msvc": "npm:0.0.5"
+    "@wetteyve/rusty-android-arm-eabi": "npm:0.0.6-2"
+    "@wetteyve/rusty-android-arm64": "npm:0.0.6-2"
+    "@wetteyve/rusty-darwin-arm64": "npm:0.0.6-2"
+    "@wetteyve/rusty-darwin-x64": "npm:0.0.6-2"
+    "@wetteyve/rusty-freebsd-x64": "npm:0.0.6-2"
+    "@wetteyve/rusty-linux-arm-gnueabihf": "npm:0.0.6-2"
+    "@wetteyve/rusty-linux-arm64-gnu": "npm:0.0.6-2"
+    "@wetteyve/rusty-linux-arm64-musl": "npm:0.0.6-2"
+    "@wetteyve/rusty-linux-x64-gnu": "npm:0.0.6-2"
+    "@wetteyve/rusty-linux-x64-musl": "npm:0.0.6-2"
+    "@wetteyve/rusty-wasm32-wasi": "npm:0.0.6-2"
+    "@wetteyve/rusty-win32-arm64-msvc": "npm:0.0.6-2"
+    "@wetteyve/rusty-win32-ia32-msvc": "npm:0.0.6-2"
+    "@wetteyve/rusty-win32-x64-msvc": "npm:0.0.6-2"
   dependenciesMeta:
     "@wetteyve/rusty-android-arm-eabi":
       optional: true
@@ -2719,7 +2719,7 @@ __metadata:
       optional: true
     "@wetteyve/rusty-win32-x64-msvc":
       optional: true
-  checksum: 10c0/8419166a03d89cf09a192588ad961cdf07e7435c4c3f0acd4ba23819a936e207ff0f37e3f1c12c6dacf799e4e9c24d06b1a9b6dc9528bd8f7b15937bfcb01188
+  checksum: 10c0/cf69689b463e63bfff6c66480f31739268e30de7136eddf75df0a4fba1e78a176cceed681c9548b82aaab3015d0ec8698e90d06a4769c6b20bf6e28751448b33
   languageName: node
   linkType: hard
 
@@ -4259,9 +4259,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:9.39.1":
-  version: 9.39.1
-  resolution: "eslint@npm:9.39.1"
+"eslint@npm:9.39.2":
+  version: 9.39.2
+  resolution: "eslint@npm:9.39.2"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.8.0"
     "@eslint-community/regexpp": "npm:^4.12.1"
@@ -4269,7 +4269,7 @@ __metadata:
     "@eslint/config-helpers": "npm:^0.4.2"
     "@eslint/core": "npm:^0.17.0"
     "@eslint/eslintrc": "npm:^3.3.1"
-    "@eslint/js": "npm:9.39.1"
+    "@eslint/js": "npm:9.39.2"
     "@eslint/plugin-kit": "npm:^0.4.1"
     "@humanfs/node": "npm:^0.16.6"
     "@humanwhocodes/module-importer": "npm:^1.0.1"
@@ -4304,7 +4304,7 @@ __metadata:
       optional: true
   bin:
     eslint: bin/eslint.js
-  checksum: 10c0/59b2480639404ba24578ca480f973683b87b7aac8aa7e349240474a39067804fd13cd8b9cb22fee074170b8c7c563b57bab703ec0f0d3f81ea017e5d2cad299d
+  checksum: 10c0/bb88ca8fd16bb7e1ac3e13804c54d41c583214460c0faa7b3e7c574e69c5600c7122295500fb4b0c06067831111db740931e98da1340329527658e1cf80073d3
   languageName: node
   linkType: hard
 
@@ -8908,10 +8908,10 @@ __metadata:
     "@types/fs-extra": "npm:11.0.4"
     "@types/http-proxy": "npm:1.17.17"
     "@types/morgan": "npm:1.9.10"
-    "@types/node": "npm:25.0.1"
+    "@types/node": "npm:25.0.2"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
-    "@wetteyve/rusty": "npm:0.0.5"
+    "@wetteyve/rusty": "npm:0.0.6-2"
     address: "npm:2.0.3"
     axios: "npm:1.13.2"
     class-variance-authority: "npm:0.7.1"
@@ -8921,7 +8921,7 @@ __metadata:
     cross-env: "npm:10.1.0"
     date-fns: "npm:4.1.0"
     dotenv: "npm:17.2.3"
-    eslint: "npm:9.39.1"
+    eslint: "npm:9.39.2"
     eslint-config-prettier: "npm:10.1.8"
     eslint-plugin-prettier: "npm:5.5.4"
     execa: "npm:9.6.1"
