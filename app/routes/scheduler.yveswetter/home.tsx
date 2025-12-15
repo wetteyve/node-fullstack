@@ -1,3 +1,5 @@
+import { debounce } from '@tanstack/pacer';
+import { useState } from 'react';
 import { resourceBase } from '#app/utils/app-paths';
 import { getGlobalMetaTags } from '#app/utils/meta.utils';
 import { type Route } from './+types/home';
@@ -27,6 +29,14 @@ export const clientLoader = async ({ serverLoader }: Route.ClientLoaderArgs) => 
 clientLoader.hydrate = true as const;
 
 const App = ({ loaderData: { rusty } }: Route.ComponentProps) => {
+  const [fibonacci, setFibonacci] = useState('Type a number!');
+  const lazyFibonacci = debounce(
+    (input: number) => {
+      if (input <= 200000) setFibonacci(`${input}-th fibonacci is: ${rusty.fibonacci(input)}`);
+    },
+    { wait: 300 }
+  );
+
   return (
     <div className='flex flex-col gap-4 py-4 items-center'>
       <h1>WASM in action</h1>
@@ -45,8 +55,17 @@ const App = ({ loaderData: { rusty } }: Route.ComponentProps) => {
           }
         }}
       >
-        Guess the number!
+        Guess the number! (console game)
       </button>
+      <div>
+        <input
+          placeholder='Fibonacci'
+          className='border rounded-sm'
+          type='number'
+          onChange={(e) => lazyFibonacci(Number(e.target.value))}
+        />
+        <span className='wrap-anywhere px-4'>{fibonacci}</span>
+      </div>
     </div>
   );
 };
