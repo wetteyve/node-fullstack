@@ -28,15 +28,23 @@ clientLoader.hydrate = true as const;
 
 const App = ({ loaderData: { rusty } }: Route.ComponentProps) => {
   return (
-    <div className='flex flex-col gap-4 items-center'>
-      <p className='text-xl'>Check the console for WASM action</p>
-      <button className='bg-blue-500 rounded-sm cursor-pointer w-2xs' onClick={() => rusty.helloNapi()}>
+    <div className='flex flex-col gap-4 py-4 items-center'>
+      <h1>WASM in action</h1>
+      <button className='bg-blue-500 rounded-sm cursor-pointer w-2xs' onClick={() => window.alert(rusty.helloNapi())}>
         Hello napi!
       </button>
-      <button className='bg-blue-500 rounded-sm cursor-pointer w-2xs' onClick={() => rusty.helloNapi('rusty')}>
+      <button className='bg-blue-500 rounded-sm cursor-pointer w-2xs' onClick={() => window.alert(rusty.helloNapi('rusty'))}>
         Hello rusty!
       </button>
-      <button className='bg-blue-500 rounded-sm cursor-pointer w-2xs' onClick={() => rusty.guessingGame()}>
+      <button
+        className='bg-blue-500 rounded-sm cursor-pointer w-2xs'
+        onClick={() => {
+          const confirmed = window.confirm('Please make sure the browser console is visible. Click OK if the console is open.');
+          if (confirmed) {
+            rusty.guessingGame();
+          }
+        }}
+      >
         Guess the number!
       </button>
     </div>
