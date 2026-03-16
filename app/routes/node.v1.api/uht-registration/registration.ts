@@ -1,4 +1,5 @@
-import axios, { type AxiosRequestConfig } from 'axios';
+import { type AxiosRequestConfig } from 'axios';
+import { axiosInstance } from '#app/utils/axios-instance.utils';
 import { sendEmailToRegistrar } from '#uht-herisau/utils/mail.utils';
 import { type Registration, RegistrationSchema } from '#uht-herisau/utils/registration.utils';
 import { type Route } from './+types/registration';
@@ -20,7 +21,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
     data: {
       data: { id },
     },
-  } = await axios.request(reqConfig({ method: 'POST', registration })).catch((e: Error) => {
+  } = await axiosInstance.request(reqConfig({ method: 'POST', registration })).catch((e: Error) => {
     console.error(e.message, e.stack);
     throw new Response('Strapi registration failed', { status: 500 });
   });
@@ -28,7 +29,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   // Send email to registrar
   await sendEmailToRegistrar(registration).catch(async () => {
     // Revert registration in Strapi if email sending fails
-    await axios.request(reqConfig({ method: 'DELETE', registrationId: id })).catch((e: Error) => {
+    await axiosInstance.request(reqConfig({ method: 'DELETE', registrationId: id })).catch((e: Error) => {
       console.error('Failed to revert registration in Strapi after email failure:', e.message, e.stack);
     });
     throw new Response('Failed to send registration email', { status: 500 });
@@ -43,6 +44,7 @@ const reqConfig = (props: ConfigSignature): AxiosRequestConfig => {
   const config: AxiosRequestConfig = {
     method,
     maxBodyLength: Infinity,
+    timeout: 30000,
     headers: {
       Authorization: `Bearer ${ENV.UHT_CMS_SERVER_KEY}`,
       'Content-Type': 'application/json',

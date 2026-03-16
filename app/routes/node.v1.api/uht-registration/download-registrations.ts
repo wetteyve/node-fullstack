@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { z } from 'zod';
+import { axiosInstance } from '#app/utils/axios-instance.utils';
 import { type Route } from './+types/download-registrations';
 
 export const DownloadSchema = z.object({
@@ -22,16 +22,19 @@ export const action = async ({ request }: Route.ActionArgs) => {
   if (data.downloadKey !== ENV.UHT_DOWNLOAD_REGISTRATIONS_KEY) throw new Response('Forbidden', { status: 403 });
 
   // Fetch registrations from the UHT CMS API
-  return (
-    await axios
-      .get(`${ENV.UHT_CMS_API}/registrations?pagination[pageSize]=200&populate[captain][populate]=*`, {
+  try {
+    const response = await axiosInstance.get(
+      `${ENV.UHT_CMS_API}/registrations?pagination[pageSize]=200&populate[captain][populate]=*`,
+      {
         headers: {
           Authorization: `Bearer ${ENV.UHT_CMS_SERVER_KEY}`,
         },
-      })
-      .catch((e: Error) => {
-        console.error(e.message);
-        throw Error('strapi registrations unavailable');
-      })
-  ).data.data;
+        timeout: 30000,
+      }
+    );
+    return response.data.data;
+  } catch (e) {
+    console.error('Error fetching registrations:', e instanceof Error ? e.message : e);
+    throw Error('strapi registrations unavailable');
+  }
 };

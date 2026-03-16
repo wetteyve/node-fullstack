@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { format } from 'date-fns';
+import { axiosInstance } from '#app/utils/axios-instance.utils';
 import { resource } from '#app/utils/app-paths';
 import { createResend } from '#app/utils/server/mail.server';
 import { getReqConfig } from '#uht-herisau/utils/api.utils';
@@ -12,12 +12,12 @@ const qrImagePath = `https://uht-herisau.ch${resource.images}/qr-konto.png`;
 const fetchStrapiEmailData = async () => {
   const config = getReqConfig('email');
 
-  return axios
-    .request(config)
-    .then(async (response: { data: { data: { attributes: { start_date: string; end_date: string; edition_nr: number } } } }) => {
-      //transform the data to the format we need
-      return response.data.data.attributes;
-    });
+  const response = await axiosInstance.request<{ data: { attributes: { start_date: string; end_date: string; edition_nr: number } } }>(
+    config
+  );
+
+  // Transform the data to the format we need
+  return response.data.data.attributes;
 };
 
 export const createMailToUhtRegistrar = (

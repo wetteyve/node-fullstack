@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { type MetaDescriptor, isRouteErrorResponse } from 'react-router';
+import { axiosInstance } from '#app/utils/axios-instance.utils';
 import { getImage } from '#app/utils/get-strapi-image.utils';
 import { About } from '#rs911/pages/About';
 import { Agenda } from '#rs911/pages/Agenda';
@@ -9,7 +9,6 @@ import { Kontakt } from '#rs911/pages/Kontakt';
 import { Leistungen } from '#rs911/pages/Leistungen';
 import { Links } from '#rs911/pages/Links';
 import { Start } from '#rs911/pages/Start';
-import { getCachedData } from '#rs911/utils/cache.utils';
 import {
   type LinksContent,
   type AboutContent,
@@ -46,51 +45,49 @@ export type Page<Representation = PageContent> = {
 };
 
 export const fetchStrapiPages = async (): Promise<{ [key: string]: Page<PageContent> }> => {
-  return getCachedData('strapi-pages', 'all', async () => {
-    const config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `${ENV.RS911_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_settings][populate]=*`,
-      headers: {
-        Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
-      },
-    };
+  const config = {
+    method: 'get' as const,
+    maxBodyLength: Infinity,
+    timeout: 30000,
+    url: `${ENV.RS911_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_settings][populate]=*`,
+    headers: {
+      Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
+    },
+  };
 
-    return axios.request(config).then(async (response: { data: { data: any } }) => {
-      //transform the data to the format we need
-      return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-        const pageObject: Page = { ...page.attributes };
-        acc[page.attributes.slug] = pageObject;
-        return acc;
-      }, {});
-    });
-  });
+  const response = await axiosInstance.request<{ data: any }>(config);
+
+  // Transform the data to the format we need
+  return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
+    const pageObject: Page = { ...page.attributes };
+    acc[page.attributes.slug] = pageObject;
+    return acc;
+  }, {});
 };
 
 export const fetchStrapiContent = async (path: string) => {
-  return getCachedData(`strapi-content`, path, async () => {
-    const config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `${ENV.RS911_CMS_API}/pages?filters[slug][$eq]=${path}&populate=deep,5`,
-      headers: {
-        Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
-      },
+  const config = {
+    method: 'get' as const,
+    maxBodyLength: Infinity,
+    timeout: 30000,
+    url: `${ENV.RS911_CMS_API}/pages?filters[slug][$eq]=${path}&populate=deep,5`,
+    headers: {
+      Authorization: `Bearer ${ENV.RS911_CMS_KEY}`,
+    },
+  };
+
+  const response = await axiosInstance.request<{ data: any }>(config);
+
+  // Transform the data to the format we need
+  return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
+    const pageObject: Page = {
+      ...page.attributes,
+      content: (page.attributes.content[0] as unknown as PageContent) || {},
     };
 
-    return axios.request(config).then(async (response: { data: { data: any } }) => {
-      //transform the data to the format we need
-      return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-        const pageObject: Page = {
-          ...page.attributes,
-          content: (page.attributes.content[0] as unknown as PageContent) || {},
-        };
-
-        acc[page.attributes.slug] = pageObject;
-        return acc;
-      }, {});
-    });
-  });
+    acc[page.attributes.slug] = pageObject;
+    return acc;
+  }, {});
 };
 
 export const getRouteElement = (content: PageContent) => {

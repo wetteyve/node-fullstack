@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { type MetaDescriptor, isRouteErrorResponse } from 'react-router';
+import { axiosInstance } from '#app/utils/axios-instance.utils';
 import { getImage } from '#app/utils/get-strapi-image.utils';
 import { CategoryRepresentation } from '#uht-herisau/pages/Categories';
 import { DownloadRepresentation } from '#uht-herisau/pages/Download';
@@ -10,7 +10,6 @@ import { RankingRepresentation } from '#uht-herisau/pages/Ranking';
 import RegistrationRepresentation from '#uht-herisau/pages/Registration';
 import SponsorsRepresentation from '#uht-herisau/pages/Sponsors';
 import { getReqConfig } from '#uht-herisau/utils/api.utils';
-import { getCachedData } from '#uht-herisau/utils/cache.utils';
 import {
   type LandingContent,
   type MakrdownContent,
@@ -55,115 +54,111 @@ export type Page<Representation = PageContent> = {
 };
 
 export const fetchStrapiPages = async (): Promise<{ [key: string]: Page<PageContent> }> => {
-  return getCachedData('strapi-pages', 'all', async () => {
-    const config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `${ENV.UHT_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_data][populate]=*&populate[navigation_extensions][populate]=*`,
-      headers: {
-        Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
-      },
-    };
+  const config = {
+    method: 'get' as const,
+    maxBodyLength: Infinity,
+    timeout: 30000,
+    url: `${ENV.UHT_CMS_API}/pages?sort[0]=linkage:desc&sort[1]=linkage_position&populate[seo_data][populate]=*&populate[navigation_extensions][populate]=*`,
+    headers: {
+      Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
+    },
+  };
 
-    return axios.request(config).then(async (response: { data: { data: any } }) => {
-      //transform the data to the format we need
-      return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-        const pageObject: Page = { ...page.attributes };
-        acc[page.attributes.path] = pageObject;
-        return acc;
-      }, {});
-    });
-  });
+  const response = await axiosInstance.request<{ data: any }>(config);
+
+  // Transform the data to the format we need
+  return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
+    const pageObject: Page = { ...page.attributes };
+    acc[page.attributes.path] = pageObject;
+    return acc;
+  }, {});
 };
 
 export const fetchStrapiContent = async (path: string) => {
-  return getCachedData(`strapi-content`, path, async () => {
-    const config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `${ENV.UHT_CMS_API}/pages?filters[path][$eq]=${path}&populate=deep,5`,
-      headers: {
-        Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
-      },
+  const config = {
+    method: 'get' as const,
+    maxBodyLength: Infinity,
+    timeout: 30000,
+    url: `${ENV.UHT_CMS_API}/pages?filters[path][$eq]=${path}&populate=deep,5`,
+    headers: {
+      Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
+    },
+  };
+
+  const response = await axiosInstance.request<{ data: any }>(config);
+
+  // Transform the data to the format we need
+  return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
+    const pageObject: Page = {
+      ...page.attributes,
+      content: (page.attributes.content[0] as unknown as PageContent) || {},
     };
 
-    return axios.request(config).then(async (response: { data: { data: any } }) => {
-      //transform the data to the format we need
-      return response.data.data.reduce((acc: { [key: string]: Page }, page: any) => {
-        const pageObject: Page = {
-          ...page.attributes,
-          content: (page.attributes.content[0] as unknown as PageContent) || {},
-        };
-
-        acc[page.attributes.path] = pageObject;
-        return acc;
-      }, {});
-    });
-  });
+    acc[page.attributes.path] = pageObject;
+    return acc;
+  }, {});
 };
 
 export const fetchStrapiContentById = async (id: number) => {
-  return getCachedData(`strapi-content-by-id`, id.toString(), async () => {
-    const config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `${ENV.UHT_CMS_API}/pages/${id}?populate=deep,5`,
-      headers: {
-        Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
-      },
-    };
-    const response = await axios.request(config);
-    if (!response.data.data) {
-      throw new Error(`Content with ID ${id} not found`);
-    }
-    //transform the data to the format we need
-    return {
-      ...response.data.data.attributes,
-      content: (response.data.data.attributes.content[0] as unknown as PageContent) || {},
-    } as Page;
-  });
+  const config = {
+    method: 'get' as const,
+    maxBodyLength: Infinity,
+    timeout: 30000,
+    url: `${ENV.UHT_CMS_API}/pages/${id}?populate=deep,5`,
+    headers: {
+      Authorization: `Bearer ${ENV.UHT_CMS_KEY}`,
+    },
+  };
+
+  const response = await axiosInstance.request(config);
+
+  if (!response.data.data) {
+    throw new Error(`Content with ID ${id} not found`);
+  }
+
+  // Transform the data to the format we need
+  return {
+    ...response.data.data.attributes,
+    content: (response.data.data.attributes.content[0] as unknown as PageContent) || {},
+  } as Page;
 };
 
 export const fetchStrapiSponsors = async () => {
-  return getCachedData('strapi-sponsors', 'all', async () => {
-    const config = getReqConfig('sponsors', {
-      filters: {
-        'show_on_page][$eq': 'true',
-      },
-    });
-
-    return axios.request(config).then(async (response: { data: { data: any[] } }) => {
-      //transform the data to the format we need
-      return response.data.data.map(
-        (sponsor) =>
-          ({
-            ...sponsor.attributes,
-            id: sponsor.id,
-          }) as Sponsor
-      );
-    });
+  const config = getReqConfig('sponsors', {
+    filters: {
+      'show_on_page][$eq': 'true',
+    },
   });
+
+  const response = await axiosInstance.request<{ data: any[] }>(config);
+
+  // Transform the data to the format we need
+  return response.data.data.map(
+    (sponsor) =>
+      ({
+        ...sponsor.attributes,
+        id: sponsor.id,
+      }) as Sponsor
+  );
 };
 
 export const fetchStrapiCategories = async () => {
-  return getCachedData('strapi-categories', 'all', async () => {
-    const config = getReqConfig('categories', {
-      sort: {
-        0: 'short_key:asc',
-      },
-    });
-
-    return axios.request(config).then(async (response: { data: { data: any[] } }) => {
-      //transform the data to the format we need
-      return response.data.data.map(
-        (category) =>
-          ({
-            ...category.attributes,
-            id: category.id,
-          }) as Category
-      );
-    });
+  const config = getReqConfig('categories', {
+    sort: {
+      0: 'short_key:asc',
+    },
   });
+
+  const response = await axiosInstance.request<{ data: any[] }>(config);
+
+  // Transform the data to the format we need
+  return response.data.data.map(
+    (category) =>
+      ({
+        ...category.attributes,
+        id: category.id,
+      }) as Category
+  );
 };
 
 export const getRouteElement = (content: PageContent & { sponsors: Sponsor[]; categories: Category[] }) => {

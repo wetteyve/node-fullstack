@@ -4,6 +4,7 @@ export const getReqConfig = (path: string, params: object = {}, method: Method =
   return {
     method: method,
     maxBodyLength: Infinity,
+    timeout: 30000,
     url: `${ENV.UHT_CMS_API}/${path}`,
     params: { populate: 'deep', ...params },
     headers: {
