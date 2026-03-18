@@ -48,9 +48,12 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       throw new Error('Invalid values received from API');
     }
 
-    return new Response(Math.round(taxValue + withholdingTaxValue).toString(), {
+    const roundedTaxValue = Math.round(taxValue + withholdingTaxValue);
+    const csv = `income\n${roundedTaxValue}`;
+
+    return new Response(csv, {
       status: 200,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { 'Content-Type': 'text/csv' },
     });
   } catch (error) {
     console.error('Error:', error);
