@@ -1,5 +1,5 @@
 import { type LoaderFunctionArgs } from 'react-router';
-import { onCallScheduler } from '#app/utils/app-paths';
+import { onCallScheduler, resource } from '#app/utils/app-paths';
 import { fetchStrapiPages as fetch911rsPages } from '#rs911/utils/page.utils';
 import { fetchStrapiPages as fetchUhtPages } from '#uht-herisau/utils/page.utils';
 
@@ -21,6 +21,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       'uht-herisau': { ...uhtlinks, sitemap: `${request.url}uht-herisau/sitemap.xml` },
       scheduler: {
         home: `${request.url}${onCallScheduler.base.replace(/\//g, '')}/${onCallScheduler.home}`,
+      },
+      'zrh-tax': {
+        income: `${request.url}node/v1/api/${resource.zhTax}/${resource.income}?taxableIncome=100000&taxableAssets=50000&withholdingTax=2000&taxYear=${new Date().getFullYear()}`,
+        federal: `${request.url}node/v1/api/${resource.zhTax}/${resource.federal}?taxableIncome=100000&taxYear=${new Date().getFullYear()}`,
       },
     };
   }

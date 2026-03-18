@@ -9,6 +9,9 @@ export const resource = {
   uhtRegistration: 'uht-registration',
   fcCount: `fc-count`,
   downloadRegistrations: `download-registrations`,
+  zhTax: 'zh-tax',
+  income: 'income',
+  federal: 'federal',
 } as const;
 
 // Define 911rs app paths here
