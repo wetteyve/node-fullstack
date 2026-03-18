@@ -39,7 +39,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       throw new Error('Invalid tax value received from API');
     }
 
-    return Math.round(taxValue);
+    return new Response(Math.round(taxValue).toString(), {
+      status: 200,
+      headers: { 'Content-Type': 'text/plain' },
+    });
   } catch (error) {
     console.error('Error:', error);
     return createErrorResponse('Internal server error', 500);
