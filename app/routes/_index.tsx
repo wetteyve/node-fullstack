@@ -3,6 +3,8 @@ import { onCallScheduler, resource } from '#app/utils/app-paths';
 import { fetchStrapiPages as fetch911rsPages } from '#rs911/utils/page.utils';
 import { fetchStrapiPages as fetchUhtPages } from '#uht-herisau/utils/page.utils';
 
+// This loader is used to provide dynamic links for the 911rs and uht-herisau pages in development mode.
+
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (ENV.MODE === 'development') {
     const rs911Pages = await fetch911rsPages();
