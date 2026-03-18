@@ -49,11 +49,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     }
 
     const roundedTaxValue = Math.round(taxValue + withholdingTaxValue);
-    const csv = `income\n${roundedTaxValue}`;
 
-    return new Response(csv, {
+    return new Response(roundedTaxValue.toString(), {
       status: 200,
-      headers: { 'Content-Type': 'text/csv' },
+      headers: { 'Content-Type': 'text/plain' },
     });
   } catch (error) {
     console.error('Error:', error);
