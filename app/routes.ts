@@ -13,10 +13,6 @@ export default [
       route(resource.fcCount, 'routes/node.v1.api/uht-registration/fc-count.ts'),
       route(resource.downloadRegistrations, 'routes/node.v1.api/uht-registration/download-registrations.ts'),
     ]),
-    ...prefix(resource.zhTax, [
-      route(resource.federal, 'routes/node.v1.api/zh-tax/federal.ts'),
-      route(resource.income, 'routes/node.v1.api/zh-tax/income.ts'),
-    ]),
   ]),
 
   // 911rs routes
