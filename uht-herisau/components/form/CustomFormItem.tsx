@@ -15,10 +15,9 @@ type CustomItemProps = {
   placeholder?: string;
   type?: 'text' | 'number' | 'email' | 'checkbox' | 'select';
   options?: { label: string; value: string }[];
-  description?: string;
 };
 
-const CustomFormItem = ({ control, name, placeholder = 'Enter Response', type = 'text', options = [], description }: CustomItemProps) => {
+const CustomFormItem = ({ control, name, placeholder = 'Enter Response', type = 'text', options = [] }: CustomItemProps) => {
   function getInput(field: any) {
     switch (type) {
       case 'checkbox':
@@ -39,17 +38,12 @@ const CustomFormItem = ({ control, name, placeholder = 'Enter Response', type = 
             >
               <Checkbox className='size-5 mt-2.5' style={{ gridArea: 'check' }} id={name} {...field} />
               <label
-                className='font-semibold typo-xs h-5 md:h-5.75 mt-2.5 md:mt-[calc((40px-1.4375rem)/2)]'
+                className='font-semibold typo-xs min-h-5 mt-2.5 md:mt-[calc((40px-1.4375rem)/2)]'
                 style={{ gridArea: 'label' }}
                 htmlFor={name}
               >
-                {placeholder}
+                <StyledMarkdown className='p-0' align='text-left' markdown={placeholder} />
               </label>
-              {description && (
-                <div style={{ gridArea: 'description' }}>
-                  <StyledMarkdown className='p-0' align='text-left' markdown={description} />
-                </div>
-              )}
             </div>
           </FormControl>
         );
