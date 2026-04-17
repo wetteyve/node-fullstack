@@ -40,8 +40,8 @@ export const DownloadRepresentation = () => {
         const rows: any[] = [];
         registrations.forEach((registration) => {
           const { id, attributes } = registration;
-          const { team_name, category, captain, faesslicup } = attributes;
-          const { lastname, firstname, street, place, phone, email } = captain;
+          const { team_name = 'team_name', category = 'category', captain, faesslicup } = attributes;
+          const { lastname = 'lastname', firstname = 'firstname', street = 'street', place = 'place', phone = 'phone', email = 'email' } = captain ?? {};
           rows.push([id, team_name, category, lastname, firstname, street, place, phone, email]);
           if (faesslicup) {
             rows.push([id, team_name, 'FC Fässlicup', lastname, firstname, street, place, phone, email]);
